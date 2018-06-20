@@ -7,6 +7,10 @@ html, body, #root {
   color: #34352D;
 }
 
+*:focus {
+  outline: none;
+}
+
 .active {
   background-color: #f21f1f;
 }
