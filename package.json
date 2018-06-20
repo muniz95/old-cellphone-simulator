@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/react-redux": "^6.0.2",
     "@types/react-router-dom": "^4.2.7",
     "autoprefixer": "7.1.6",
     "babel-jest": "^22.1.0",
