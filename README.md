@@ -1,4 +1,4 @@
-A small web app that simulates the behavior and appearance of a common cell phone from 2001.
+A small web app that simulates the behavior and appearance of a common cell phone in 2001.
 
 Remember when smartphones how we know nowadays were something utopic? Handheld devices were, for our modern standards, very limited.
 
@@ -22,7 +22,7 @@ I opted for use a specific stack in this project, to extend my knowledge both in
 - SASS and other CSS-related stuff (Flexbox, animations, etc);
 - HTML5 API's and PWA good practices.
 
-Additionally, it is an exercise in understanding how old phones' OS's operate back in the past.
+Additionally, it is an exercise in understanding how old phones' OS's worked back in the past.
 
 ### Curiosity purposes
 
@@ -56,4 +56,4 @@ Stuff that almost every phone could do at that time:
 
 ## Observations
 
-I plan to use some smartphone-specific features (battery level, vibration, etc.). Even you can open this app in a PC or tablet, you will have a better experience in a smartphone.
+I plan to use some smartphone-specific features (battery level, vibration, etc.). You can open this app in a PC or tablet and it will work like a charm, but you will have a better experience in a smartphone.
