@@ -3,8 +3,16 @@ html, body, #root {
   padding: 0;
   height: 100%;
   font-family: sans-serif;
-  background-color: #B9C38E;
+  background-color: #f21f1f;
   color: #34352D;
+}
+
+.active {
+  background-color: #f21f1f;
+}
+
+.inactive {
+  background-color: #e24646;
 }
 
 input[type=text] {

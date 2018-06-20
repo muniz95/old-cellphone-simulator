@@ -1,5 +1,5 @@
 {
-  "name": "nokia3310",
+  "name": "old-cellphone-simulator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -54,7 +54,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "predeploy": "npm run build",
-    "deploy": "surge ./build -d https://nokia3310.surge.sh"
+    "deploy": "surge ./build -d https://old-cellphone-simulator.surge.sh"
   },
   "devDependencies": {
     "@types/jest": "^23.0.1",
@@ -106,7 +106,7 @@
     ],
     "globals": {
       "ts-jest": {
-        "tsConfigFile": "C:\\Users\\Rodri\\Documents\\Projects\\nokia3310\\tsconfig.test.json"
+        "tsConfigFile": "C:\\Users\\Rodri\\Documents\\Projects\\old-cellphone-simulator\\tsconfig.test.json"
       }
     }
   },
