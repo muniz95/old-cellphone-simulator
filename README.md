@@ -36,23 +36,23 @@ Because ancient devices are still awesome, even after all these years.
 
 Stuff that almost every phone could do at that time:
 
-[ ] Make and receive calls;
-[ ] Send and receive text messages;
-[ ] Store contacts;
-[ ] Set ringtones;
-[ ] Take notes;
-[ ] Calls log;
-[ ] Change phone settings;
-[ ] Alarm;
-[ ] Clock;
-[ ] Calculator;
-[ ] SIM services.
+- [ ] Make and receive calls;
+- [ ] Send and receive text messages;
+- [ ] Store contacts;
+- [ ] Set ringtones;
+- [ ] Take notes;
+- [ ] Calls log;
+- [ ] Change phone settings;
+- [ ] Alarm;
+- [ ] Clock;
+- [ ] Calculator;
+- [ ] SIM services.
 
 ## Features I would like to add
 
-[ ] Actual vibration (on calls, received messages, etc);
-[ ] Games (at least demo-only versions);
-[ ] Integration with native phone services.
+- [ ] Actual vibration (on calls, received messages, etc);
+- [ ] Games (at least demo-only versions);
+- [ ] Integration with native phone services.
 
 ## Observations
 
