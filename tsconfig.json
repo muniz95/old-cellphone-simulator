@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "outDir": "build/dist",
     "module": "esnext",
     "target": "es5",

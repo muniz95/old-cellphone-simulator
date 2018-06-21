@@ -5,7 +5,7 @@ class Calculator extends React.Component {
     public render() {
         return (
             <div className="home">
-                Calculator View
+                <textarea name="calculator" id="" cols={30} rows={10} />
             </div>
         )
     }
