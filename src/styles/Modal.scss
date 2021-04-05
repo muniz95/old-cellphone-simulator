@@ -5,7 +5,7 @@
   height: 100%;
   vertical-align: middle;
   text-align: center;
-  background-color: #c00000;
+  background-color: #c0b400;
   display: none;
   justify-content: center;
   align-items: center;
@@ -41,7 +41,7 @@ input[type='checkbox']+label>ins>i {
   position: absolute;
   bottom: 0;
   font-style: normal;
-  color: #000000;
+  color: #000000d6;
 }
 
 input[type='checkbox']+label>span {
@@ -75,7 +75,7 @@ input[type='checkbox']:checked+label>ins {
 input[type='checkbox']:checked+label>span {
   border: 2px dotted #34352D;
   animation: shrink-bounce 3000ms cubic-bezier(0.4, 0, 0.23, 1);
-  background-color: #c00000;
+  background-color: #c0b400;
 }
 
 input[type='checkbox']:checked+label>span:before {

@@ -1,22 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 import "../styles/SignalStatus.scss";
 
-class SignalStatus extends React.Component {
-    /**
-     * render
-     */
-    public render() {
-        return (
-            <div className="signal-status">
-                <div className="status-bar">.....</div><br />
-                <div className="status-bar">....</div><br />
-                <div className="status-bar">...</div><br />
-                <div className="status-bar">..</div><br />
-                <div className="status-bar">.</div><br />
-                S
-            </div>
-        )
-    }
-}
+const SignalStatus = () => {
+  return (
+    <div className="signal-status">
+      <div className="status-bar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div><br />
+      <div className="status-bar">&nbsp;&nbsp;&nbsp;&nbsp;</div><br />
+      <div className="status-bar">&nbsp;&nbsp;&nbsp;</div><br />
+      <div className="status-bar">&nbsp;&nbsp;</div><br />
+      <div className="status-bar">&nbsp;</div><br />
+              S
+    </div>
+  )
+};
 
 export default SignalStatus;

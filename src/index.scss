@@ -12,9 +12,9 @@ html, body, #root {
   padding: 0;
   height: 100%;
   font-family: sans-serif;
-  background-color: #c00000;
+  background-color: #c0b400;
   // color: #34352D;
-  color: #000000;
+  color: #000000d6;
 }
 
 *:focus {
@@ -35,14 +35,14 @@ input[type=text] {
   border-right: none;
   border-left: none;
   // border-bottom-color: #34352D;
-  border-bottom-color: #000000;
+  border-bottom-color: #000000d6;
   border-bottom-style: dashed;
 }
 
 button {
   background-color: inherit;
   // border-color: #34352D;
-  border-color: #000000;
+  border-color: #000000d6;
   border-bottom-style: dotted;
   border-left-style: dotted;
   border-top-style: none;
@@ -58,5 +58,5 @@ textarea {
   border-left-style: dotted;
   border-top-style: none;
   border-right-style: none;
-  border-color: #000000;
+  border-color: #000000d6;
 }

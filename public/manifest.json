@@ -1,5 +1,5 @@
 {
-  "short_name": "Old Phone",
+  "short_name": "Vapour NR1",
   "name": "Old Cellphone Simulator",
   "icons": [
     {
@@ -11,5 +11,5 @@
   "start_url": "/",
   "display": "fullscreen",
   "theme_color": "#000000",
-  "background_color": "#c00000"
+  "background_color": "#c0b400"
 }
