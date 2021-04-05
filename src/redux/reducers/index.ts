@@ -12,6 +12,10 @@ const showModal = (state = false, action: any): boolean => {
   }
 };
 
-export default combineReducers({
-  showModal
+const reducer = combineReducers({
+  showModal,
 });
+
+export type RootState = ReturnType<typeof reducer>;
+
+export default reducer;

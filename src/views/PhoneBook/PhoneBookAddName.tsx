@@ -1,48 +1,35 @@
-import * as React from "react";
-import { connect } from "react-redux";
-import { Dispatch } from "redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { openModal } from "../../redux/actions";
 import '../../styles/Home.scss';
 
-interface IProps {
-  dispatchOpenModal: () => {}
-}
-
-class PhoneBookAddName extends React.Component<IProps, {}> {
-  constructor(props: IProps) {
-    super(props)
-
-    this.saveContact = this.saveContact.bind(this)
-  }
-
-  public saveContact(e: React.MouseEvent<HTMLButtonElement>) {
+const PhoneBookAddName = () => {
+  const dispatch = useDispatch();
+  const dispatchOpenModal = React.useCallback(
+    () => dispatch(openModal()),
+    [dispatch]
+  );
+  
+  const saveContact = (e: React.MouseEvent<HTMLButtonElement>) => {
     const name = (document.getElementById('name') as HTMLInputElement).value
     window.console.log(name)
     window.navigator.vibrate([500, 100, 500, 100, 1000])
-    this.props.dispatchOpenModal()
+    dispatchOpenModal()
   }
 
-  public render() {
-    return (
-      <div className="home">
-        <div>
-          <input type="text" name="name" id="name"/>
-        </div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>
-          <button onClick={this.saveContact}>Save</button>
-        </div>
+  return (
+    <div className="home">
+      <div>
+        <input type="text" name="name" id="name"/>
       </div>
-    )
-  }
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>
+        <button onClick={saveContact}>Save</button>
+      </div>
+    </div>
+  )
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  dispatchOpenModal: () => {
-    dispatch(openModal())
-  }
-})
-
-export default connect(null, mapDispatchToProps)(PhoneBookAddName);
+export default PhoneBookAddName;

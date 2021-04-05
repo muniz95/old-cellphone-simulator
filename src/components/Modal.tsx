@@ -1,59 +1,41 @@
-import { LocationDescriptorObject } from "history";
-import * as React from "react";
-import { connect, Dispatch } from "react-redux";
-import { RouteComponentProps } from "react-router";
-import { withRouter } from "react-router";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RouteComponentProps, withRouter } from "react-router";
 import { closeModal } from "../redux/actions";
+import { RootState } from "../redux/reducers";
 import '../styles/Modal.scss';
 
-interface IProps extends RouteComponentProps<any> {
-  dispatchCloseModal: () => {}
-  showModal: boolean
-}
 
-class Modal extends React.Component<IProps, {}> {
-  constructor(props: IProps) {
-    super(props)
+const Modal = (props: RouteComponentProps) => {
+  const dispatch = useDispatch();
+  const dispatchCloseModal = React.useCallback(
+    () => dispatch(closeModal()),
+    [dispatch]
+  );
+  const showModal = useSelector((state: RootState) => state.showModal);
+  
+  let checked = false
+  if (showModal) {
+    setTimeout(() => {
+      const location = {
+        pathname: '/phonebook'
+      }
+      dispatchCloseModal()
+      props.history.push(location)
+    }, 3000)
+    checked = true
   }
-
-  public render() {
-    const { dispatchCloseModal, showModal } = this.props
-    let checked = false
-    if (showModal) {
-      setTimeout(() => {
-        const location: LocationDescriptorObject = {
-          pathname: '/phonebook'
-        }
-        dispatchCloseModal()
-        this.props.history.push(location)
-      }, 3000)
-      checked = true
-    }
-    return (
-      <div className="modal" style={{display: this.props.showModal ? 'flex' : 'none'}}>
-        <div className="modal-content">
-          <input type="checkbox" name="ok" id="ok" style={{opacity: 0}} checked={checked} />
-          <label htmlFor="ok">
-            <span>&nbsp;</span>
-            <ins><i>Done!</i></ins>
-          </label>
-        </div>
+  return (
+    <div className="modal" style={{display: showModal ? 'flex' : 'none'}}>
+      <div className="modal-content">
+        <input type="checkbox" name="ok" id="ok" style={{opacity: 0}} checked={checked} />
+        <label htmlFor="ok">
+          <span>&nbsp;</span>
+          <ins><i>Done!</i></ins>
+        </label>
       </div>
-    )
-  }
+    </div>
+  )
 };
 
-const mapStoreToProps = (store: any) => {
-  const { showModal } = store
-  return {
-    showModal
-  }
-}
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  dispatchCloseModal: () => {
-    dispatch(closeModal());
-  }
-});
-
-export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(Modal))
+export default withRouter(Modal);
