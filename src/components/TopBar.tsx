@@ -14,7 +14,7 @@ const TopBar = () => {
   });
 
   return (
-    <div className="top-bar">
+    <div className="top-bar noselect">
       <div>Lock</div>
       <div>{`${date.toLocaleTimeString().slice(0, 5)}`}</div>
     </div>
