@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { openModal } from "../../redux/actions";
-import '../../styles/Home.scss';
+import { openModal } from "../../../redux/actions";
+import S from "./styled";
+import service from "../../../services/contact.service"
 
 const PhoneBookAddName = () => {
   const dispatch = useDispatch();
@@ -12,13 +13,17 @@ const PhoneBookAddName = () => {
   
   const saveContact = (e: React.MouseEvent<HTMLButtonElement>) => {
     const name = (document.getElementById('name') as HTMLInputElement).value
-    window.console.log(name)
-    window.navigator.vibrate([500, 100, 500, 100, 1000])
-    dispatchOpenModal()
+    try {
+      service.insertContact({ name, number: Date.now().toString() });
+      window.navigator.vibrate([500, 100, 500, 100, 1000])
+      dispatchOpenModal()
+    } catch (error) {
+      alert(error);
+    }
   }
 
   return (
-    <div className="home">
+    <S.Container>
       <div>
         <input type="text" name="name" id="name"/>
       </div>
@@ -28,7 +33,7 @@ const PhoneBookAddName = () => {
       <div>
         <button onClick={saveContact}>Save</button>
       </div>
-    </div>
+    </S.Container>
   )
 }
 
