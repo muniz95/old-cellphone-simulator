@@ -10,6 +10,8 @@ export const BottomBarContainer = styled.div`
   align-items: center;
 `;
 
-export default {
+const S = {
   BottomBarContainer,
 };
+
+export default S;
