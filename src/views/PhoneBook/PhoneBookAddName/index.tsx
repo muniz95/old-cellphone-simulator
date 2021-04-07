@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { openModal } from "../../../redux/actions";
 import S from "./styled";
 import service from "../../../services/contact.service"
+import TextInput from "../../../components/TextInput";
 
 const PhoneBookAddName = () => {
   const dispatch = useDispatch();
@@ -10,9 +11,12 @@ const PhoneBookAddName = () => {
     () => dispatch(openModal()),
     [dispatch]
   );
+  const [name, setName] = React.useState("");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.currentTarget.value);
+  }
   
   const saveContact = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const name = (document.getElementById('name') as HTMLInputElement).value
     try {
       service.insertContact({ name, number: Date.now().toString() });
       window.navigator.vibrate([500, 100, 500, 100, 1000])
@@ -25,7 +29,7 @@ const PhoneBookAddName = () => {
   return (
     <S.Container>
       <div>
-        <input type="text" name="name" id="name"/>
+        <TextInput id="name" onChange={handleChange} />
       </div>
       <div>&nbsp;</div>
       <div>&nbsp;</div>

@@ -1,6 +1,7 @@
 import React from "react";
 import service from "../../../services/contact.service";
 import S from "./styled";
+import TextInput from "../../../components/TextInput"
 
 const PhoneBookSearch = () => {
   const [search, setSearch] = React.useState('');
@@ -13,10 +14,10 @@ const PhoneBookSearch = () => {
   }, [])
   return (
     <S.Home>
-      <input type="text" name="name" id="name" onChange={handleSearch} />
+      <TextInput id="name" onChange={handleSearch} />
       <S.ResultsBox>
         {contacts.filter((c) => c.name.includes(search)).map((c) => 
-          <div>{c.name}</div>
+          <div key={c.name}>{c.name}</div>
         )}
       </S.ResultsBox>
     </S.Home>
