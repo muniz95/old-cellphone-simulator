@@ -10,9 +10,9 @@ const Calculator = () => {
   const back = () => setExpression(x => `${x.slice(0, x.length-1)}`);
 
   const evaluate = () => {
-    const sanitizedExpression = expression.replaceAll("x", "*");
-    const result = eval(sanitizedExpression);
-    setExpression(result);
+    // const sanitizedExpression = expression.replaceAll("x", "*");
+    // const result = eval(sanitizedExpression);
+    // setExpression(result);
   }
 
   return (
