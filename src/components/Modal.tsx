@@ -18,7 +18,7 @@ const Modal = (props: RouteComponentProps) => {
   if (showModal) {
     setTimeout(() => {
       const location = {
-        pathname: '/phonebook'
+        pathname: '/'
       }
       dispatchCloseModal()
       props.history.push(location)
