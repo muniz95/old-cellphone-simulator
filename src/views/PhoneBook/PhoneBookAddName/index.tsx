@@ -4,6 +4,7 @@ import { openModal } from "../../../redux/actions";
 import S from "./styled";
 import service from "../../../services/contact.service"
 import TextInput from "../../../components/TextInput";
+import vibration from "../../../utils/vibration";
 
 const PhoneBookAddName = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const PhoneBookAddName = () => {
   const saveContact = (e: React.MouseEvent<HTMLButtonElement>) => {
     try {
       service.insertContact({ name, number: Date.now().toString() });
-      window.navigator.vibrate([500, 100, 500, 100, 1000])
+      vibration.success();
       dispatchOpenModal()
     } catch (error) {
       alert(error);

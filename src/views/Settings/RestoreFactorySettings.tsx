@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { RouteComponentProps } from "react-router";
 import { openModal } from "../../redux/actions";
 import service from "../../services/setting.service";
+import vibration from "../../utils/vibration";
 
 const RestoreFactorySettings = ({history}: RouteComponentProps) => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const RestoreFactorySettings = ({history}: RouteComponentProps) => {
   );
   const resetData = () => {
     service.resetData();
-    window.navigator.vibrate([1000, 100, 100, 100, 100])
+    vibration.reset();
     dispatchOpenModal();
   };
 
