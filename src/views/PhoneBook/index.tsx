@@ -1,20 +1,30 @@
 import React from "react";
 import Hammer from "react-hammerjs";
+import { useDispatch } from "react-redux";
 import { RouteComponentProps } from "react-router";
-import '../../styles/Home.scss';
+import { setSecondLevel, setThirdLevel } from "../../redux/actions";
 
 const PhoneBook = ({ history }: RouteComponentProps) => {
+  const dispatch = useDispatch();
+  const dispatchSetSecondLevel = React.useCallback(
+    (position) => dispatch(setSecondLevel(position + 1)),
+    [dispatch]
+  );
+  const dispatchClearThirdLevel = React.useCallback(
+    () => dispatch(setThirdLevel(0)),
+    [dispatch]
+  );
   const [menus,] = React.useState([
-    { path: "phonebook/search", title: "Search" },
-    { path: "phonebook/servicenos", title: "Service Nos" },
-    { path: "phonebook/addname", title: "Add name" },
-    { path: "phonebook/erase", title: "Erase" },
-    { path: "phonebook/edit", title: "Edit" },
-    { path: "phonebook/assigntone", title: "Assign tone" },
-    { path: "phonebook/sendbcard", title: "Send b’card" },
-    { path: "phonebook/options", title: "Options" },
-    { path: "phonebook/speeddials", title: "Speed Dials" },
-    { path: "phonebook/voicetags", title: "Voice Tags" }
+    { path: "/phonebook/search", title: "Search" },
+    { path: "/phonebook/servicenos", title: "Service Nos" },
+    { path: "/phonebook/addname", title: "Add name" },
+    { path: "/phonebook/erase", title: "Erase" },
+    { path: "/phonebook/edit", title: "Edit" },
+    { path: "/phonebook/assigntone", title: "Assign tone" },
+    { path: "/phonebook/sendbcard", title: "Send b’card" },
+    { path: "/phonebook/options", title: "Options" },
+    { path: "/phonebook/speeddials", title: "Speed Dials" },
+    { path: "/phonebook/voicetags", title: "Voice Tags" }
   ]);
   const [position, setPosition] = React.useState(0)
 
@@ -31,6 +41,11 @@ const PhoneBook = ({ history }: RouteComponentProps) => {
   const swipeRight = () => {
     setPosition(position === 0 ? menus.length - 1 : position - 1);
   }
+
+  React.useEffect(() => {
+    dispatchSetSecondLevel(position);
+    dispatchClearThirdLevel();
+  }, [dispatchSetSecondLevel, dispatchClearThirdLevel, position]);
 
   const label = menus[position];
   return (

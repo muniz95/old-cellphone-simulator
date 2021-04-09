@@ -1,5 +1,6 @@
 import React from "react";
-import '../styles/Home.scss';
+import { useDispatch } from "react-redux";
+import { setSecondLevel } from "../redux/actions";
 
 const Clock = () => {
   const tick = () => {
@@ -7,6 +8,16 @@ const Clock = () => {
   }
   const timerID: NodeJS.Timer = setInterval(tick, 1000);
   const [date, setDate] = React.useState(new Date());
+  const dispatch = useDispatch();
+  const dispatchSetSecondLevel = React.useCallback(
+    (position) => dispatch(setSecondLevel(position+1)),
+    [dispatch]
+  );
+  
+  React.useEffect(() => {
+    dispatchSetSecondLevel(0);
+    
+  }, [dispatchSetSecondLevel]);
 
   React.useEffect(() => {
     return () => clearInterval(timerID);

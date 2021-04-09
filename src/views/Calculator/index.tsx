@@ -1,4 +1,6 @@
 import React, { MouseEvent } from "react";
+import { useDispatch } from "react-redux";
+import { setSecondLevel } from "../../redux/actions";
 import S from "./styled";
 
 const Calculator = () => {
@@ -14,6 +16,16 @@ const Calculator = () => {
     // const result = eval(sanitizedExpression);
     // setExpression(result);
   }
+  const dispatch = useDispatch();
+  const dispatchSetSecondLevel = React.useCallback(
+    (position) => dispatch(setSecondLevel(position+1)),
+    [dispatch]
+  );
+  
+  React.useEffect(() => {
+    dispatchSetSecondLevel(0);
+    
+  }, [dispatchSetSecondLevel]);
 
   return (
     <div className="home">

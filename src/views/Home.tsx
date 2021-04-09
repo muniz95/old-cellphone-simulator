@@ -1,9 +1,24 @@
 import React from "react";
 import Hammer from 'react-hammerjs';
+import { useDispatch } from "react-redux";
 import { RouteComponentProps } from "react-router";
-import '../styles/Home.scss';
+import { setFifthLevel, setFirstLevel, setFourthLevel, setSecondLevel, setThirdLevel } from "../redux/actions";
 
 const Home = ({ history }: RouteComponentProps) => {
+  const dispatch = useDispatch();
+  const dispatchSetFirstLevel = React.useCallback(
+    (position) => dispatch(setFirstLevel(position+1)),
+    [dispatch]
+  );
+  const dispatchResetPageIndicator = React.useCallback(
+    () => {
+      dispatch(setSecondLevel(0));
+      dispatch(setThirdLevel(0));
+      dispatch(setFourthLevel(0));
+      dispatch(setFifthLevel(0));
+    },
+    [dispatch]
+  );
   const [menus,] = React.useState([
     { path: "/phonebook", title: "Phone Book" },
     { path: "/messages", title: "Messages" },
@@ -29,12 +44,17 @@ const Home = ({ history }: RouteComponentProps) => {
 
   const swipeLeft = () => {
     setPosition(position === menus.length - 1 ? 0 : position + 1);
-
   }
-
+  
   const swipeRight = () => {
     setPosition(position === 0 ? menus.length - 1 : position - 1);
   }
+  
+  React.useEffect(() => {
+    dispatchSetFirstLevel(position);
+  }, [dispatchSetFirstLevel, position])
+  
+  React.useEffect(dispatchResetPageIndicator);
 
   const label = menus[position];
   return (

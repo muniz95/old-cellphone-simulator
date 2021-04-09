@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { openModal } from "../../../redux/actions";
+import { openModal, setThirdLevel } from "../../../redux/actions";
 import S from "./styled";
 import service from "../../../services/contact.service"
 import TextInput from "../../../components/TextInput";
@@ -12,6 +12,11 @@ const PhoneBookAddName = () => {
     () => dispatch(openModal()),
     [dispatch]
   );
+  const dispatchSetThirdLevel = React.useCallback(
+    (position) => dispatch(setThirdLevel(position+1)),
+    [dispatch]
+  );
+
   const [name, setName] = React.useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.currentTarget.value);
@@ -26,6 +31,10 @@ const PhoneBookAddName = () => {
       alert(error);
     }
   }
+
+  React.useEffect(() => {
+    dispatchSetThirdLevel(0);
+  });
 
   return (
     <S.Container>

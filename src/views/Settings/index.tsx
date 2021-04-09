@@ -1,6 +1,8 @@
 import React from "react";
 import Hammer from "react-hammerjs";
+import { useDispatch } from "react-redux";
 import { RouteComponentProps } from "react-router";
+import { setSecondLevel } from "../../redux/actions";
 
 const Settings = ({history}: RouteComponentProps) => {
   const [menus,] = React.useState([
@@ -10,6 +12,17 @@ const Settings = ({history}: RouteComponentProps) => {
     { path: "/settings/restore", title: "Restore factory settings" },
   ]);
   const [position, setPosition] = React.useState(0)
+  
+  const dispatch = useDispatch();
+  const dispatchSetSecondLevel = React.useCallback(
+    (position) => dispatch(setSecondLevel(position+1)),
+    [dispatch]
+  );
+  
+  React.useEffect(() => {
+    dispatchSetSecondLevel(position);
+    
+  }, [dispatchSetSecondLevel, position]);
 
   const handleTap = () => {
     history.push({
