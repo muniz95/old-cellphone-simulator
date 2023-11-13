@@ -8,7 +8,7 @@ import { setThirdLevel } from "../../../redux/actions";
 const PhoneBookSearch = () => {
   const dispatch = useDispatch();
   const dispatchSetThirdLevel = React.useCallback(
-    (position) => dispatch(setThirdLevel(position+1)),
+    (position: number) => dispatch(setThirdLevel(position+1)),
     [dispatch]
   );
   const [search, setSearch] = React.useState('');

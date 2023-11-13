@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 import './App.css';
 import BatteryStatus from './components/BatteryStatus';
 import BottomBar from './components/BottomBar';
@@ -10,23 +10,20 @@ import TopBar from './components/TopBar';
 import routes from "./routes";
 
 const App = () => {
+  const routing = useRoutes([...routes])
   return (
-    <Router>
-      <div className="App">
-        <SignalStatus />
-        <div className="container">
-          <div className="page-container">
-            <TopBar />
-            <Switch>
-              { routes.map(route => <Route {...route} /> ) }
-            </Switch>
-          </div>
+    <div className="App">
+      <SignalStatus />
+      <div className="container">
+        <div className="page-container">
+          <TopBar />
+          { routing }
         </div>
-        <BatteryStatus />
-        <BottomBar />
-        <Modal />
       </div>
-    </Router>
+      <BatteryStatus />
+      <BottomBar />
+      <Modal />
+    </div>
   );
 };
 

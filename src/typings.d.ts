@@ -2,4 +2,4 @@ declare module "*.json" {
   const value: any;
   export default value;
 }
-declare module "react-hammerjs";
+declare module "react-hammerjs-18";

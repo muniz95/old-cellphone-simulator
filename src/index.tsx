@@ -6,15 +6,18 @@ import './index.scss';
 import { store } from "./redux/store";
 import registerServiceWorker from './registerServiceWorker';
 import { checkDb, initDb } from "./utils/db";
+import { BrowserRouter } from 'react-router-dom';
 
 if (!checkDb()) {
   initDb();
 }
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();
