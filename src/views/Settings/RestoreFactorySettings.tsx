@@ -1,11 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { RouteComponentProps } from "react-router";
 import { openModal } from "../../redux/actions";
 import service from "../../services/setting.service";
 import vibration from "../../utils/vibration";
+import { useNavigate } from "react-router";
 
-const RestoreFactorySettings = ({history}: RouteComponentProps) => {
+const RestoreFactorySettings = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const dispatchOpenModal = React.useCallback(
     () => dispatch(openModal()),
@@ -22,7 +23,7 @@ const RestoreFactorySettings = ({history}: RouteComponentProps) => {
       Reset factory settings?
       <div>
         <button onClick={resetData}>Yes</button>
-        <button onClick={history.goBack}>No</button>
+        <button onClick={() => navigate(-1)}>No</button>
       </div>
     </div>
   );

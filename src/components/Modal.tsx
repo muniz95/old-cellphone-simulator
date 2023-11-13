@@ -1,12 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RouteComponentProps, withRouter } from "react-router";
+import { useNavigate } from "react-router";
 import { closeModal } from "../redux/actions";
 import { RootState } from "../redux/reducers";
 import '../styles/Modal.scss';
 
 
-const Modal = (props: RouteComponentProps) => {
+const Modal = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const dispatchCloseModal = React.useCallback(
     () => dispatch(closeModal()),
@@ -21,7 +22,7 @@ const Modal = (props: RouteComponentProps) => {
         pathname: '/'
       }
       dispatchCloseModal()
-      props.history.push(location)
+      navigate(location)
     }, 3000)
     checked = true
   }
@@ -38,4 +39,4 @@ const Modal = (props: RouteComponentProps) => {
   )
 };
 
-export default withRouter(Modal);
+export default Modal;

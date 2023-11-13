@@ -10,7 +10,7 @@ const Clock = () => {
   const [date, setDate] = React.useState(new Date());
   const dispatch = useDispatch();
   const dispatchSetSecondLevel = React.useCallback(
-    (position) => dispatch(setSecondLevel(position+1)),
+    (position: number) => dispatch(setSecondLevel(position+1)),
     [dispatch]
   );
   

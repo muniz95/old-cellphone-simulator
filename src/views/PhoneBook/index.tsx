@@ -1,13 +1,14 @@
 import React from "react";
-import Hammer from "react-hammerjs";
+import Hammer from "react-hammerjs-18";
 import { useDispatch } from "react-redux";
-import { RouteComponentProps } from "react-router";
 import { setSecondLevel, setThirdLevel } from "../../redux/actions";
+import { useNavigate } from "react-router-dom";
 
-const PhoneBook = ({ history }: RouteComponentProps) => {
+const PhoneBook = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const dispatchSetSecondLevel = React.useCallback(
-    (position) => dispatch(setSecondLevel(position + 1)),
+    (position: number) => dispatch(setSecondLevel(position + 1)),
     [dispatch]
   );
   const dispatchClearThirdLevel = React.useCallback(
@@ -29,9 +30,7 @@ const PhoneBook = ({ history }: RouteComponentProps) => {
   const [position, setPosition] = React.useState(0)
 
   const handleTap = () => {
-    history.push({
-      pathname: menus[position].path
-    });
+    navigate(menus[position].path);
   }
 
   const swipeLeft = () => {

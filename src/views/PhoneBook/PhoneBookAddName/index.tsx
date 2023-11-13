@@ -13,7 +13,7 @@ const PhoneBookAddName = () => {
     [dispatch]
   );
   const dispatchSetThirdLevel = React.useCallback(
-    (position) => dispatch(setThirdLevel(position+1)),
+    (position: number) => dispatch(setThirdLevel(position+1)),
     [dispatch]
   );
 

@@ -1,13 +1,14 @@
 import React from "react";
-import Hammer from 'react-hammerjs';
+import Hammer from 'react-hammerjs-18';
 import { useDispatch } from "react-redux";
-import { RouteComponentProps } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { setFifthLevel, setFirstLevel, setFourthLevel, setSecondLevel, setThirdLevel } from "../redux/actions";
 
-const Home = ({ history }: RouteComponentProps) => {
+const Home = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const dispatchSetFirstLevel = React.useCallback(
-    (position) => dispatch(setFirstLevel(position+1)),
+    (position: number) => dispatch(setFirstLevel(position+1)),
     [dispatch]
   );
   const dispatchResetPageIndicator = React.useCallback(
@@ -37,9 +38,7 @@ const Home = ({ history }: RouteComponentProps) => {
   const [position, setPosition] = React.useState(0)
 
   const handleTap = () => {
-    history.push({
-      pathname: menus[position].path
-    });
+    navigate(menus[position].path);
   }
 
   const swipeLeft = () => {

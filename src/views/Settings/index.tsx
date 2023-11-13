@@ -1,10 +1,11 @@
 import React from "react";
-import Hammer from "react-hammerjs";
+import Hammer from "react-hammerjs-18";
 import { useDispatch } from "react-redux";
-import { RouteComponentProps } from "react-router";
 import { setSecondLevel } from "../../redux/actions";
+import { useNavigate } from "react-router";
 
-const Settings = ({history}: RouteComponentProps) => {
+const Settings = () => {
+  const navigate = useNavigate();
   const [menus,] = React.useState([
     { path: "/settings/call", title: "Call Settings" },
     { path: "/settings/general", title: "General settings" },
@@ -15,7 +16,7 @@ const Settings = ({history}: RouteComponentProps) => {
   
   const dispatch = useDispatch();
   const dispatchSetSecondLevel = React.useCallback(
-    (position) => dispatch(setSecondLevel(position+1)),
+    (position: number) => dispatch(setSecondLevel(position+1)),
     [dispatch]
   );
   
@@ -25,9 +26,7 @@ const Settings = ({history}: RouteComponentProps) => {
   }, [dispatchSetSecondLevel, position]);
 
   const handleTap = () => {
-    history.push({
-      pathname: menus[position].path
-    });
+    navigate(menus[position].path);
   }
 
   const swipeLeft = () => {

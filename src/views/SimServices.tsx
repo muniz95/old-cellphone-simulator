@@ -6,7 +6,7 @@ import '../styles/Home.scss';
 const SimServices = () => {
   const dispatch = useDispatch();
   const dispatchSetSecondLevel = React.useCallback(
-    (position) => dispatch(setSecondLevel(position+1)),
+    (position: number) => dispatch(setSecondLevel(position+1)),
     [dispatch]
   );
   

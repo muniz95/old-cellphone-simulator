@@ -7,7 +7,7 @@ const Tones = () => {
   let ringtone = new Ringtone();
   const dispatch = useDispatch();
   const dispatchSetSecondLevel = React.useCallback(
-    (position) => dispatch(setSecondLevel(position+1)),
+    (position: number) => dispatch(setSecondLevel(position+1)),
     [dispatch]
   );
   
