@@ -1,3 +1,5 @@
+import { StorageEntity } from "../interfaces/storageEntity";
+
 export const checkDb = () => {
   return Boolean(localStorage.getItem("contacts"));
 }
@@ -16,9 +18,16 @@ export function insert<T>(key: string, item: T) {
   localStorage.setItem(key, JSON.stringify(collection));
 }
 
+export function update<T extends StorageEntity>(key: string, item: T) {
+  const collection = get<T[]>(key).filter((x) => x.id !== item.id);
+  collection.push(item);
+  localStorage.setItem(key, JSON.stringify(collection));
+}
+
 const db = {
   get,
   insert,
+  update,
 }
 
 export default db;

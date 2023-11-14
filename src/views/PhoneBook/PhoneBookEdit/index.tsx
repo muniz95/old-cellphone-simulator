@@ -5,8 +5,9 @@ import S from "./styled";
 import service from "../../../services/contact.service"
 import TextInput from "../../../components/TextInput";
 import vibration from "../../../utils/vibration";
+import { Contact } from "../../../interfaces/contact";
 
-const PhoneBookAddName = () => {
+const PhoneBookEdit = () => {
   const dispatch = useDispatch();
   const dispatchOpenModal = React.useCallback(
     () => dispatch(openModal()),
@@ -18,17 +19,19 @@ const PhoneBookAddName = () => {
   );
 
   const [name, setName] = React.useState("");
+  const [contacts, setContacts] = React.useState<Contact[]>([]);
+  const [currentContact, setCurrentContact] = React.useState<Contact>();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.currentTarget.value);
   }
   
   const saveContact = (e: React.MouseEvent<HTMLButtonElement>) => {
     try {
-      service.insertContact({
+      service.updateContact({
         name,
-        number: Date.now().toString(),
-        id: crypto.randomUUID(),
-        date: Date.now().toLocaleString()
+        number: currentContact?.number!,
+        id: currentContact?.id!,
+        date: currentContact?.date!
       });
       vibration.success();
       dispatchOpenModal()
@@ -38,11 +41,17 @@ const PhoneBookAddName = () => {
   }
 
   React.useEffect(() => {
+    setContacts(service.getContacts());
     dispatchSetThirdLevel(0);
-  });
+  }, [dispatchSetThirdLevel]);
 
   return (
     <S.Container>
+      <S.ResultsBox>
+        {contacts.map((c) => 
+          <div onClick={() => setCurrentContact(c)} key={c.name}>{c.name}</div>
+        )}
+      </S.ResultsBox>
       <div>
         <TextInput id="name" onChange={handleChange} />
       </div>
@@ -53,7 +62,7 @@ const PhoneBookAddName = () => {
         <button onClick={saveContact}>Save</button>
       </div>
     </S.Container>
-  )
+  );
 }
 
-export default PhoneBookAddName;
+export default PhoneBookEdit;
