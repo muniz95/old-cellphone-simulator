@@ -4,6 +4,7 @@ import S from "./styled";
 import TextInput from "../../../components/TextInput"
 import { useDispatch } from "react-redux";
 import { setThirdLevel } from "../../../redux/actions";
+import { Contact } from "../../../interfaces/contact";
 
 const PhoneBookSearch = () => {
   const dispatch = useDispatch();
