@@ -15,13 +15,13 @@ const App = () => {
     <div className="App">
       <SignalStatus />
       <div className="container">
+        <TopBar />
         <div className="page-container">
-          <TopBar />
           { routing }
         </div>
+        <BottomBar />
       </div>
       <BatteryStatus />
-      <BottomBar />
       <Modal />
     </div>
   );
