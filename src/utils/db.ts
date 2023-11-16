@@ -5,7 +5,15 @@ export const checkDb = () => {
 }
 
 export const initDb = () => {
-  localStorage.setItem("contacts", JSON.stringify([]));
+  localStorage.setItem("contacts", JSON.stringify([
+    {
+      id: crypto.randomUUID(),
+      date: Date.now(),
+      name: "Voice messages",
+      number: "100",
+      isServiceNumber: true,
+    }
+  ]));
 }
 
 export function get<T>(key: string) {

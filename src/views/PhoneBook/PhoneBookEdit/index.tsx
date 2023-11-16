@@ -31,7 +31,8 @@ const PhoneBookEdit = () => {
         name,
         number: currentContact?.number!,
         id: currentContact?.id!,
-        date: currentContact?.date!
+        date: currentContact?.date!,
+        isServiceNumber: false,
       });
       vibration.success();
       dispatchOpenModal()

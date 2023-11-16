@@ -29,7 +29,7 @@ const Modal = () => {
   return (
     <div className="modal" style={{display: showModal ? 'flex' : 'none'}}>
       <div className="modal-content">
-        <input type="checkbox" name="ok" id="ok" style={{opacity: 0}} checked={checked} />
+        <input type="checkbox" name="ok" id="ok" style={{opacity: 0}} readOnly checked={checked} />
         <label htmlFor="ok">
           <span>&nbsp;</span>
           <ins><i>Done!</i></ins>
