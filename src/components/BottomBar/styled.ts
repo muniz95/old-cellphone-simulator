@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
 export const BottomBarContainer = styled.div`
-  width: 100%;
-  height: 50px;
-  position: fixed;
-  bottom: 0;
   display: flex;
   justify-content: space-evenly;
+  -moz-box-align: center;
   align-items: center;
+  width: 100%;
+  height: 50px;
 `;
 
 const S = {
