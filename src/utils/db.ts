@@ -32,10 +32,16 @@ export function update<T extends StorageEntity>(key: string, item: T) {
   localStorage.setItem(key, JSON.stringify(collection));
 }
 
+export function remove<T extends StorageEntity>(key: string, item: T) {
+  const collection = get<T[]>(key).filter((x) => x.id !== item.id);
+  localStorage.setItem(key, JSON.stringify(collection));
+}
+
 const db = {
   get,
   insert,
   update,
+  remove,
 }
 
 export default db;
