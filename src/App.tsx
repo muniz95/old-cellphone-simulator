@@ -20,7 +20,7 @@ const App = () => {
   
   React.useEffect(() => {
     const intervalId = setInterval(() => {
-      setTimeSpentOnPage(prevTime => prevTime + 1000);
+      setTimeSpentOnPage(state => state + 1000);
     }, 1000);
     return () => clearInterval(intervalId);
   }, []);
