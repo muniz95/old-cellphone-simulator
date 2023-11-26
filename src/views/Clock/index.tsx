@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { setSecondLevel } from "../redux/actions";
+import { setSecondLevel } from "../../redux/actions";
 
 const Clock = () => {
   const tick = () => {
