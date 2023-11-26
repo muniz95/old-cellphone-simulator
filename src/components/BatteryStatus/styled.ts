@@ -6,9 +6,8 @@ const BatteryStatus = styled.div`
   padding: 5px;
 `;
 
-const StatusBar = styled.div`
-  background-color: #000000d6;
-  /* color: #B9C38E; */
+const StatusBar = styled.div<{ isVisible: boolean }>`
+  background-color: ${({isVisible}) => isVisible ? '#000000d6' : '00000000'};
   display: inline-block;
   margin: 1px;
 `;

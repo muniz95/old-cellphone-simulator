@@ -20,11 +20,9 @@ const Blink = ({ children, interval }: IProps) => {
   }, [interval]);
 
   return (
-    isVisible ?
-    <div>
+    <div style={{visibility: isVisible ? 'visible' : 'hidden'}}>
       { children }
-    </div> :
-    <></>
+    </div>
   );
 }
 

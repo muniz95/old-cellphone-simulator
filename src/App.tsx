@@ -25,7 +25,7 @@ const App = () => {
     return () => clearInterval(intervalId);
   }, []);
   React.useEffect(() => {
-    if (timeSpentOnPage % 60000 === 0) {
+    if (timeSpentOnPage % 1000 === 0) {
       isRecharging
        ? dispatch(increase())
        : dispatch(decrease())
