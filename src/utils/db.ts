@@ -1,4 +1,5 @@
 import { StorageEntity } from "../interfaces/storageEntity";
+import defaults from 'defaults'
 
 export const checkDb = () => {
   return Boolean(localStorage.getItem("contacts"));
@@ -14,10 +15,15 @@ export const initDb = () => {
       isServiceNumber: true,
     }
   ]));
+  localStorage.setItem("color", defaults.defaultColor);
 }
 
 export function get<T>(key: string) {
   return JSON.parse(localStorage.getItem(key)!) as T;
+}
+
+export function set<T>(key: string, value: T) {
+  localStorage.setItem(key, JSON.stringify(value));
 }
 
 export function insert<T>(key: string, item: T) {
@@ -39,6 +45,7 @@ export function remove<T extends StorageEntity>(key: string, item: T) {
 
 const db = {
   get,
+  set,
   insert,
   update,
   remove,
