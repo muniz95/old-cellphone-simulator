@@ -24,6 +24,22 @@ export const setNotificationLevel = (level: number) => {
   set<number>("notificationLevel", level);
 }
 
+export const setAlarmLevel = (level: number) => {
+  set<number>("alarmLevel", level);
+}
+
+export const setRingLevel = (level: number) => {
+  set<number>("ringLevel", level);
+}
+
+export const setBacklightLevel = (level: number) => {
+  set<number>("backlightLevel", level);
+}
+
+export const setInactivityTime = (time: number) => {
+  set<number>("inactivityTime", time);
+}
+
 const service = {
   resetData,
   getColor,
@@ -31,6 +47,10 @@ const service = {
   getLanguage,
   setLanguage,
   setNotificationLevel,
+  setAlarmLevel,
+  setRingLevel,
+  setBacklightLevel,
+  setInactivityTime,
 }
 
 export default service;
