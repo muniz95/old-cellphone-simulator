@@ -24,6 +24,14 @@ export const setNotificationLevel = (level: number) => {
   set<number>("notificationLevel", level);
 }
 
+export const setAlarmLevel = (level: number) => {
+  set<number>("alarmLevel", level);
+}
+
+export const setRingLevel = (level: number) => {
+  set<number>("ringLevel", level);
+}
+
 const service = {
   resetData,
   getColor,
@@ -31,6 +39,8 @@ const service = {
   getLanguage,
   setLanguage,
   setNotificationLevel,
+  setAlarmLevel,
+  setRingLevel,
 }
 
 export default service;

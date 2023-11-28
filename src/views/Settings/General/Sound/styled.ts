@@ -4,7 +4,7 @@ export const MainContainer = styled.div`
   height: 80%;
   display: flex;
   flex-flow: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: center;
   overflow: auto;
 `;
@@ -12,6 +12,14 @@ export const MainContainer = styled.div`
 export const ButtonContainer = styled.div`
   height: 20%;
   display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ControllerSection = styled.div`
+  display: flex;
+  flex-flow: column;
+  width: 100%;
   align-items: center;
   justify-content: center;
 `;
@@ -39,6 +47,7 @@ export const SliderInput = styled.input.attrs({ type: 'range' })`
 
 const S = {
   ButtonContainer,
+  ControllerSection,
   MainContainer,
   SliderInput,
   ResultsBox,
