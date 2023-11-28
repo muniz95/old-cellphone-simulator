@@ -31,7 +31,6 @@ const Settings = () => {
 
   const swipeLeft = () => {
     setPosition(position === menus.length - 1 ? 0 : position + 1);
-
   }
 
   const swipeRight = () => {

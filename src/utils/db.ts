@@ -19,6 +19,10 @@ export const initDb = () => {
   localStorage.setItem("color", defaults.defaultColor);
 }
 
+export function getPlain(key: string) {
+  return localStorage.getItem(key)!;
+}
+
 export function get<T>(key: string) {
   return JSON.parse(localStorage.getItem(key)!) as T;
 }
@@ -48,6 +52,7 @@ export function remove<T extends StorageEntity>(key: string, item: T) {
 
 const db = {
   get,
+  getPlain,
   set,
   insert,
   update,
