@@ -1,5 +1,6 @@
 import { StorageEntity } from "../interfaces/storageEntity";
 import defaults from 'defaults'
+import { isPlainObject } from "./helpers";
 
 export const checkDb = () => {
   return Boolean(localStorage.getItem("contacts"));
@@ -18,12 +19,18 @@ export const initDb = () => {
   localStorage.setItem("color", defaults.defaultColor);
 }
 
+export function getPlain(key: string) {
+  return localStorage.getItem(key)!;
+}
+
 export function get<T>(key: string) {
   return JSON.parse(localStorage.getItem(key)!) as T;
 }
 
 export function set<T>(key: string, value: T) {
-  localStorage.setItem(key, JSON.stringify(value));
+  isPlainObject(value)
+    ? localStorage.setItem(key, `${value}`)
+    : localStorage.setItem(key, JSON.stringify(value));
 }
 
 export function insert<T>(key: string, item: T) {
@@ -45,6 +52,7 @@ export function remove<T extends StorageEntity>(key: string, item: T) {
 
 const db = {
   get,
+  getPlain,
   set,
   insert,
   update,

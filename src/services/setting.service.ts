@@ -1,11 +1,11 @@
-import { initDb, get, set } from "../utils/db";
+import { initDb, set, getPlain } from "../utils/db";
 
 export const resetData = () => {
   initDb();
 }
 
 export const getColor = () => {
-  return get<string>("color");
+  return getPlain("color");
 }
 
 export const setColor = (color: string) => {
