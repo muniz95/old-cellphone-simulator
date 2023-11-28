@@ -16,9 +16,19 @@ export const language = (state = '', action: any): string => {
   }
 }
 
+export const notificationLevel = (state = 50, action: any): number => {
+  switch(action.type) {
+    case "SET_NOTIFICATION_LEVEL":
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
 const SettingsReducer = {
   color,
   language,
+  notificationLevel,
 };
 
 export default SettingsReducer;

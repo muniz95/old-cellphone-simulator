@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { CLOSE_MODAL, OPEN_MODAL } from "../constants";
 import { batteryLevel, isRecharging } from "./battery";
-import { color, language } from "./settings";
+import { color, language, notificationLevel } from "./settings";
 
 const showModal = (state = false, action: any): boolean => {
   switch (action.type) {
@@ -70,6 +70,7 @@ const reducer = combineReducers({
   isRecharging,
   color,
   language,
+  notificationLevel,
 });
 
 export type RootState = ReturnType<typeof reducer>;
