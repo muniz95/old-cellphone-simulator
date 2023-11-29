@@ -17,41 +17,55 @@ import * as settingsActions from 'redux/actions/settings';
 
 const App = () => {
   const dispatch = useDispatch();
+
   const routing = useRoutes([...routes]);
+  const state = useSelector((state: RootState) => state);
 
   const [color, setColor] = React.useState("");
-  const state = useSelector((state: RootState) => state);
+  const [backlightLevel, setBacklightLevel] = React.useState(0);
   const [timeSpentOnPage, setTimeSpentOnPage] = React.useState(0);
-  const { isRecharging, batteryLevel } = useSelector((state: RootState) => state);
   
   React.useEffect(() => {
     const intervalId = setInterval(() => {
       setTimeSpentOnPage(state => state + 1000);
     }, 1000);
 
-    const defaultColor = settingsService.getColor() || defaultValues.defaultColor;
+    const defaultColor = settingsService.getColor() || defaultValues.color;
     setColor(defaultColor);
     dispatch(settingsActions.setColor(defaultColor));
+
+    const defaultBacklightLevel =
+      settingsService.getBacklightLevel() || defaultValues.backlightLevel;
+    setBacklightLevel(defaultBacklightLevel);
+    dispatch(settingsActions.setBacklightLevel(defaultBacklightLevel));
 
     return () => clearInterval(intervalId);
   }, [dispatch]);  
   React.useEffect(() => {
     if (timeSpentOnPage % 1000 === 0) {
-      isRecharging
+      state.isRecharging
        ? dispatch(increase())
        : dispatch(decrease())
     }
-  }, [timeSpentOnPage, isRecharging, dispatch]);
+  }, [timeSpentOnPage, state.isRecharging, dispatch]);
   React.useEffect(() => {
-    if (batteryLevel <= 15) dispatch(charging())
-    if (batteryLevel === 100) dispatch(uncharging())
-  }, [batteryLevel, dispatch]);
+    if (state.batteryLevel <= 15) dispatch(charging())
+    if (state.batteryLevel === 100) dispatch(uncharging())
+  }, [state.batteryLevel, dispatch]);
   React.useEffect(() => {
     setColor(state.color);
   }, [state.color]);
+  React.useEffect(() => {
+    setBacklightLevel(state.backlightLevel);
+  }, [state.backlightLevel]);
+
+  const style = {
+    backgroundColor: color,
+    backgroundImage: `linear-gradient(rgb(0 0 0/${100 - backlightLevel}%) 0 0)`,
+  };
 
   return (
-    <div className="App" style={{backgroundColor: color}}>
+    <div className="App" style={style}>
       <SignalStatus />
       <div className="container">
         <TopBar />

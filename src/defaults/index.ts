@@ -1,7 +1,9 @@
-export const defaultColor = '#c0b400';
+export const color = '#c0b400';
+export const backlightLevel = 80;
 
 const constants = {
-  defaultColor
+  color,
+  backlightLevel,
 };
 
 export default constants;

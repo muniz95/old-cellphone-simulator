@@ -29,7 +29,7 @@ const LightSettings = () => {
       <S.MainContainer>
         <S.ControllerSection>
           <label htmlFor="backlight">Backlight level</label>
-          <S.SliderInput step={10} min={0} max={100} id="backlight"
+          <S.SliderInput step={10} min={20} max={100} id="backlight"
             onChange={({target}) => setAppBacklightLevel(target.valueAsNumber)} />
         </S.ControllerSection>
         <S.ControllerSection>
