@@ -16,7 +16,7 @@ export const initDb = () => {
       isServiceNumber: true,
     }
   ]));
-  localStorage.setItem("color", defaults.defaultColor);
+  localStorage.setItem("color", defaults.color);
 }
 
 export function getPlain(key: string) {

@@ -4,17 +4,13 @@ export const resetData = () => {
   initDb();
 }
 
-export const getColor = () => {
-  return getPlain("color");
-}
+export const getColor = () => getPlain("color");
 
 export const setColor = (color: string) => {
   set<string>("color", color);
 }
 
-export const getLanguage = () => {
-  return getPlain("language");
-}
+export const getLanguage = () => getPlain("language");
 
 export const setLanguage = (language: string) => {
   set<string>("language", language);
@@ -31,6 +27,8 @@ export const setAlarmLevel = (level: number) => {
 export const setRingLevel = (level: number) => {
   set<number>("ringLevel", level);
 }
+
+export const getBacklightLevel = () => parseInt(getPlain("backlightLevel"));
 
 export const setBacklightLevel = (level: number) => {
   set<number>("backlightLevel", level);
@@ -49,6 +47,7 @@ const service = {
   setNotificationLevel,
   setAlarmLevel,
   setRingLevel,
+  getBacklightLevel,
   setBacklightLevel,
   setInactivityTime,
 }
