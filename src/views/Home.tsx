@@ -1,10 +1,12 @@
 import React from "react";
 import Hammer from 'react-hammerjs-18';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setFifthLevel, setFirstLevel, setFourthLevel, setSecondLevel, setThirdLevel } from "../redux/actions";
 
 const Home = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const dispatchSetFirstLevel = React.useCallback(
@@ -21,19 +23,19 @@ const Home = () => {
     [dispatch]
   );
   const [menus,] = React.useState([
-    { path: "/phonebook", title: "Phone Book" },
-    { path: "/messages", title: "Messages" },
-    { path: "/chat", title: "Chat" },
-    { path: "/callregister", title: "Call Register" },
-    { path: "/tones", title: "Tones" },
-    { path: "/settings", title: "Settings" },
-    { path: "/calldivert", title: "Call Divert" },
-    { path: "/games", title: "Games" },
-    { path: "/calculator", title: "Calculator" },
-    { path: "/reminders", title: "Reminders" },
-    { path: "/clock", title: "Clock" },
-    { path: "/profiles", title: "Profiles" },
-    { path: "/simservices", title: "SIM Services" }
+    { path: "/phonebook", title: t('home.phonebookTitle') },
+    { path: "/messages", title: t("home.messagesTitle") },
+    { path: "/chat", title: t("home.chatTitle") },
+    { path: "/callregister", title: t("home.callregisterTitle") },
+    { path: "/tones", title: t("home.tonesTitle") },
+    { path: "/settings", title: t("home.settingsTitle") },
+    { path: "/calldivert", title: t("home.calldivertTitle") },
+    { path: "/games", title: t("home.gamesTitle") },
+    { path: "/calculator", title: t("home.calculatorTitle") },
+    { path: "/reminders", title: t("home.remindersTitle") },
+    { path: "/clock", title: t("home.clockTitle") },
+    { path: "/profiles", title: t("home.profilesTitle") },
+    { path: "/simservices", title: t("home.simservicesTitle") }
   ]);
   const [position, setPosition] = React.useState(0)
 

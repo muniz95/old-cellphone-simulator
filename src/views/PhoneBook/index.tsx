@@ -1,10 +1,12 @@
 import React from "react";
 import Hammer from "react-hammerjs-18";
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from "react-redux";
 import { setSecondLevel, setThirdLevel } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 
 const PhoneBook = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const dispatchSetSecondLevel = React.useCallback(
