@@ -1,8 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setSecondLevel } from "../redux/actions";
+import { useTranslation } from "react-i18next";
 
 const Chat = () => {
+  const { t } = useTranslation(['chat']);
   const dispatch = useDispatch();
   const dispatchSetSecondLevel = React.useCallback(
     (position: number) => dispatch(setSecondLevel(position+1)),
@@ -15,7 +17,7 @@ const Chat = () => {
   }, [dispatchSetSecondLevel]);
   return (
     <div className="home">
-      Chat View
+      {t("title")}
     </div>
   )
 };

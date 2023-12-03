@@ -1,12 +1,14 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { openModal, setThirdLevel } from "../../../redux/actions";
+import { openModal, setThirdLevel } from "redux/actions";
 import S from "./styled";
-import service from "../../../services/contact.service"
-import vibration from "../../../utils/vibration";
-import { Contact } from "../../../interfaces/contact";
+import service from "services/contact.service"
+import vibration from "utils/vibration";
+import { Contact } from "interfaces/contact";
+import { useTranslation } from "react-i18next";
 
 const PhoneBookErase = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const dispatchOpenModal = React.useCallback(
     () => dispatch(openModal()),
@@ -49,7 +51,7 @@ const PhoneBookErase = () => {
         )}
       </S.ResultsBox>
       <div>
-        <button onClick={removeContact}>Erase</button>
+        <button onClick={removeContact}>{t("erase")}</button>
       </div>
     </S.Container>
   );

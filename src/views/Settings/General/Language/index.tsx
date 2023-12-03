@@ -5,6 +5,7 @@ import { setLanguage } from "redux/actions/settings";
 import settingsService from 'services/setting.service';
 import S from "./styled";
 import vibration from "utils/vibration";
+import { useTranslation } from "react-i18next";
 
 const LANGUAGES = [
   { title: 'Deustch', iso639: 'de' },
@@ -19,7 +20,9 @@ const LANGUAGES = [
 ];
 
 const LanguageSettings = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
+
   const [language, setAppLanguage] = React.useState("");
   
   React.useEffect(() => {
@@ -43,7 +46,7 @@ const LanguageSettings = () => {
         ) }
       </S.MainContainer>
       <S.ButtonContainer>
-        <button disabled={language === ""} onClick={save}>Save</button>
+        <button disabled={language === ""} onClick={save}>{t("save")}</button>
       </S.ButtonContainer>
     </>
   );

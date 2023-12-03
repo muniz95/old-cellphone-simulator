@@ -5,8 +5,10 @@ import S from "./styled";
 import service from "../../../services/contact.service"
 import TextInput from "../../../components/TextInput";
 import vibration from "../../../utils/vibration";
+import { useTranslation } from "react-i18next";
 
 const PhoneBookAddName = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const dispatchOpenModal = React.useCallback(
     () => dispatch(openModal()),
@@ -51,7 +53,7 @@ const PhoneBookAddName = () => {
       <div>&nbsp;</div>
       <div>&nbsp;</div>
       <div>
-        <button onClick={saveContact}>Save</button>
+        <button onClick={saveContact}>{t("save")}</button>
       </div>
     </S.Container>
   )

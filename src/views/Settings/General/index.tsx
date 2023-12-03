@@ -1,19 +1,22 @@
 import React from "react";
 import Hammer from "react-hammerjs-18";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { setThirdLevel } from "redux/actions";
 
-const menus = [
-  { path: "/settings/general/color", title: "Color Settings" },
-  { path: "/settings/general/language", title: "Language Settings" },
-  { path: "/settings/general/light", title: "Light Settings" },
-  { path: "/settings/general/sound", title: "Sound Settings" },
-];
-
 const GeneralSettings = () => {
+  const { t } = useTranslation(['settings']);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
+  const menus = [
+    { path: "/settings/general/color", title: t("general.color.title") },
+    { path: "/settings/general/language", title: t("general.languageTitle") },
+    { path: "/settings/general/light", title: t("general.light.title") },
+    { path: "/settings/general/sound", title: t("general.sound.title") },
+  ];
+
   const [position, setPosition] = React.useState(0)
   const dispatchSetThirdLevel = React.useCallback(
     (position: number) => dispatch(setThirdLevel(position+1)),

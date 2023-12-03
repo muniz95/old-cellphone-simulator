@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { setFifthLevel, setFirstLevel, setFourthLevel, setSecondLevel, setThirdLevel } from "../redux/actions";
 
 const Home = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['home']);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const dispatchSetFirstLevel = React.useCallback(
@@ -23,19 +23,19 @@ const Home = () => {
     [dispatch]
   );
   const [menus,] = React.useState([
-    { path: "/phonebook", title: t('home.phonebookTitle') },
-    { path: "/messages", title: t("home.messagesTitle") },
-    { path: "/chat", title: t("home.chatTitle") },
-    { path: "/callregister", title: t("home.callregisterTitle") },
-    { path: "/tones", title: t("home.tonesTitle") },
-    { path: "/settings", title: t("home.settingsTitle") },
-    { path: "/calldivert", title: t("home.calldivertTitle") },
-    { path: "/games", title: t("home.gamesTitle") },
-    { path: "/calculator", title: t("home.calculatorTitle") },
-    { path: "/reminders", title: t("home.remindersTitle") },
-    { path: "/clock", title: t("home.clockTitle") },
-    { path: "/profiles", title: t("home.profilesTitle") },
-    { path: "/simservices", title: t("home.simservicesTitle") }
+    { path: "/phonebook", title: t('phonebookTitle') },
+    { path: "/messages", title: t("messagesTitle") },
+    { path: "/chat", title: t("chatTitle") },
+    { path: "/callregister", title: t("callregisterTitle") },
+    { path: "/tones", title: t("tonesTitle") },
+    { path: "/settings", title: t("settingsTitle") },
+    { path: "/calldivert", title: t("calldivertTitle") },
+    { path: "/games", title: t("gamesTitle") },
+    { path: "/calculator", title: t("calculatorTitle") },
+    { path: "/reminders", title: t("remindersTitle") },
+    { path: "/clock", title: t("clockTitle") },
+    { path: "/profiles", title: t("profilesTitle") },
+    { path: "/simservices", title: t("simservicesTitle") }
   ]);
   const [position, setPosition] = React.useState(0)
 

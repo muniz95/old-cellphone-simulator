@@ -1,4 +1,8 @@
 {
+  "general": {
+    "save": "Salvar",
+    "erase": "Apagar"
+  },
   "home": {
     "phonebookTitle": "Agenda",
     "messagesTitle": "Mensagens",
@@ -14,17 +18,73 @@
     "profilesTitle": "Perfis",
     "simservicesTitle": "Serviços SIM"
   },
+  "phonebook": {
+    "searchTitle": "Pesquisar",
+    "servicenosTitle": "Nºs de serviço",
+    "addnameTitle": "Adicionar nome",
+    "eraseTitle": "Apagar",
+    "editTitle": "Editar",
+    "assigntoneTitle": "Associar toque",
+    "sendbcardTitle": "Enviar cartão de aniversário",
+    "optionsTitle": "Opções",
+    "speeddialsTitle": "Discagem rápida",
+    "voicetagsTitle": "Mensagens de voz"
+  },
   "messages": {
     "messagesTitle": "Tela de mensagens"
   },
-  "chat": {},
-  "callregister": {},
-  "tones": {},
-  "calldivert": {},
-  "games": {},
-  "calculator": {},
-  "reminders": {},
-  "clock": {},
-  "profiles": {},
-  "simservices": {}
+  "chat": {
+    "chatTitle": "Chat View"
+  },
+  "callregister": {
+    "callregisterTitle": "Registros de Chamadas"
+  },
+  "tones": {
+    "tonesTitle": "Toques"
+  },
+  "settings": {
+    "settingsTitle": "Configurações",
+    "callTitle": "Configurações de chamadas",
+    "general": {
+      "title": "Configurações gerais",
+      "color": {
+        "title": "Configurações de Color",
+        "default": "Default",
+        "blue": "Blue",
+        "gray": "Gray",
+        "green": "Green",
+        "orange": "Orange",
+        "purple": "Purple",
+        "red": "Red",
+        "teal": "Teal",
+        "yellow": "Yellow"
+      },
+      "languageTitle": "Language Settings",
+      "lightTitle": "Light Settings",
+      "soundTitle": "Sound Settings"
+    },
+    "securityTitle": "Security Settings",
+    "restoreTitle": "Restore Settings"
+  },
+  "calldivert": {
+    "calldivertTitle": "Desvio de chamadas"
+  },
+  "games": {
+    "gamesTitle": "Jogos"
+  },
+  "calculator": {
+    "calculatorTitle": "Calculadora"
+  },
+  "reminders": {
+    "remindersTitle": "Lembretes"
+  },
+  "clock": {
+    "clockTitle": "Relógio"
+  },
+  "profiles": {
+    "profilesTitle": "Perfis"
+  },
+  "simservices": {
+    "simservicesTitle": "Serviços SIM"
+  }
 }

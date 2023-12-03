@@ -2,9 +2,11 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { setSecondLevel } from "../../redux/actions";
 import Ringtone from "../../utils/ringtone";
+import { useTranslation } from "react-i18next";
 
 const Tones = () => {
-  let ringtone = new Ringtone();
+  const ringtone = new Ringtone();
+  const { t } = useTranslation(['tones']);
   const dispatch = useDispatch();
   const dispatchSetSecondLevel = React.useCallback(
     (position: number) => dispatch(setSecondLevel(position+1)),
@@ -21,7 +23,7 @@ const Tones = () => {
   });
   return (
     <div className="home">
-      Tones View
+      {t("title")}
       <div>
 
       </div>
