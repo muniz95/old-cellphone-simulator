@@ -1,0 +1,104 @@
+{
+  "general": {
+    "save": "Save",
+    "erase": "Erase",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "home": {
+    "phonebookTitle": "Phone Book",
+    "messagesTitle": "Messages",
+    "chatTitle": "Chat",
+    "callregisterTitle": "Call Register",
+    "tonesTitle": "Tones",
+    "settingsTitle": "Settings",
+    "calldivertTitle": "Call Divert",
+    "gamesTitle": "Games",
+    "calculatorTitle": "Calculator",
+    "remindersTitle": "Reminders",
+    "clockTitle": "Clock",
+    "profilesTitle": "Profiles",
+    "simservicesTitle": "SIM Services"
+  },
+  "phonebook": {
+    "searchTitle": "Search",
+    "servicenosTitle": "Service Nos",
+    "addnameTitle": "Add name",
+    "eraseTitle": "Erase",
+    "editTitle": "Edit",
+    "assigntoneTitle": "Assign tone",
+    "sendbcardTitle": "Send b’card",
+    "optionsTitle": "Options",
+    "speeddialsTitle": "Speed Dials",
+    "voicetagsTitle": "Voice Tags"
+  },
+  "messages": {
+    "title": "Messages View"
+  },
+  "chat": {
+    "title": "Chat View"
+  },
+  "callregister": {
+    "title": "Call Register View"
+  },
+  "tones": {
+    "title": "Tones View"
+  },
+  "settings": {
+    "settingsTitle": "Settings",
+    "callTitle": "Call Settings",
+    "general": {
+      "title": "General Settings",
+      "color": {
+        "title": "Color Settings",
+        "default": "Default",
+        "blue": "Blue",
+        "gray": "Gray",
+        "green": "Green",
+        "orange": "Orange",
+        "purple": "Purple",
+        "red": "Red",
+        "teal": "Teal",
+        "yellow": "Yellow"
+      },
+      "languageTitle": "Language Settings",
+      "light": {
+        "title": "Light Settings",
+        "backlightLevel": "Backlight level",
+        "inactiveAfter": "Inactive after"
+      },
+      "sound": {
+        "title": "Sound Settings",
+        "notification": "Notification",
+        "alarm": "Alarm",
+        "ring": "Ring"
+      }
+    },
+    "securityTitle": "Security Settings",
+    "restore": {
+      "title": "Restore Settings",
+      "restoreFactorySettings": "Restore factory settings?"
+    }
+  },
+  "calldivert": {
+    "title": "Call Divert View"
+  },
+  "games": {
+    "title": "Games View"
+  },
+  "calculator": {
+    "title": "Calculator View"
+  },
+  "reminders": {
+    "title": "Reminders View"
+  },
+  "clock": {
+    "title": "Clock View"
+  },
+  "profiles": {
+    "title": "Profiles View"
+  },
+  "simservices": {
+    "title": "SIM Services View"
+  }
+}

@@ -1,10 +1,12 @@
 import React from "react";
 import Hammer from 'react-hammerjs-18';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setFifthLevel, setFirstLevel, setFourthLevel, setSecondLevel, setThirdLevel } from "../redux/actions";
 
 const Home = () => {
+  const { t } = useTranslation(['home']);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const dispatchSetFirstLevel = React.useCallback(
@@ -21,19 +23,19 @@ const Home = () => {
     [dispatch]
   );
   const [menus,] = React.useState([
-    { path: "/phonebook", title: "Phone Book" },
-    { path: "/messages", title: "Messages" },
-    { path: "/chat", title: "Chat" },
-    { path: "/callregister", title: "Call Register" },
-    { path: "/tones", title: "Tones" },
-    { path: "/settings", title: "Settings" },
-    { path: "/calldivert", title: "Call Divert" },
-    { path: "/games", title: "Games" },
-    { path: "/calculator", title: "Calculator" },
-    { path: "/reminders", title: "Reminders" },
-    { path: "/clock", title: "Clock" },
-    { path: "/profiles", title: "Profiles" },
-    { path: "/simservices", title: "SIM Services" }
+    { path: "/phonebook", title: t('phonebookTitle') },
+    { path: "/messages", title: t("messagesTitle") },
+    { path: "/chat", title: t("chatTitle") },
+    { path: "/callregister", title: t("callregisterTitle") },
+    { path: "/tones", title: t("tonesTitle") },
+    { path: "/settings", title: t("settingsTitle") },
+    { path: "/calldivert", title: t("calldivertTitle") },
+    { path: "/games", title: t("gamesTitle") },
+    { path: "/calculator", title: t("calculatorTitle") },
+    { path: "/reminders", title: t("remindersTitle") },
+    { path: "/clock", title: t("clockTitle") },
+    { path: "/profiles", title: t("profilesTitle") },
+    { path: "/simservices", title: t("simservicesTitle") }
   ]);
   const [position, setPosition] = React.useState(0)
 

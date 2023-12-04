@@ -3,14 +3,16 @@ import Hammer from "react-hammerjs-18";
 import { useDispatch } from "react-redux";
 import { setSecondLevel } from "../../redux/actions";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 const Settings = () => {
+  const { t } = useTranslation(['settings']);
   const navigate = useNavigate();
   const [menus,] = React.useState([
-    { path: "/settings/call", title: "Call Settings" },
-    { path: "/settings/general", title: "General settings" },
-    { path: "/settings/security", title: "Security settings" },
-    { path: "/settings/restore", title: "Restore factory settings" },
+    { path: "/settings/call", title: t("callTitle")},
+    { path: "/settings/general", title: t("general.title")},
+    { path: "/settings/security", title: t("securityTitle")},
+    { path: "/settings/restore", title: t("restore.title")},
   ]);
   const [position, setPosition] = React.useState(0)
   

@@ -1,8 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setSecondLevel } from "../redux/actions";
+import { useTranslation } from "react-i18next";
 
 const Reminders = () => {
+  const { t } = useTranslation(['reminders']);
   const dispatch = useDispatch();
   const dispatchSetSecondLevel = React.useCallback(
     (position: number) => dispatch(setSecondLevel(position+1)),
@@ -15,7 +17,7 @@ const Reminders = () => {
   }, [dispatchSetSecondLevel]);
   return (
     <div className="home">
-      Reminders View
+      {t("title")}
     </div>
   )
 }

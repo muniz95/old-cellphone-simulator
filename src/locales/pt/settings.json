@@ -1,0 +1,36 @@
+{
+  "settingsTitle": "Settings",
+  "callTitle": "Call Settings",
+  "general": {
+    "title": "General Settings",
+    "color": {
+      "title": "Color Settings",
+      "default": "Default",
+      "blue": "Blue",
+      "gray": "Gray",
+      "green": "Green",
+      "orange": "Orange",
+      "purple": "Purple",
+      "red": "Red",
+      "teal": "Teal",
+      "yellow": "Yellow"
+    },
+    "languageTitle": "Language Settings",
+    "light": {
+      "title": "Light Settings",
+      "backlightLevel": "Backlight level",
+      "inactiveAfter": "Inactive after"
+    },
+    "sound": {
+      "title": "Sound Settings",
+      "notification": "Notification",
+      "alarm": "Alarm",
+      "ring": "Ring"
+    }
+  },
+  "securityTitle": "Security Settings",
+  "restore": {
+    "title": "Restore Settings",
+    "restoreFactorySettings": "Restore factory settings?"
+  }
+}

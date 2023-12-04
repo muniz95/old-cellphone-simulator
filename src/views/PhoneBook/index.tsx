@@ -1,10 +1,12 @@
 import React from "react";
 import Hammer from "react-hammerjs-18";
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from "react-redux";
 import { setSecondLevel, setThirdLevel } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 
 const PhoneBook = () => {
+  const { t } = useTranslation(['phonebook']);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const dispatchSetSecondLevel = React.useCallback(
@@ -16,16 +18,16 @@ const PhoneBook = () => {
     [dispatch]
   );
   const [menus,] = React.useState([
-    { path: "/phonebook/search", title: "Search" },
-    { path: "/phonebook/servicenos", title: "Service Nos" },
-    { path: "/phonebook/addname", title: "Add name" },
-    { path: "/phonebook/erase", title: "Erase" },
-    { path: "/phonebook/edit", title: "Edit" },
-    { path: "/phonebook/assigntone", title: "Assign tone" },
-    { path: "/phonebook/sendbcard", title: "Send b’card" },
-    { path: "/phonebook/options", title: "Options" },
-    { path: "/phonebook/speeddials", title: "Speed Dials" },
-    { path: "/phonebook/voicetags", title: "Voice Tags" }
+    { path: "/phonebook/search", title: t("searchTitle")},
+    { path: "/phonebook/servicenos", title: t("servicenosTitle")},
+    { path: "/phonebook/addname", title: t("addnameTitle")},
+    { path: "/phonebook/erase", title: t("eraseTitle")},
+    { path: "/phonebook/edit", title: t("editTitle")},
+    { path: "/phonebook/assigntone", title: t("assigntoneTitle")},
+    { path: "/phonebook/sendbcard", title: t("sendbcardTitle")},
+    { path: "/phonebook/options", title: t("optionsTitle")},
+    { path: "/phonebook/speeddials", title: t("speeddialsTitle")},
+    { path: "/phonebook/voicetags", title: t("voicetagsTitle")}
   ]);
   const [position, setPosition] = React.useState(0)
 

@@ -5,21 +5,24 @@ import { setColor } from "redux/actions/settings";
 import settingsService from 'services/setting.service';
 import S from "./styled";
 import vibration from "utils/vibration";
-
-const COLORS = [
-  { title: 'Default', rgb: '#c0b400' },
-  { title: 'Blue', rgb: '#0d48eb' },
-  { title: 'Gray', rgb: '#c7c7c7' },
-  { title: 'Green', rgb: '#46c000' },
-  { title: 'Orange', rgb: '#f3a34c' },
-  { title: 'Purple', rgb: '#f74bda' },
-  { title: 'Red', rgb: '#f53737' },
-  { title: 'Teal', rgb: '#3785eb' },
-  { title: 'Yellow', rgb: '#f5e93e' },
-];
+import { useTranslation } from "react-i18next";
 
 const ColorSettings = () => {
+  const { t } = useTranslation(['settings']);
   const dispatch = useDispatch();
+  
+  const COLORS = [
+    { title: t("general.color.default"), rgb: '#c0b400' },
+    { title: t("general.color.blue"), rgb: '#0d48eb' },
+    { title: t("general.color.gray"), rgb: '#c7c7c7' },
+    { title: t("general.color.green"), rgb: '#46c000' },
+    { title: t("general.color.orange"), rgb: '#f3a34c' },
+    { title: t("general.color.purple"), rgb: '#f74bda' },
+    { title: t("general.color.red"), rgb: '#f53737' },
+    { title: t("general.color.teal"), rgb: '#3785eb' },
+    { title: t("general.color.yellow"), rgb: '#f5e93e' },
+  ];
+
   const [appColor, setAppColor] = React.useState("");
   
   React.useEffect(() => {
@@ -43,7 +46,9 @@ const ColorSettings = () => {
         ) }
       </S.MainContainer>
       <S.ButtonContainer>
-        <button disabled={appColor === ""} onClick={save}>Save</button>
+        <button disabled={appColor === ""} onClick={save}>
+          {t("save", { ns: 'global' })}
+        </button>
       </S.ButtonContainer>
     </>
   );

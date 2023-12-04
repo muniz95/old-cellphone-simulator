@@ -6,6 +6,7 @@ import { checkDb, initDb } from "./utils/db";
 import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import './index.scss';
+import './i18n';
 
 const container = document.getElementById('root');
 const root = createRoot(container!); 
