@@ -14,11 +14,13 @@ import routes from "./routes";
 import { charging, decrease, increase, uncharging } from './redux/actions/battery';
 import { RootState } from './redux/reducers';
 import * as settingsActions from 'redux/actions/settings';
+import Startup from 'components/Startup';
 
 const App = () => {
   const dispatch = useDispatch();
 
   const routing = useRoutes([...routes]);
+  const [firstRender, setFirstRender] = React.useState(true);
   const state = useSelector((state: RootState) => state);
 
   const [color, setColor] = React.useState("");
@@ -56,26 +58,40 @@ const App = () => {
     setColor(state.color);
   }, [state.color]);
   React.useEffect(() => {
-    setBacklightLevel(state.backlightLevel);
+    setBacklightLevel(100 - state.backlightLevel);
   }, [state.backlightLevel]);
+
+  React.useEffect(() => {
+    if (firstRender) {
+      setTimeout(() => {
+        setFirstRender(false);        
+      }, 3000);
+    }
+  });
 
   const style = {
     backgroundColor: color,
-    backgroundImage: `linear-gradient(rgb(0 0 0/${100 - backlightLevel}%) 0 0)`,
+    backgroundImage: `linear-gradient(rgb(0 0 0/${backlightLevel}%) 0 0)`,
   };
 
   return (
     <div className="App" style={style}>
-      <SignalStatus />
-      <div className="container">
-        <TopBar />
-        <div className="page-container">
-          { routing }
-        </div>
-        <BottomBar />
-      </div>
-      <BatteryStatus />
-      <Modal />
+      { 
+        firstRender
+        ? <Startup /> 
+        : <>
+            <SignalStatus />
+            <div className="container">
+              <TopBar />
+              <div className="page-container">
+                { routing }
+              </div>
+              <BottomBar />
+            </div>
+            <BatteryStatus />
+            <Modal />
+          </>
+      }
     </div>
   );
 };

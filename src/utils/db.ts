@@ -2,6 +2,10 @@ import { StorageEntity } from "../interfaces/storageEntity";
 import defaults from 'defaults'
 import { isPlainObject } from "./helpers";
 
+export const isOn = () => {
+  return localStorage.getItem("appIsOn")!;
+}
+
 export const checkDb = () => {
   return Boolean(localStorage.getItem("contacts"));
 }
