@@ -3,12 +3,11 @@ import '../styles/TopBar.scss';
 import PageIndicator from './PageIndicator';
 
 const TopBar = () => {
+  const [date, setDate] = React.useState(new Date());
   const tick = () => {
     setDate(new Date());
   }
   const timerID: NodeJS.Timer = setInterval(tick, 1000);
-
-  const [date, setDate] = React.useState(new Date());
 
   React.useEffect(() => {
     return () => clearInterval(timerID);
