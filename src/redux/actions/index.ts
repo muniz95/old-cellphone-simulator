@@ -14,6 +14,20 @@ export const closeModal = () => {
   return action;
 };
 
+export const openStartupScreen = () => {
+  const action = {
+    type: "OPEN_STARTUP_SCREEN"
+  };
+  return action;
+};
+
+export const closeStartupScreen = () => {
+  const action = {
+    type: "CLOSE_STARTUP_SCREEN"
+  };
+  return action;
+};
+
 export const setFirstLevel = (payload: number) => {
   const action = {
     type: "SET_FIRST_LEVEL",

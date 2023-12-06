@@ -14,6 +14,17 @@ const showModal = (state = false, action: any): boolean => {
   }
 };
 
+const showStartupScreen = (state = false, action: any): boolean => {
+  switch (action.type) {
+    case "CLOSE_STARTUP_SCREEN":
+      return false;
+    case "OPEN_STARTUP_SCREEN":
+      return true;
+    default:
+      return state;
+  }
+};
+
 const firstLevel = (state = 1, action: any): number => {
   switch(action.type) {
     case "SET_FIRST_LEVEL":
@@ -61,6 +72,7 @@ const fifthLevel = (state = 0, action: any): number => {
 
 const reducer = combineReducers({
   showModal,
+  showStartupScreen,
   firstLevel,
   secondLevel,
   thirdLevel,
