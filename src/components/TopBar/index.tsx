@@ -1,6 +1,6 @@
 import React from 'react';
-import '../styles/TopBar.scss';
-import PageIndicator from './PageIndicator';
+import S from './styled';
+import PageIndicator from '../PageIndicator';
 
 const TopBar = () => {
   const [date, setDate] = React.useState(new Date());
@@ -14,11 +14,11 @@ const TopBar = () => {
   });
 
   return (
-    <div className="top-bar noselect">
+    <S.TopBarContainer className="noselect">
       <div>Lock</div>
       <PageIndicator />
       <div>{`${date.toLocaleTimeString().slice(0, 5)}`}</div>
-    </div>
+    </S.TopBarContainer>
   );
 }
 
