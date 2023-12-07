@@ -16,6 +16,7 @@ const Blink = ({ children, interval }: IProps) => {
       }, interval);
     } else {
       clearInterval(currentTimer.current);
+      setIsVisible(true);
     }
   }, [interval]);
 
