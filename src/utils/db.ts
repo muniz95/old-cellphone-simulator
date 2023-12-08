@@ -1,6 +1,6 @@
 import { StorageEntity } from "../interfaces/storageEntity";
 import defaults from 'defaults'
-import { isPlainObject } from "./helpers";
+import { isPlainObject, generateId } from "./helpers";
 
 export const isOn = () => {
   return localStorage.getItem("appIsOn")!;
@@ -13,7 +13,7 @@ export const checkDb = () => {
 export const initDb = () => {
   localStorage.setItem("contacts", JSON.stringify([
     {
-      id: crypto.randomUUID(),
+      id: generateId(),
       date: Date.now(),
       name: "Voice messages",
       number: "100",
