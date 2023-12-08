@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { setSecondLevel } from "../redux/actions";
 import { useTranslation } from "react-i18next";
+import { say } from "utils/sound";
 
 const SimServices = () => {
   const { t } = useTranslation(['simservices']);
@@ -13,7 +14,7 @@ const SimServices = () => {
   
   React.useEffect(() => {
     dispatchSetSecondLevel(0);
-    
+    say("Hello");
   }, [dispatchSetSecondLevel]);
   return (
     <div className="home">
