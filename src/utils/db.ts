@@ -6,9 +6,9 @@ export const isOn = () => {
   return localStorage.getItem("appIsOn")!;
 }
 
-export const checkDb = () => {
-  return Boolean(localStorage.getItem("contacts"));
-}
+export const checkDb = () =>
+  Boolean(localStorage.getItem("simNumbers")) &&
+  Boolean(localStorage.getItem("contacts"));
 
 export const initDb = () => {
   localStorage.setItem("contacts", JSON.stringify([
@@ -18,6 +18,22 @@ export const initDb = () => {
       name: "Voice messages",
       number: "100",
       isServiceNumber: true,
+    }
+  ]));
+  localStorage.setItem("simNumbers", JSON.stringify([
+    {
+      id: generateId(),
+      date: Date.now(),
+      name: "Provider",
+      number: 100,
+      message: "This is your provider.",
+    },
+    {
+      id: generateId(),
+      date: Date.now(),
+      name: "P.O. Box",
+      number: 222,
+      message: "You have a voice message.",
     }
   ]));
   localStorage.setItem("color", defaults.color);
