@@ -69,7 +69,14 @@
     "webpack": "^5.89.0",
     "webpack-dev-server": "^4.6.0",
     "webpack-manifest-plugin": "^4.0.2",
-    "workbox-webpack-plugin": "^6.4.1"
+    "workbox-cacheable-response": "^7.0.0",
+    "workbox-core": "^7.0.0",
+    "workbox-expiration": "^7.0.0",
+    "workbox-precaching": "^7.0.0",
+    "workbox-routing": "^7.0.0",
+    "workbox-strategies": "^7.0.0",
+    "workbox-webpack-plugin": "^6.4.1",
+    "workbox-window": "^7.0.0"
   },
   "scripts": {
     "start": "node scripts/start.js",
