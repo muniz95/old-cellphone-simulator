@@ -1,3 +1,8 @@
 {
-  "title": "Profiles View"
+  "title": "Profiles View",
+  "normal": "Normal",
+  "silent": "Silent",
+  "discrete": "Discrete",
+  "loud": "Loud",
+  "custom": "Custom"
 }
