@@ -20,9 +20,17 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "src"
-  },
-  "include": [
-    "src"
-  ]
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": ["./components/*"],
+      "@defaults/*": ["./defaults/*"],
+      "@interfaces/*": ["./interfaces/*"],
+      "@locales/*": ["./locales/*"],
+      "@redux/*": ["./redux/*"],
+      "@routes/*": ["./routes/*"],
+      "@services/*": ["./services/*"],
+      "@utils/*": ["./utils/*"],
+      "@views/*": ["./views/*"],
+    }
+  }
 }

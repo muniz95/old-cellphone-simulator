@@ -1,6 +1,7 @@
 import { StorageEntity } from "../interfaces/storageEntity";
-import defaults from 'defaults'
-import { isPlainObject, generateId } from "./helpers";
+import defaults from 'defaults';
+import seed from "./seed/index";
+import { isPlainObject } from "./helpers";
 
 export const isOn = () => {
   return localStorage.getItem("appIsOn")!;
@@ -8,35 +9,15 @@ export const isOn = () => {
 
 export const checkDb = () =>
   Boolean(localStorage.getItem("simNumbers")) &&
+  Boolean(localStorage.getItem("profiles")) &&
   Boolean(localStorage.getItem("contacts"));
 
 export const initDb = () => {
-  localStorage.setItem("contacts", JSON.stringify([
-    {
-      id: generateId(),
-      date: Date.now(),
-      name: "Voice messages",
-      number: "100",
-      isServiceNumber: true,
-    }
-  ]));
-  localStorage.setItem("simNumbers", JSON.stringify([
-    {
-      id: generateId(),
-      date: Date.now(),
-      name: "Provider",
-      number: 100,
-      message: "This is your provider.",
-    },
-    {
-      id: generateId(),
-      date: Date.now(),
-      name: "P.O. Box",
-      number: 222,
-      message: "You have a voice message.",
-    }
-  ]));
+  localStorage.setItem("contacts", JSON.stringify(seed.contacts));
+  localStorage.setItem("simNumbers", JSON.stringify(seed.simNumbers));
+  localStorage.setItem("profiles", JSON.stringify(seed.profiles));
   localStorage.setItem("color", defaults.color);
+  localStorage.setItem("currentProfile", JSON.stringify(defaults.profile));
 }
 
 export function getPlain(key: string) {
