@@ -1,9 +1,9 @@
 import React from "react";
-import Hammer from 'react-hammerjs-18';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setFifthLevel, setFirstLevel, setFourthLevel, setSecondLevel, setThirdLevel } from "../redux/actions";
+import CurrentPageContainer from "components/CurrentPageContainer";
 
 const Home = () => {
   const { t } = useTranslation(['home']);
@@ -59,13 +59,12 @@ const Home = () => {
 
   const label = menus[position];
   return (
-    <Hammer onTap={handleTap}
-      onSwipeLeft={swipeLeft}
-      onSwipeRight={swipeRight}>
-      <div className="home">
+    <CurrentPageContainer
+      handleTap={handleTap}
+      swipeLeft={swipeLeft}
+      swipeRight={swipeRight}>
         {label.title}
-      </div>
-    </Hammer>
+    </CurrentPageContainer>
   )
 }
 
