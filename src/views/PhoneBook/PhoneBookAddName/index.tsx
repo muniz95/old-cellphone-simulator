@@ -29,8 +29,6 @@ const PhoneBookAddName = () => {
       service.insertContact({
         name,
         number: Date.now().toString(),
-        id: crypto.randomUUID(),
-        date: Date.now().toLocaleString(),
         isServiceNumber: false,
       });
       vibration.success();
