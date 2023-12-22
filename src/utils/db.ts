@@ -10,7 +10,8 @@ export const isOn = () => {
 export const checkDb = () =>
   Boolean(localStorage.getItem("simNumbers")) &&
   Boolean(localStorage.getItem("profiles")) &&
-  Boolean(localStorage.getItem("contacts"));
+  Boolean(localStorage.getItem("contacts")) &&
+  Boolean(localStorage.getItem("callRecords"));
 
 export const initDb = () => {
   localStorage.setItem("contacts", JSON.stringify(seed.contacts));
@@ -18,6 +19,7 @@ export const initDb = () => {
   localStorage.setItem("profiles", JSON.stringify(seed.profiles));
   localStorage.setItem("color", defaults.color);
   localStorage.setItem("currentProfile", JSON.stringify(defaults.profile));
+  localStorage.setItem("callRecords", "[]");
 }
 
 export function getPlain(key: string) {
@@ -35,9 +37,13 @@ export function set<T>(key: string, value: T) {
 }
 
 export function insert<T>(key: string, item: T) {
-  const collection = get<T[]>(key);
-  collection.push(item);
-  localStorage.setItem(key, JSON.stringify(collection));
+  try {
+    const collection = get<T[]>(key);
+    collection.push(item);
+    localStorage.setItem(key, JSON.stringify(collection));    
+  } catch (error) {
+    throw error;
+  }
 }
 
 export function update<T extends StorageEntity>(key: string, item: T) {

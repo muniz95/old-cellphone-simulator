@@ -6,5 +6,7 @@
   "no": "No",
   "done": "Done",
   "play": "Play",
-  "call": "Call"
+  "call": "Call",
+  "start": "Start",
+  "end": "End"
 }
