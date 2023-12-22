@@ -20,7 +20,7 @@ const Chat = () => {
     // <div className="home">
     //   {t("title")}
     // </div>
-    <VoiceCall contactName="Teste" type="received" />
+    <VoiceCall contactName="Teste" type="received" phone="9999-9999" />
   )
 };
 

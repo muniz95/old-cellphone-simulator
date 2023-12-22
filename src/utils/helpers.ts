@@ -10,10 +10,14 @@ export const isPlainObject = (value: any) =>
 export const generateId = () =>
   crypto.randomUUID ? crypto.randomUUID() : crypto.getRandomValues(new Uint16Array(16));
 
+export const formatTime = (seconds: number) =>
+  (seconds - (seconds %= 60)) / 60 + (9 < seconds ? ':' : ':0') + seconds;
+
 const helpers = {
   isBetween,
   isPlainObject,
   generateId,
+  formatTime,
 };
 
 export default helpers;
