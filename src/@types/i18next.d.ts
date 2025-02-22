@@ -1,5 +1,5 @@
 // import the original type declarations
-import "i18next";
+import 'i18next';
 // import all namespaces (for the default language, only)
 import calculator from 'locales/en/calculator.json';
 import calldivert from 'locales/en/calldivert.json';
@@ -17,11 +17,11 @@ import settings from 'locales/en/settings.json';
 import simservices from 'locales/en/simservices.json';
 import tones from 'locales/en/tones.json';
 
-declare module "i18next" {
+declare module 'i18next' {
   // Extend CustomTypeOptions
   interface CustomTypeOptions {
     // custom namespace type, if you changed it
-    defaultNS: "global";
+    defaultNS: 'global';
     // custom resources type
     resources: {
       global: typeof global;

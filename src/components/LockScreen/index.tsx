@@ -1,7 +1,7 @@
-import S from "./styled"
+import S from './styled';
 
 const LockScreen = () => {
-  return <S.Cover />
-}
+  return <S.Cover />;
+};
 
 export default LockScreen;

@@ -1,33 +1,32 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { setSecondLevel } from "../../redux/actions";
+import { useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setSecondLevel } from '@/redux/actions';
 
 const Clock = () => {
   const tick = () => {
     setDate(new Date());
-  }
-  const timerID: NodeJS.Timer = setInterval(tick, 1000);
-  const [date, setDate] = React.useState(new Date());
+  };
+  const timerID = setInterval(tick, 1000);
+  const [date, setDate] = useState(new Date());
   const dispatch = useDispatch();
-  const dispatchSetSecondLevel = React.useCallback(
-    (position: number) => dispatch(setSecondLevel(position+1)),
+  const dispatchSetSecondLevel = useCallback(
+    (position: number) => dispatch(setSecondLevel(position + 1)),
     [dispatch]
   );
-  
-  React.useEffect(() => {
+
+  useEffect(() => {
     dispatchSetSecondLevel(0);
-    
   }, [dispatchSetSecondLevel]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => clearInterval(timerID);
   });
 
   return (
     <div className="home">
-      <h1>{`${date.toLocaleTimeString("pt-br")}`}</h1>
+      <h1>{`${date.toLocaleTimeString('pt-br')}`}</h1>
     </div>
-  )
+  );
 };
 
 export default Clock;

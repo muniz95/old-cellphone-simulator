@@ -1,11 +1,11 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { openModal, setFourthLevel } from "redux/actions";
-import { setLanguage } from "redux/actions/settings";
-import settingsService from 'services/setting.service';
-import S from "./styled";
-import vibration from "utils/vibration";
-import { useTranslation } from "react-i18next";
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { openModal, setFourthLevel } from '@/redux/actions';
+import { setLanguage } from '@/redux/actions/settings';
+import settingsService from '@/services/setting.service';
+import S from './styled';
+import vibration from '@/utils/vibration';
+import { useTranslation } from 'react-i18next';
 
 const LANGUAGES = [
   { title: 'Deustch', iso639: 'de' },
@@ -23,9 +23,9 @@ const LanguageSettings = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const [language, setAppLanguage] = React.useState("");
-  
-  React.useEffect(() => {
+  const [language, setAppLanguage] = useState('');
+
+  useEffect(() => {
     dispatch(setFourthLevel(3));
   });
 
@@ -33,20 +33,22 @@ const LanguageSettings = () => {
     settingsService.setLanguage(language);
     dispatch(setLanguage(language));
     vibration.success();
-    dispatch(openModal());  
-  }
-  
+    dispatch(openModal());
+  };
+
   return (
     <>
       <S.MainContainer>
-        { LANGUAGES.map(x =>
+        {LANGUAGES.map((x) => (
           <S.ResultsBox onClick={() => setAppLanguage(x.iso639)}>
-            <S.Item>{ x.title }</S.Item>
+            <S.Item>{x.title}</S.Item>
           </S.ResultsBox>
-        ) }
+        ))}
       </S.MainContainer>
       <S.ButtonContainer>
-        <button disabled={language === ""} onClick={save}>{t("save")}</button>
+        <button disabled={language === ''} onClick={save}>
+          {t('save')}
+        </button>
       </S.ButtonContainer>
     </>
   );

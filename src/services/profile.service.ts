@@ -1,25 +1,25 @@
-import { Profile } from "interfaces/profile";
-import db from "utils/db";
+import { Profile } from '@/interfaces/profile';
+import db from '@/utils/db';
 
 export const applyProfile = (profile: Profile) => {
-  db.set("currentProfile", profile);
-}
+  db.set('currentProfile', profile);
+};
 
 export const getProfiles = (): Profile[] => {
-  return db.get<Profile[]>("profiles");
-}
+  return db.get<Profile[]>('profiles');
+};
 
 export const insertProfile = (profile: Profile) => {
-  db.insert("profiles", profile);
-}
+  db.insert('profiles', profile);
+};
 
 export const updateProfile = (profile: Profile) => {
-  db.update("profiles", profile);
-}
+  db.update('profiles', profile);
+};
 
 export const removeProfile = (profile: Profile) => {
-  db.remove("profiles", profile);
-}
+  db.remove('profiles', profile);
+};
 
 const service = {
   getProfiles,
@@ -27,6 +27,6 @@ const service = {
   updateProfile,
   removeProfile,
   applyProfile,
-}
+};
 
 export default service;

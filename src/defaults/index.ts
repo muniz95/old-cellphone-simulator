@@ -1,4 +1,4 @@
-import { generateId } from "utils/helpers";
+import { generateId } from '@/utils/helpers';
 
 export const color = '#c0b400';
 export const backlightLevel = 80;
@@ -14,8 +14,8 @@ export const profile = {
   soundEffectsEnabled: true,
   vibrationEnabled: true,
   blinkingLightsEnabled: true,
-  name: "normal"
-}
+  name: 'normal',
+};
 
 const constants = {
   color,

@@ -1,18 +1,18 @@
-import React from "react";
+import { ReactElement, useEffect, useRef, useState } from 'react';
 
 interface IProps {
-  children: React.ReactElement | React.ReactElement[]
-  interval: number
+  children: ReactElement | ReactElement[];
+  interval: number;
 }
 
 const Blink = ({ children, interval }: IProps) => {
-  const currentTimer = React.useRef<NodeJS.Timeout>();
-  const [isVisible, setIsVisible] = React.useState(true);
+  const currentTimer = useRef<NodeJS.Timeout>();
+  const [isVisible, setIsVisible] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (interval > 0) {
       currentTimer.current = setInterval(() => {
-        setIsVisible(state => !state);
+        setIsVisible((state) => !state);
       }, interval);
     } else {
       clearInterval(currentTimer.current);
@@ -21,10 +21,10 @@ const Blink = ({ children, interval }: IProps) => {
   }, [interval]);
 
   return (
-    <div style={{visibility: isVisible ? 'visible' : 'hidden'}}>
-      { children }
+    <div style={{ visibility: isVisible ? 'visible' : 'hidden' }}>
+      {children}
     </div>
   );
-}
+};
 
 export default Blink;

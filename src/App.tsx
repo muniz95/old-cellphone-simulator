@@ -1,35 +1,41 @@
 import * as React from 'react';
 import { useRoutes } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import BatteryStatus from './components/BatteryStatus';
-import BottomBar from './components/BottomBar';
-import Modal from './components/Modal';
-import SignalStatus from './components/SignalStatus';
-import TopBar from './components/TopBar';
-import settingsService from 'services/setting.service';
-import defaultValues from 'defaults';
+import BatteryStatus from '@/components/BatteryStatus';
+import BottomBar from '@/components/BottomBar';
+import Modal from '@/components/Modal';
+import SignalStatus from '@/components/SignalStatus';
+import TopBar from '@/components/TopBar';
+import settingsService from '@/services/setting.service';
+import defaultValues from '@/defaults';
 
-import routes from "./routes";
-import { charging, decrease, increase, uncharging } from './redux/actions/battery';
-import { RootState } from './redux/reducers';
-import * as settingsActions from 'redux/actions/settings';
-import Startup from 'components/Startup';
+import routes from '@/routes';
+import {
+  charging,
+  decrease,
+  increase,
+  uncharging,
+} from '@/redux/actions/battery';
+import { RootState } from '@/redux/reducers';
+import * as settingsActions from '@/redux/actions/settings';
+import Startup from '@/components/Startup';
+import { useEffect, useState } from 'react';
 
 const App = () => {
   const dispatch = useDispatch();
 
   const routing = useRoutes([...routes]);
-  const [firstRender, setFirstRender] = React.useState(true);
+  const [firstRender, setFirstRender] = useState(true);
   const state = useSelector((state: RootState) => state);
 
-  const [color, setColor] = React.useState("");
-  const [backlightLevel, setBacklightLevel] = React.useState(0);
-  const [timeSpentOnPage, setTimeSpentOnPage] = React.useState(0);
-  
-  React.useEffect(() => {
+  const [color, setColor] = useState('');
+  const [backlightLevel, setBacklightLevel] = useState(0);
+  const [timeSpentOnPage, setTimeSpentOnPage] = useState(0);
+
+  useEffect(() => {
     const intervalId = setInterval(() => {
-      setTimeSpentOnPage(state => state + 1000);
+      setTimeSpentOnPage((state) => state + 1000);
     }, 1000);
 
     const defaultColor = settingsService.getColor() || defaultValues.color;
@@ -42,29 +48,27 @@ const App = () => {
     dispatch(settingsActions.setBacklightLevel(defaultBacklightLevel));
 
     return () => clearInterval(intervalId);
-  }, [dispatch]);  
-  React.useEffect(() => {
+  }, [dispatch]);
+  useEffect(() => {
     if (timeSpentOnPage % 1000 === 0) {
-      state.isRecharging
-       ? dispatch(increase())
-       : dispatch(decrease())
+      dispatch(state.isRecharging ? increase() : decrease());
     }
   }, [timeSpentOnPage, state.isRecharging, dispatch]);
-  React.useEffect(() => {
-    if (state.batteryLevel <= 15) dispatch(charging())
-    if (state.batteryLevel === 100) dispatch(uncharging())
+  useEffect(() => {
+    if (state.batteryLevel <= 15) dispatch(charging());
+    if (state.batteryLevel === 100) dispatch(uncharging());
   }, [state.batteryLevel, dispatch]);
-  React.useEffect(() => {
+  useEffect(() => {
     setColor(state.color);
   }, [state.color]);
-  React.useEffect(() => {
+  useEffect(() => {
     setBacklightLevel(100 - state.backlightLevel);
   }, [state.backlightLevel]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (firstRender) {
       setTimeout(() => {
-        setFirstRender(false);        
+        setFirstRender(false);
       }, 3000);
     }
   });
@@ -76,22 +80,20 @@ const App = () => {
 
   return (
     <div className="App" style={style}>
-      { 
-        firstRender
-        ? <Startup /> 
-        : <>
-            <SignalStatus />
-            <div className="container">
-              <TopBar />
-              <div className="page-container">
-                { routing }
-              </div>
-              <BottomBar />
-            </div>
-            <BatteryStatus />
-            <Modal />
-          </>
-      }
+      {firstRender ? (
+        <Startup />
+      ) : (
+        <>
+          <SignalStatus />
+          <div className="container">
+            <TopBar />
+            <div className="page-container">{routing}</div>
+            <BottomBar />
+          </div>
+          <BatteryStatus />
+          <Modal />
+        </>
+      )}
     </div>
   );
 };

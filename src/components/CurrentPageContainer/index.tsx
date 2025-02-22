@@ -1,20 +1,26 @@
-import S from "./styled";
-import Hammer from 'react-hammerjs-18';
+import { ReactElement } from 'react';
+import S from './styled';
+import useSwipe from '@/hooks/use-swipe';
 
 interface IProps {
-  children: React.ReactElement | React.ReactElement[] | string
-  handleTap: () => void
-  swipeLeft: () => void  
-  swipeRight: () => void
+  children: ReactElement | ReactElement[] | string;
+  onTap: () => void;
+  onSwipedLeft: () => void;
+  onSwipedRight: () => void;
 }
 
-const CurrentPageContainer = ({ children, handleTap, swipeLeft, swipeRight }: IProps) =>
-  <Hammer onTap={handleTap}
-    onSwipeLeft={swipeLeft}
-    onSwipeRight={swipeRight}>
-    <S.Container>
-      {children}
-    </S.Container>
-  </Hammer>;
+const CurrentPageContainer = ({
+  children,
+  onTap,
+  onSwipedLeft,
+  onSwipedRight,
+}: IProps) => {
+  const swipeHandlers = useSwipe({
+    onSwipedLeft,
+    onSwipedRight,
+    onTap,
+  });
+  return <S.Container {...swipeHandlers}>{children}</S.Container>;
+};
 
 export default CurrentPageContainer;

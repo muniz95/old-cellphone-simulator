@@ -1,4 +1,4 @@
-import { generateId } from "../helpers";
+import { generateId } from '../helpers';
 
 const profiles = [
   {
@@ -13,7 +13,7 @@ const profiles = [
     soundEffectsEnabled: true,
     vibrationEnabled: true,
     blinkingLightsEnabled: true,
-    name: "normal"
+    name: 'normal',
   },
   {
     id: generateId(),
@@ -27,7 +27,7 @@ const profiles = [
     soundEffectsEnabled: true,
     vibrationEnabled: true,
     blinkingLightsEnabled: true,
-    name: "silent"
+    name: 'silent',
   },
   {
     id: generateId(),
@@ -41,7 +41,7 @@ const profiles = [
     soundEffectsEnabled: true,
     vibrationEnabled: true,
     blinkingLightsEnabled: true,
-    name: "discrete"
+    name: 'discrete',
   },
   {
     id: generateId(),
@@ -55,8 +55,8 @@ const profiles = [
     soundEffectsEnabled: true,
     vibrationEnabled: true,
     blinkingLightsEnabled: true,
-    name: "loud"
-  }
-]
+    name: 'loud',
+  },
+];
 
 export default profiles;

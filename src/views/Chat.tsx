@@ -1,25 +1,20 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { setSecondLevel } from "../redux/actions";
-import { useTranslation } from "react-i18next";
+import { useCallback, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setSecondLevel } from '../redux/actions';
+import { useTranslation } from 'react-i18next';
 
 const Chat = () => {
   const { t } = useTranslation(['chat']);
   const dispatch = useDispatch();
-  const dispatchSetSecondLevel = React.useCallback(
-    (position: number) => dispatch(setSecondLevel(position+1)),
+  const dispatchSetSecondLevel = useCallback(
+    (position: number) => dispatch(setSecondLevel(position + 1)),
     [dispatch]
   );
-  
-  React.useEffect(() => {
+
+  useEffect(() => {
     dispatchSetSecondLevel(0);
-    
   }, [dispatchSetSecondLevel]);
-  return (
-    <div className="home">
-      {t("title")}
-    </div>
-  )
+  return <div className="home">{t('title')}</div>;
 };
 
 export default Chat;

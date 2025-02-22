@@ -1,42 +1,42 @@
-import { initDb, set, getPlain } from "../utils/db";
+import { initDb, set, getPlain } from '../utils/db';
 
 export const resetData = () => {
   initDb();
-}
+};
 
-export const getColor = () => getPlain("color");
+export const getColor = () => getPlain('color');
 
 export const setColor = (color: string) => {
-  set<string>("color", color);
-}
+  set<string>('color', color);
+};
 
-export const getLanguage = () => getPlain("language");
+export const getLanguage = () => getPlain('language');
 
 export const setLanguage = (language: string) => {
-  set<string>("language", language);
-}
+  set<string>('language', language);
+};
 
 export const setNotificationLevel = (level: number) => {
-  set<number>("notificationLevel", level);
-}
+  set<number>('notificationLevel', level);
+};
 
 export const setAlarmLevel = (level: number) => {
-  set<number>("alarmLevel", level);
-}
+  set<number>('alarmLevel', level);
+};
 
 export const setRingLevel = (level: number) => {
-  set<number>("ringLevel", level);
-}
+  set<number>('ringLevel', level);
+};
 
-export const getBacklightLevel = () => parseInt(getPlain("backlightLevel"));
+export const getBacklightLevel = () => parseInt(getPlain('backlightLevel'));
 
 export const setBacklightLevel = (level: number) => {
-  set<number>("backlightLevel", level);
-}
+  set<number>('backlightLevel', level);
+};
 
 export const setInactivityTime = (time: number) => {
-  set<number>("inactivityTime", time);
-}
+  set<number>('inactivityTime', time);
+};
 
 const service = {
   resetData,
@@ -50,6 +50,6 @@ const service = {
   getBacklightLevel,
   setBacklightLevel,
   setInactivityTime,
-}
+};
 
 export default service;

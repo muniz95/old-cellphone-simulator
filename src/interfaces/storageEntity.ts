@@ -1,4 +1,4 @@
-import { generateId } from "utils/helpers"
+import { generateId } from '@/utils/helpers';
 
 export class StorageEntity {
   id?: string = generateId().toString();
