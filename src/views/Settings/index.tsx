@@ -41,9 +41,9 @@ const Settings = () => {
   const label = menus[position];
   return (
     <CurrentPageContainer
-      handleTap={handleTap}
-      swipeLeft={swipeLeft}
-      swipeRight={swipeRight}
+      onTap={handleTap}
+      onSwipedLeft={swipeLeft}
+      onSwipedRight={swipeRight}
     >
       {label.title}
     </CurrentPageContainer>
