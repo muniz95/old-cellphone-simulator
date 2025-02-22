@@ -1,30 +1,30 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { openModal, setThirdLevel } from "../../../redux/actions";
-import S from "./styled";
-import service from "../../../services/contact.service"
-import TextInput from "../../../components/TextInput";
-import vibration from "../../../utils/vibration";
-import { useTranslation } from "react-i18next";
+import { useCallback, useEffect, useState, ChangeEvent } from 'react';
+import { useDispatch } from 'react-redux';
+import { openModal, setThirdLevel } from '@/redux/actions';
+import S from './styled';
+import service from '@/services/contact.service';
+import TextInput from '@/components/TextInput';
+import vibration from '@/utils/vibration';
+import { useTranslation } from 'react-i18next';
 
 const PhoneBookAddName = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const dispatchOpenModal = React.useCallback(
+  const dispatchOpenModal = useCallback(
     () => dispatch(openModal()),
     [dispatch]
   );
-  const dispatchSetThirdLevel = React.useCallback(
-    (position: number) => dispatch(setThirdLevel(position+1)),
+  const dispatchSetThirdLevel = useCallback(
+    (position: number) => dispatch(setThirdLevel(position + 1)),
     [dispatch]
   );
 
-  const [name, setName] = React.useState("");
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [name, setName] = useState('');
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.currentTarget.value);
-  }
-  
-  const saveContact = (e: React.MouseEvent<HTMLButtonElement>) => {
+  };
+
+  const saveContact = () => {
     try {
       service.insertContact({
         name,
@@ -32,13 +32,13 @@ const PhoneBookAddName = () => {
         isServiceNumber: false,
       });
       vibration.success();
-      dispatchOpenModal()
+      dispatchOpenModal();
     } catch (error) {
       alert(error);
     }
-  }
+  };
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatchSetThirdLevel(0);
   });
 
@@ -51,10 +51,10 @@ const PhoneBookAddName = () => {
       <div>&nbsp;</div>
       <div>&nbsp;</div>
       <div>
-        <button onClick={saveContact}>{t("save")}</button>
+        <button onClick={saveContact}>{t('save')}</button>
       </div>
     </S.Container>
-  )
-}
+  );
+};
 
 export default PhoneBookAddName;

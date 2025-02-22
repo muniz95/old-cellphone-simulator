@@ -1,26 +1,26 @@
-import { StorageEntity } from "../interfaces/storageEntity";
-import defaults from 'defaults';
-import seed from "./seed/index";
-import { isPlainObject } from "./helpers";
+import { StorageEntity } from '../interfaces/storageEntity';
+import defaults from '@/defaults';
+import seed from './seed/index';
+import { isPlainObject } from './helpers';
 
 export const isOn = () => {
-  return localStorage.getItem("appIsOn")!;
-}
+  return localStorage.getItem('appIsOn')!;
+};
 
 export const checkDb = () =>
-  Boolean(localStorage.getItem("simNumbers")) &&
-  Boolean(localStorage.getItem("profiles")) &&
-  Boolean(localStorage.getItem("contacts")) &&
-  Boolean(localStorage.getItem("callRecords"));
+  Boolean(localStorage.getItem('simNumbers')) &&
+  Boolean(localStorage.getItem('profiles')) &&
+  Boolean(localStorage.getItem('contacts')) &&
+  Boolean(localStorage.getItem('callRecords'));
 
 export const initDb = () => {
-  localStorage.setItem("contacts", JSON.stringify(seed.contacts));
-  localStorage.setItem("simNumbers", JSON.stringify(seed.simNumbers));
-  localStorage.setItem("profiles", JSON.stringify(seed.profiles));
-  localStorage.setItem("color", defaults.color);
-  localStorage.setItem("currentProfile", JSON.stringify(defaults.profile));
-  localStorage.setItem("callRecords", "[]");
-}
+  localStorage.setItem('contacts', JSON.stringify(seed.contacts));
+  localStorage.setItem('simNumbers', JSON.stringify(seed.simNumbers));
+  localStorage.setItem('profiles', JSON.stringify(seed.profiles));
+  localStorage.setItem('color', defaults.color);
+  localStorage.setItem('currentProfile', JSON.stringify(defaults.profile));
+  localStorage.setItem('callRecords', '[]');
+};
 
 export function getPlain(key: string) {
   return localStorage.getItem(key)!;
@@ -31,19 +31,16 @@ export function get<T>(key: string) {
 }
 
 export function set<T>(key: string, value: T) {
-  isPlainObject(value)
-    ? localStorage.setItem(key, `${value}`)
-    : localStorage.setItem(key, JSON.stringify(value));
+  localStorage.setItem(
+    key,
+    isPlainObject(value) ? `${value}` : JSON.stringify(value)
+  );
 }
 
 export function insert<T>(key: string, item: T) {
-  try {
-    const collection = get<T[]>(key);
-    collection.push(item);
-    localStorage.setItem(key, JSON.stringify(collection));    
-  } catch (error) {
-    throw error;
-  }
+  const collection = get<T[]>(key);
+  collection.push(item);
+  localStorage.setItem(key, JSON.stringify(collection));
 }
 
 export function update<T extends StorageEntity>(key: string, item: T) {
@@ -64,6 +61,6 @@ const db = {
   insert,
   update,
   remove,
-}
+};
 
 export default db;

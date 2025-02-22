@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const BatteryStatus = styled.div`
   text-align: right;
@@ -7,7 +7,8 @@ const BatteryStatus = styled.div`
 `;
 
 const StatusBar = styled.div<{ isVisible: boolean }>`
-  background-color: ${({isVisible}) => isVisible ? '#000000d6' : '00000000'};
+  background-color: ${({ isVisible }) =>
+    isVisible ? '#000000d6' : '00000000'};
   display: inline-block;
   margin: 1px;
 `;
@@ -15,6 +16,6 @@ const StatusBar = styled.div<{ isVisible: boolean }>`
 const S = {
   BatteryStatus,
   StatusBar,
-}
+};
 
 export default S;

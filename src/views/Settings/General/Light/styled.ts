@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const MainContainer = styled.div`
   height: 80%;
@@ -39,7 +39,8 @@ export const SliderInput = styled.input.attrs({ type: 'range' })`
   cursor: pointer;
   width: 50vw;
 
-  &::-webkit-slider-runnable-track, &::-moz-range-track {
+  &::-webkit-slider-runnable-track,
+  &::-moz-range-track {
     background: #053a5f;
     height: 0.5rem;
   }
@@ -51,6 +52,6 @@ const S = {
   MainContainer,
   SliderInput,
   ResultsBox,
-}
+};
 
 export default S;

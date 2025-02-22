@@ -30,6 +30,6 @@ const resources = {
   settings,
   simservices,
   tones,
-}
+};
 
 export default resources;

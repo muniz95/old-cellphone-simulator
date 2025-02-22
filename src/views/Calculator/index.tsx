@@ -1,30 +1,31 @@
-import React, { MouseEvent } from "react";
-import { useDispatch } from "react-redux";
-import { setSecondLevel } from "../../redux/actions";
-import S from "./styled";
+import React, { MouseEvent } from 'react';
+import { useDispatch } from 'react-redux';
+import { setSecondLevel } from '../../redux/actions';
+import S from './styled';
 
 const Calculator = () => {
-  const [expression, setExpression] = React.useState("");
+  const [expression, setExpression] = useState('');
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
-    setExpression(expression => `${expression}${(e.target as HTMLDivElement).innerText}`);
-  }
-  const clear = () => setExpression("");
-  const back = () => setExpression(x => `${x.slice(0, x.length-1)}`);
+    setExpression(
+      (expression) => `${expression}${(e.target as HTMLDivElement).innerText}`
+    );
+  };
+  const clear = () => setExpression('');
+  const back = () => setExpression((x) => `${x.slice(0, x.length - 1)}`);
 
   const evaluate = () => {
     // const sanitizedExpression = expression.replaceAll("x", "*");
     // const result = eval(sanitizedExpression);
     // setExpression(result);
-  }
+  };
   const dispatch = useDispatch();
-  const dispatchSetSecondLevel = React.useCallback(
-    (position: number) => dispatch(setSecondLevel(position+1)),
+  const dispatchSetSecondLevel = useCallback(
+    (position: number) => dispatch(setSecondLevel(position + 1)),
     [dispatch]
   );
-  
-  React.useEffect(() => {
+
+  useEffect(() => {
     dispatchSetSecondLevel(0);
-    
   }, [dispatchSetSecondLevel]);
 
   return (
@@ -36,8 +37,8 @@ const Calculator = () => {
         <S.Key onClick={clear}>
           <div>CC</div>
         </S.Key>
-        <S.Key/>
-        <S.Key/>
+        <S.Key />
+        <S.Key />
         <S.Key onClick={back}>
           <div>c</div>
         </S.Key>
@@ -91,7 +92,7 @@ const Calculator = () => {
         </S.Key>
       </S.KeyboardContainer>
     </div>
-  )
+  );
 };
 
 export default Calculator;

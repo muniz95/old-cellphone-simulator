@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const KeyboardContainer = styled.div`
   display: flex;
@@ -29,6 +29,6 @@ export const Key = styled.div`
 const S = {
   KeyboardContainer,
   Key,
-}
+};
 
 export default S;

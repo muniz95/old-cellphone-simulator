@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const MainContainer = styled.div`
   height: 80%;
@@ -29,7 +29,8 @@ export const Item = styled.button`
   width: 100%;
   border: none;
 
-  &:active, &:focus {
+  &:active,
+  &:focus {
     font-weight: bold;
     background-color: #000000c6;
     color: #ffffffc6;
@@ -41,6 +42,6 @@ const S = {
   MainContainer,
   Item,
   ResultsBox,
-}
+};
 
 export default S;

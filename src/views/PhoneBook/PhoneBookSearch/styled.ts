@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Home = styled.div`
   height: 100%;
@@ -15,6 +15,6 @@ export const ResultsBox = styled.div`
 const S = {
   Home,
   ResultsBox,
-}
+};
 
 export default S;

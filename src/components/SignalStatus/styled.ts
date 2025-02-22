@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const SignalStatus = styled.div`
   text-align: left;
@@ -16,6 +16,6 @@ const StatusBar = styled.div`
 const S = {
   SignalStatus,
   StatusBar,
-}
+};
 
 export default S;

@@ -1,8 +1,8 @@
-import { RouteObject } from "react-router-dom";
-import mainRoutes from "./main";
-import phoneBookRoutes from "./phoneBook";
-import settingsRoutes from "./settings";
-import startupRoutes from "./startup";
+import { RouteObject } from 'react-router-dom';
+import mainRoutes from './main';
+import phoneBookRoutes from './phoneBook';
+import settingsRoutes from './settings';
+import startupRoutes from './startup';
 
 const routes: RouteObject[] = [
   ...mainRoutes,
@@ -10,8 +10,6 @@ const routes: RouteObject[] = [
   ...settingsRoutes,
 ];
 
-export const startupRoute: RouteObject[] = [
-  ...startupRoutes
-];
+export const startupRoute: RouteObject[] = [...startupRoutes];
 
 export default routes;
