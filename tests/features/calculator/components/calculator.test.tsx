@@ -1,28 +1,12 @@
 import React from 'react';
-import Calculator from '../../../src/views/Calculator';
+import Calculator from '../../../../src/views/Calculator';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { describe, expect, it } from 'vitest';
-import reducer from '../../../src/redux/reducers';
+import reducer from '../../../../src/redux/reducers/index';
 import { render } from '@testing-library/react';
 import { fireEvent, screen } from '@testing-library/react';
-
-function renderWithProvider(
-  ui,
-  {
-    preloadedState = {
-      isRecharging: false,
-      batteryLevel: 90,
-    },
-    store = configureStore({ reducer: reducer, preloadedState }),
-    ...renderOptions
-  } = {}
-) {
-  function Wrapper({ children }) {
-    return <Provider store={store}>{children}</Provider>;
-  }
-  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
-}
+import { renderWithProvider } from '../../../utils';
 
 describe('Calculator', () => {
   it('renders correctly', () => {

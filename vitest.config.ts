@@ -6,9 +6,9 @@ export default defineConfig({
   plugins: [react(), viteTsconfigPaths()],
   test: {
     environment: 'jsdom',
-    exclude: ['**/node_modules/**', '**/dist/**', '**/browser/**'], // Exclude browser-specific tests
+    exclude: ['**/node_modules/**', '**/dist/**', '**/browser/**'],
     globals: true,
-    include: ['tests/**/*.test.tsx'], // Ensure only .test.tsx files are included
+    include: ['tests/**/*.test.{ts,tsx}'],
     typecheck: {
       tsconfig: './tsconfig.test.json',
     },
