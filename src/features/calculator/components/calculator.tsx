@@ -13,7 +13,7 @@ const Calculator = () => {
   }, [dispatch]);
 
   return (
-    <div className="home">
+    <S.PageContainer>
       <div>
         <textarea
           name="calculator"
@@ -44,7 +44,7 @@ const Calculator = () => {
         <S.Key onClick={() => handleClick('.')}>.</S.Key>
         <S.Key onClick={() => handleClick('/')}>/</S.Key>
       </S.KeyboardContainer>
-    </div>
+    </S.PageContainer>
   );
 };
 
