@@ -8,7 +8,7 @@ const PhoneBookAddName = () => {
   const { t } = useTranslation();
   const { handleChange, saveContact } = usePhoneBookAddNameHooks();
 
-  useThirdLevel();
+  useThirdLevel(0);
 
   return (
     <S.Container>
