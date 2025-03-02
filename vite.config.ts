@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
     base: '/',
     build: {
       rollupOptions: {
-        external: [/.*\.test\.{ts,tsx}$/], // Exclude files matching this regex
+        external: [/.*\.tests\.{ts,tsx}$/], // Exclude files matching this regex
       },
     },
     define: {
