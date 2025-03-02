@@ -1,10 +1,10 @@
 import { RouteObject } from 'react-router-dom';
-import PhoneBook from '../views/PhoneBook';
-import PhoneBookAddName from '../views/PhoneBook/PhoneBookAddName';
-import PhoneBookSearch from '../views/PhoneBook/PhoneBookSearch';
-import PhoneBookEdit from '../views/PhoneBook/PhoneBookEdit';
-import PhoneBookServiceNos from '../views/PhoneBook/PhoneBookServiceNos';
-import PhoneBookErase from '../views/PhoneBook/PhoneBookErase';
+import PhoneBook from '../features/phone-book';
+import PhoneBookAddName from '../features/phone-book/add-name';
+import PhoneBookSearch from '../features/phone-book/PhoneBookSearch';
+import PhoneBookEdit from '../features/phone-book/PhoneBookEdit';
+import PhoneBookServiceNos from '../features/phone-book/PhoneBookServiceNos';
+import PhoneBookErase from '../features/phone-book/PhoneBookErase';
 
 const routes: RouteObject[] = [
   { path: '/phonebook/addname', element: <PhoneBookAddName /> },
