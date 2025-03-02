@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setThirdLevel } from '@/redux/actions';
 
-const useThirdLevel = () => {
+const useThirdLevel = (position: number) => {
   const dispatch = useDispatch();
   const dispatchSetThirdLevel = useCallback(
     (position: number) => dispatch(setThirdLevel(position + 1)),
@@ -10,8 +10,8 @@ const useThirdLevel = () => {
   );
 
   useEffect(() => {
-    dispatchSetThirdLevel(0);
-  }, [dispatchSetThirdLevel]);
+    dispatchSetThirdLevel(position);
+  }, [dispatchSetThirdLevel, position]);
 };
 
 export default useThirdLevel;
