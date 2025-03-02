@@ -1,37 +1,47 @@
-import { screen, fireEvent } from '@testing-library/react';
-import ColorSettings from '../../../../../src/views/Settings/General/Color';
-import { beforeEach, describe, vi, it, expect } from 'vitest';
-import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from '../../../../../src/redux/reducers';
+import { render, screen, fireEvent } from '@testing-library/react';
+import ColorSettings from '@/views/Settings/General/Color';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import { openModal, setFourthLevel, setColor } from '@/redux/actions';
+import settingsService from '@/services/setting.service';
+import vibration from '@/utils/vibration';
+import { useTranslation } from 'react-i18next';
 import { renderWithProvider } from '../../../../utils';
-import React from 'react';
 
-const store = configureStore({ reducer: rootReducer });
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares);
 
-vi.mock('@/redux/actions', () => ({
-  openModal: vi.fn(),
-  setFourthLevel: vi.fn(),
-  setColor: vi.fn(),
+jest.mock('@/redux/actions', () => ({
+  openModal: jest.fn(),
+  setFourthLevel: jest.fn(),
+  setColor: jest.fn(),
 }));
-vi.mock('@/services/setting.service', () => ({
-  setColor: vi.fn(),
+
+jest.mock('@/services/setting.service', () => ({
+  setColor: jest.fn(),
 }));
-vi.mock('@/utils/vibration', () => ({
-  success: vi.fn(),
+
+jest.mock('@/utils/vibration', () => ({
+  success: jest.fn(),
 }));
-vi.mock('react-i18next', () => ({
-  useTranslation: vi.fn().mockReturnValue({
+
+jest.mock('react-i18next', () => ({
+  useTranslation: jest.fn().mockReturnValue({
     t: (key) => key,
   }),
 }));
 
 describe('ColorSettings', () => {
+  let store;
+
   beforeEach(() => {
+    store = mockStore({});
     renderWithProvider(<ColorSettings />);
   });
 
   it('renders correctly', () => {
-    expect(screen.getByText('general.color.default')).toBeDefined();
+    expect(screen.getByText('general.color.default')).toBeTruthy();
   });
 
   it('displays color options', () => {
@@ -42,17 +52,17 @@ describe('ColorSettings', () => {
   it('updates appColor state on color option click', () => {
     const colorOption = screen.getByText('general.color.blue');
     fireEvent.click(colorOption);
-    expect(screen.getByRole('button', { name: 'save' })).not.have('disabled');
+    expect(screen.getByRole('button', { name: 'save' })).not.toBeDisabled();
   });
 
   it('save button is disabled when no color is selected', () => {
-    expect(screen.getByRole('button', { name: 'save' })).have('disabled');
+    expect(screen.getByRole('button', { name: 'save' })).toBeDisabled();
   });
 
   it('save button is enabled when a color is selected', () => {
     const colorOption = screen.getByText('general.color.blue');
     fireEvent.click(colorOption);
-    expect(screen.getByRole('button', { name: 'save' })).not.have('disabled');
+    expect(screen.getByRole('button', { name: 'save' })).not.toBeDisabled();
   });
 
   it('clicking save button triggers appropriate actions', () => {
@@ -62,11 +72,8 @@ describe('ColorSettings', () => {
     fireEvent.click(saveButton);
 
     expect(settingsService.setColor).toHaveBeenCalledWith('#0d48eb');
-    expect(store.getActions()).toContainEqual({
-      type: 'SET_COLOR',
-      payload: '#0d48eb',
-    });
+    expect(store.getActions()).toContainEqual(setColor('#0d48eb'));
     expect(vibration.success).toHaveBeenCalled();
-    expect(store.getActions()).toContainEqual({ type: 'OPEN_MODAL' });
+    expect(store.getActions()).toContainEqual(openModal());
   });
 });

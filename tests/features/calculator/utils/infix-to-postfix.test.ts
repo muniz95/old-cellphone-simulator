@@ -1,5 +1,4 @@
-import { describe, it, expect } from 'vitest';
-import { infixToPostfix } from '../../../../src/utils/infix-to-postfix';
+import { infixToPostfix } from '../../../../src/features/calculator/utils/infix-to-postfix';
 
 describe('infixToPostfix', () => {
   it('should convert infix to postfix', () => {

@@ -12,13 +12,15 @@ interface RenderWithProviderOptions {
 }
 
 export const renderWithProvider = (
-  ui,
+  ui: React.ReactElement,
   {
     preloadedState,
     store = configureStore({ reducer, preloadedState }),
     ...renderOptions
   }: RenderWithProviderOptions = {}
 ) => {
-  const Wrapper = ({ children }) => <Provider store={store}>{children}</Provider>;
+  const Wrapper = ({ children }: { 
+    children: React.ReactNode
+  }) => <Provider store={store}>{children}</Provider>;
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
 }

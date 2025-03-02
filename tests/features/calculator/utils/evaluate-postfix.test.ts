@@ -1,5 +1,4 @@
-import { describe, it, expect } from 'vitest';
-import { evaluatePostfix } from '../../../../src/utils/evaluate-postfix';
+import { evaluatePostfix } from '../../../../src/features/calculator/utils/evaluate-postfix';
 
 describe('evaluatePostfix', () => {
   it('should evaluate a valid postfix expression', () => {

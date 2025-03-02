@@ -13,14 +13,21 @@
     "resolveJsonModule": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vite/client","node"],
-    
+    "types": ["vite/client", "node"],
+
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "useDefineForClassFields": true,
+    "allowImportingTsExtensions": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    "allowJs": true,
   },
-  "include": ["src"],
+  "include": ["src", "./jest.setup.ts"],
   "exclude": ["node_modules", "test"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

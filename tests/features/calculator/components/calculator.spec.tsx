@@ -1,10 +1,4 @@
-import React from 'react';
 import Calculator from '../../../../src/features/calculator/components/calculator';
-import { configureStore } from '@reduxjs/toolkit';
-import { Provider } from 'react-redux';
-import { describe, expect, it } from 'vitest';
-import reducer from '../../../../src/redux/reducers/index';
-import { render } from '@testing-library/react';
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithProvider } from '../../../utils';
 
