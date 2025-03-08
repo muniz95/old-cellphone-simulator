@@ -1,7 +1,7 @@
 import { RouteObject } from 'react-router-dom';
 import PhoneBook from '@/features/phone-book';
 import PhoneBookAddName from '@/features/phone-book/add-name';
-import PhoneBookSearch from '@/features/phone-book/phone-book-search';
+import PhoneBookSearch from '@/features/phone-book/search';
 import PhoneBookEdit from '@/features/phone-book/PhoneBookEdit';
 import PhoneBookServiceNos from '@/features/phone-book/PhoneBookServiceNos';
 import PhoneBookErase from '@/features/phone-book/PhoneBookErase';

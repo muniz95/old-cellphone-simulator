@@ -11,3 +11,5 @@ We use a dedicated folder for components on the same level of the current file.
 We use a dedicated folder for utils on the same level of the current file.
 
 We use a dedicated folder for styles on the same level of the current file.
+
+We use `tests/features/clock/index.test.tsx` as a reference to generate unit tests.
