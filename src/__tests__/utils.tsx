@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import reducer from "../src/redux/reducers";
+import reducer from "../redux/reducers";
 import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
 import React from "react";

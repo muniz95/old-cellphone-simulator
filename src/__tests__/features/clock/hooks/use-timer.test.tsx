@@ -1,6 +1,6 @@
+import useTimer from '@/features/clock/hooks/use-timer';
 import { renderHook, act } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import useTimer from '../../../../src/features/clock/hooks/use-timer';
 
 vi.useFakeTimers();
 

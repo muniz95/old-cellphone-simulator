@@ -1,7 +1,6 @@
 import { render, fireEvent } from '@testing-library/react';
-import Menu from '../../../src/features/phone-book/menu';
 import { describe, expect, it, vi } from 'vitest';
-import * as React from 'react';
+import Menu from '@/features/phone-book/menu';
 
 describe('Menu Component', () => {
   const menus = [
@@ -24,7 +23,7 @@ describe('Menu Component', () => {
 
   it('should call onTap when tapped', () => {
     const onTap = vi.fn(() => {
-      console.log('tapped');      
+      console.log('tapped');
     });
     const { getByText } = render(
       <Menu

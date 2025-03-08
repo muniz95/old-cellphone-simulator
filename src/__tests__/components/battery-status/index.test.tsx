@@ -1,7 +1,6 @@
-import React from 'react';
-import BatteryStatus from '../../../src/components/BatteryStatus';
 import { describe, expect, it } from 'vitest';
-import { renderWithProvider } from '../../utils';
+import BatteryStatus from '@/components/BatteryStatus';
+import { renderWithProvider } from '@/__tests__/utils';
 
 describe('BatteryStatus', () => {
   it('renders correctly', () => {

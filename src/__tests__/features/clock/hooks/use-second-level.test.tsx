@@ -1,10 +1,9 @@
 import { renderHook } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import useSecondLevel from '../../../../src/features/clock/hooks/use-second-level';
-import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
-import reducer from '../../../../src/redux/reducers';
+import reducer from '@/redux/reducers';
+import useSecondLevel from '@/features/clock/hooks/use-second-level';
 
 const store = configureStore({ reducer });
 

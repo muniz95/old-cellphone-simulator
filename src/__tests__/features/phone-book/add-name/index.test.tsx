@@ -1,19 +1,20 @@
-import { render, fireEvent } from '@testing-library/react';
-import PhoneBookAddName from '../../../../src/features/phone-book/add-name';
+import { fireEvent } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { renderWithProvider } from '../../../utils';
-import React from 'react';
+import PhoneBookAddName from '@/features/phone-book/add-name';
 
 describe('PhoneBookAddName Component', () => {
   it('should render the input and button', () => {
-    const { getByText, getByLabelText } = renderWithProvider(<PhoneBookAddName />);
+    const { getByText, getByLabelText } = renderWithProvider(
+      <PhoneBookAddName />
+    );
     expect(getByLabelText('name')).toBeTruthy();
     expect(getByText('save')).toBeTruthy();
   });
 
   it('should update the input value on change', () => {
     const { getByLabelText } = renderWithProvider(<PhoneBookAddName />);
-    const input = getByLabelText('name');
+    const input = getByLabelText('name') as HTMLInputElement;
     fireEvent.change(input, { target: { value: 'John Doe' } });
     expect(input.value).toBe('John Doe');
   });

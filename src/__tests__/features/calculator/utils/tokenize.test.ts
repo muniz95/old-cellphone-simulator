@@ -1,5 +1,5 @@
+import { tokenize } from '@/features/calculator/utils/tokenize';
 import { describe, it, expect } from 'vitest';
-import { tokenize } from '../../../../src/utils/tokenize';
 
 describe('tokenize', () => {
   it('should tokenize a valid expression', () => {

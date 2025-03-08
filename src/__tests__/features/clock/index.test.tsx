@@ -1,8 +1,7 @@
-import React from 'react';
-import Clock from '../../../src/features/clock';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderWithProvider } from '../../utils';
 import { act } from '@testing-library/react';
+import Clock from '@/features/clock';
 
 describe('Clock', () => {
   beforeEach(() => {

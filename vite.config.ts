@@ -16,6 +16,15 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env': env,
     },
+    test: {
+      environment: 'jsdom',
+      exclude: ['**/node_modules/**', '**/dist/**', '**/browser/**'],
+      globals: true,
+      include: ['src/__tests__/**/*.test.{ts,tsx}'],
+      typecheck: {
+        tsconfig: './tsconfig.json',
+      },
+    },
     plugins: [react(), viteTsconfigPaths()],
   };
 });
