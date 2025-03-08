@@ -1,7 +1,7 @@
 import { fireEvent } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { renderWithProvider } from '../../../utils';
 import PhoneBookAddName from '@/features/phone-book/add-name';
+import { renderWithProvider } from '@/__tests__/utils';
 
 describe('PhoneBookAddName Component', () => {
   it('should render the input and button', () => {
