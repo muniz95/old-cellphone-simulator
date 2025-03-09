@@ -10,11 +10,20 @@ export default defineConfig(({ mode }) => {
     base: '/',
     build: {
       rollupOptions: {
-        external: [/.*\.test\.{ts,tsx}$/], // Exclude files matching this regex
+        external: [/.*\.tests\.{ts,tsx}$/], // Exclude files matching this regex
       },
     },
     define: {
       'process.env': env,
+    },
+    test: {
+      environment: 'jsdom',
+      exclude: ['**/node_modules/**', '**/dist/**', '**/browser/**'],
+      globals: true,
+      include: ['src/__tests__/**/*.test.{ts,tsx}'],
+      typecheck: {
+        tsconfig: './tsconfig.json',
+      },
     },
     plugins: [react(), viteTsconfigPaths()],
   };

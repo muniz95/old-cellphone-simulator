@@ -2,7 +2,7 @@ const SUCCESS = [500, 100, 500, 100, 1000];
 const RESET = [1000, 100, 100, 100, 100];
 
 export const vibrate = (pattern: number | number[]) => {
-  window.navigator.vibrate(pattern);
+  if (window.navigator.vibrate) window.navigator.vibrate(pattern);
 };
 
 export const success = () => vibrate(SUCCESS);
