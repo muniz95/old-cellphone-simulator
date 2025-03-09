@@ -1,53 +1,29 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { openModal, setThirdLevel } from '@/redux/actions';
+import { setThirdLevel } from '@/redux/actions';
 import S from './styled';
-import service from '@/services/contact.service';
-import vibration from '@/utils/vibration';
 import { Contact } from '@/interfaces/contact';
 import { useTranslation } from 'react-i18next';
+import usePhoneBookErase from './hooks/use-phone-book-erase';
 
 const PhoneBookErase = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const dispatchOpenModal = useCallback(
-    () => dispatch(openModal()),
-    [dispatch]
-  );
   const dispatchSetThirdLevel = useCallback(
     (position: number) => dispatch(setThirdLevel(position + 1)),
     [dispatch]
   );
 
-  const [contacts, setContacts] = useState<Contact[]>([]);
-  const [currentContact, setCurrentContact] = useState<Contact>();
-
-  const removeContact = () => {
-    if (!currentContact) return;
-    try {
-      service.removeContact({
-        name: '',
-        number: currentContact.number,
-        id: currentContact.id,
-        date: currentContact.date,
-        isServiceNumber: false,
-      });
-      vibration.success();
-      dispatchOpenModal();
-    } catch (error) {
-      alert(error);
-    }
-  };
+  const { contacts, setCurrentContact, removeContact } = usePhoneBookErase();
 
   useEffect(() => {
-    setContacts(service.getContacts());
     dispatchSetThirdLevel(0);
   }, [dispatchSetThirdLevel]);
 
   return (
     <S.Container>
       <S.ResultsBox>
-        {contacts.map((c) => (
+        {contacts.map((c: Contact) => (
           <div onClick={() => setCurrentContact(c)} key={c.name}>
             {c.name}
           </div>
