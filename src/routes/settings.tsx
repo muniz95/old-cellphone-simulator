@@ -1,11 +1,11 @@
 import { RouteObject } from 'react-router-dom';
-import Settings from '@/views/Settings';
-import RestoreFactorySettings from '@/views/Settings/RestoreFactorySettings';
-import GeneralSettings from '@/views/Settings/General';
-import ColorSettings from '@/views/Settings/General/Color';
-import LanguageSettings from '@/views/Settings/General/Language';
-import SoundSettings from '@/views/Settings/General/Sound';
-import LightSettings from '@/views/Settings/General/Light';
+import Settings from '@/features/settings';
+import RestoreFactorySettings from '@/features/settings/RestoreFactorySettings';
+import GeneralSettings from '@/features/settings/general';
+import ColorSettings from '@/features/settings/general/color';
+import LanguageSettings from '@/features/settings/general/language';
+import SoundSettings from '@/features/settings/general/sound';
+import LightSettings from '@/features/settings/general/light';
 
 const routes: RouteObject[] = [
   { path: '/settings', element: <Settings /> },

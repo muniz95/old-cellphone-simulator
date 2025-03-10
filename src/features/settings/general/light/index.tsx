@@ -1,30 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { openModal, setFourthLevel } from '@/redux/actions';
-import { setBacklightLevel, setInactivityTime } from '@/redux/actions/settings';
-import settingsService from '@/services/setting.service';
-import S from './styled';
-import vibration from '@/utils/vibration';
 import { useTranslation } from 'react-i18next';
+import S from './styled';
+import { useLightSettings } from './hooks/use-light-settings';
 
 const LightSettings = () => {
   const { t } = useTranslation(['settings']);
-  const dispatch = useDispatch();
-  const [backlightLevel, setAppBacklightLevel] = useState(0);
-  const [inactivityTime, setAppInactivityTime] = useState(0);
-
-  useEffect(() => {
-    dispatch(setFourthLevel(3));
-  });
-
-  const save = () => {
-    settingsService.setBacklightLevel(backlightLevel);
-    settingsService.setInactivityTime(inactivityTime);
-    dispatch(setBacklightLevel(backlightLevel));
-    dispatch(setInactivityTime(inactivityTime));
-    vibration.success();
-    dispatch(openModal());
-  };
+  const {
+    backlightLevel,
+    setAppBacklightLevel,
+    inactivityTime,
+    setAppInactivityTime,
+    save,
+  } = useLightSettings();
 
   return (
     <>
@@ -36,6 +22,7 @@ const LightSettings = () => {
             min={20}
             max={100}
             id="backlight"
+            value={backlightLevel}
             onChange={({ target }) =>
               setAppBacklightLevel(target.valueAsNumber)
             }
@@ -48,6 +35,7 @@ const LightSettings = () => {
             min={0}
             max={600}
             id="inactivity"
+            value={inactivityTime}
             onChange={({ target }) =>
               setAppInactivityTime(target.valueAsNumber)
             }
