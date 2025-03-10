@@ -1,14 +1,14 @@
-import Home from '../views/Home';
-import Messages from '../views/Messages';
-import Chat from '../views/Chat';
-import CallRegister from '../views/CallRegister';
-import Tones from '../views/Tones';
-import CallDivert from '../views/CallDivert';
-import Games from '../views/Games';
-import Reminders from '../views/Reminders';
-import Clock from '../features/clock';
-import Profiles from '../views/Profiles';
-import SimServices from '../views/SimServices';
+import Home from '@/views/Home';
+import Messages from '@/views/Messages';
+import Chat from '@/views/Chat';
+import CallRegister from '@/views/CallRegister';
+import Tones from '@/views/Tones';
+import CallDivert from '@/views/CallDivert';
+import Games from '@/views/Games';
+import Reminders from '@/views/Reminders';
+import Clock from '@/features/clock';
+import Profiles from '@/features/profiles';
+import SimServices from '@/views/SimServices';
 import { RouteObject } from 'react-router-dom';
 import { Calculator } from '@/features/calculator';
 
