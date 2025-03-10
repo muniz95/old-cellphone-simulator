@@ -1,37 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { openModal, setFourthLevel } from '@/redux/actions';
-import {
-  setAlarmLevel,
-  setNotificationLevel,
-  setRingLevel,
-} from '@/redux/actions/settings';
-import settingsService from '@/services/setting.service';
+import { setFourthLevel } from '@/redux/actions';
 import S from './styled';
-import vibration from '@/utils/vibration';
+import useSoundSettings from './hooks/use-sound-settings';
 import { useTranslation } from 'react-i18next';
 
 const SoundSettings = () => {
   const { t } = useTranslation(['settings']);
   const dispatch = useDispatch();
-  const [notificationLevel, setAppNotificationLevel] = useState(0);
-  const [alarmLevel, setAppAlarmLevel] = useState(0);
-  const [ringLevel, setAppRingLevel] = useState(0);
+  const {
+    notificationLevel,
+    setAppNotificationLevel,
+    alarmLevel,
+    setAppAlarmLevel,
+    ringLevel,
+    setAppRingLevel,
+    save,
+  } = useSoundSettings();
 
   useEffect(() => {
     dispatch(setFourthLevel(3));
-  });
-
-  const save = () => {
-    settingsService.setNotificationLevel(notificationLevel);
-    settingsService.setAlarmLevel(alarmLevel);
-    settingsService.setRingLevel(ringLevel);
-    dispatch(setNotificationLevel(notificationLevel));
-    dispatch(setAlarmLevel(alarmLevel));
-    dispatch(setRingLevel(ringLevel));
-    vibration.success();
-    dispatch(openModal());
-  };
+  }, [dispatch]);
 
   return (
     <>
@@ -45,8 +34,9 @@ const SoundSettings = () => {
             min={0}
             max={100}
             id="notification"
+            value={notificationLevel}
             onChange={({ target }) =>
-              setAppNotificationLevel(target.valueAsNumber)
+              setAppNotificationLevel(Number(target.value))
             }
           />
         </S.ControllerSection>
@@ -57,7 +47,8 @@ const SoundSettings = () => {
             min={0}
             max={100}
             id="alarm"
-            onChange={({ target }) => setAppAlarmLevel(target.valueAsNumber)}
+            value={alarmLevel}
+            onChange={({ target }) => setAppAlarmLevel(Number(target.value))}
           />
         </S.ControllerSection>
         <S.ControllerSection>
@@ -67,7 +58,8 @@ const SoundSettings = () => {
             min={0}
             max={100}
             id="ring"
-            onChange={({ target }) => setAppRingLevel(target.valueAsNumber)}
+            value={ringLevel}
+            onChange={({ target }) => setAppRingLevel(Number(target.value))}
           />
         </S.ControllerSection>
       </S.MainContainer>
