@@ -8,7 +8,7 @@ import Games from '@/views/Games';
 import Reminders from '@/views/Reminders';
 import Clock from '@/features/clock';
 import Profiles from '@/features/profiles';
-import SimServices from '@/views/SimServices';
+import SimServices from '@/features/sim-services';
 import { RouteObject } from 'react-router-dom';
 import { Calculator } from '@/features/calculator';
 
