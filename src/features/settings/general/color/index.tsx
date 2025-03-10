@@ -1,11 +1,6 @@
-import { useEffect, useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { openModal, setFourthLevel } from '@/redux/actions';
-import { setColor } from '@/redux/actions/settings';
-import settingsService from '@/services/setting.service';
-import S from './styled';
-import vibration from '@/utils/vibration';
 import { useTranslation } from 'react-i18next';
+import S from './styled';
+import { useColorSettings } from './hooks/use-color-settings';
 
 interface ColorOption {
   title: string;
@@ -26,23 +21,7 @@ const COLORS: ColorOption[] = [
 
 const ColorSettings: React.FC = () => {
   const { t } = useTranslation(['settings']);
-  const dispatch = useDispatch();
-  const [appColor, setAppColor] = useState<string>('');
-
-  useEffect(() => {
-    dispatch(setFourthLevel(1));
-  }, [dispatch]);
-
-  const handleColorClick = useCallback((color: string) => {
-    setAppColor(color);
-  }, []);
-
-  const save = useCallback(() => {
-    settingsService.setColor(appColor);
-    dispatch(setColor(appColor));
-    vibration.success();
-    dispatch(openModal());
-  }, [appColor, dispatch]);
+  const { appColor, handleColorClick, save } = useColorSettings();
 
   return (
     <>
