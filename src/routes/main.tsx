@@ -2,7 +2,7 @@ import Home from '@/views/Home';
 import Messages from '@/views/Messages';
 import Chat from '@/views/Chat';
 import CallRegister from '@/views/CallRegister';
-import Tones from '@/views/Tones';
+import Tones from '@/features/tones';
 import CallDivert from '@/views/CallDivert';
 import Games from '@/views/Games';
 import Reminders from '@/views/Reminders';
