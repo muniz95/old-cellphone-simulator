@@ -17,7 +17,7 @@ export type GlobalContextType = {
   setColor: Dispatch<SetStateAction<string>>;
 };
 
-const defaultContext = {
+export const defaultContext = {
   firstLevel: 0,
   setFirstLevel: () => {},
   secondLevel: 0,

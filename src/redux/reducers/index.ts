@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import { CLOSE_MODAL, OPEN_MODAL } from '../constants';
 import {
-  color,
   language,
   notificationLevel,
   alarmLevel,
@@ -34,7 +33,6 @@ const showStartupScreen = (state = false, action: any): boolean => {
 const reducer = combineReducers({
   showModal,
   showStartupScreen,
-  color,
   language,
   notificationLevel,
   alarmLevel,
