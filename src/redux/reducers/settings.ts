@@ -1,12 +1,3 @@
-export const color = (state = '', action: any): string => {
-  switch (action.type) {
-    case 'SET_COLOR':
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
 export const language = (state = '', action: any): string => {
   switch (action.type) {
     case 'SET_LANGUAGE':
@@ -62,7 +53,6 @@ export const inactivityTime = (state = 60, action: any): number => {
 };
 
 const SettingsReducer = {
-  color,
   language,
   notificationLevel,
   alarmLevel,

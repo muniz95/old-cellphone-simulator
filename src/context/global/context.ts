@@ -13,6 +13,8 @@ export type GlobalContextType = {
   setFifthLevel: Dispatch<SetStateAction<number>>;
   backlightLevel: number;
   setBacklightLevel: Dispatch<SetStateAction<number>>;
+  color: string;
+  setColor: Dispatch<SetStateAction<string>>;
 };
 
 const defaultContext = {
@@ -28,6 +30,8 @@ const defaultContext = {
   setFifthLevel: () => {},
   backlightLevel: 80,
   setBacklightLevel: () => {},
+  color: '#c0b400',
+  setColor: () => {},
 };
 
 export const GlobalContext = createContext<GlobalContextType>(defaultContext);

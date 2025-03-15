@@ -7,6 +7,7 @@ export const useGlobalState = () => {
   const [fourthLevel, setFourthLevel] = useState(0);
   const [fifthLevel, setFifthLevel] = useState(0);
   const [backlightLevel, setBacklightLevel] = useState(80);
+  const [color, setColor] = useState('#c0b400');
 
   return {
     firstLevel,
@@ -21,5 +22,7 @@ export const useGlobalState = () => {
     setFifthLevel,
     backlightLevel,
     setBacklightLevel,
+    color,
+    setColor,
   };
 };
