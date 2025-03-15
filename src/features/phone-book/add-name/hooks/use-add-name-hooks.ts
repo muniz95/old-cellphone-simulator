@@ -23,12 +23,14 @@ export const usePhoneBookAddNameHooks = () => {
     handleChange,
     saveContact: () => {
       try {
-        contacts.push({
-          name,
-          number: Date.now().toString(),
-          isServiceNumber: false,
-        });
-        setContacts(contacts);
+        setContacts([
+          ...contacts,
+          {
+            name,
+            number: Date.now().toString(),
+            isServiceNumber: false,
+          },
+        ]);
         vibration.success();
         dispatchOpenModal();
       } catch (error) {
