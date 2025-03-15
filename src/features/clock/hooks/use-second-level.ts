@@ -1,12 +1,11 @@
-import { useCallback, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setSecondLevel } from '@/redux/actions';
+import { GlobalContext } from '@/context/global/context';
+import { useCallback, useContext, useEffect } from 'react';
 
 const useSecondLevel = () => {
-  const dispatch = useDispatch();
+  const { setSecondLevel } = useContext(GlobalContext);
   const dispatchSetSecondLevel = useCallback(
-    (position: number) => dispatch(setSecondLevel(position + 1)),
-    [dispatch]
+    (position: number) => setSecondLevel(position + 1),
+    [setSecondLevel]
   );
 
   useEffect(() => {

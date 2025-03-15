@@ -1,16 +1,15 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setSecondLevel } from '@/redux/actions';
+import { useContext, useEffect } from 'react';
 import { useCalculator } from '../hooks/use-calculator';
 import S from '../styled';
+import { GlobalContext } from '@/context/global/context';
 
 const Calculator = () => {
   const { expression, handleClick, clear, back, evaluate } = useCalculator();
-  const dispatch = useDispatch();
+  const { setSecondLevel } = useContext(GlobalContext);
 
   useEffect(() => {
-    dispatch(setSecondLevel(1));
-  }, [dispatch]);
+    setSecondLevel(1);
+  }, [setSecondLevel]);
 
   return (
     <S.PageContainer>

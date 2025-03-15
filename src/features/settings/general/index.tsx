@@ -1,13 +1,12 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { setThirdLevel } from '@/redux/actions';
 import CurrentPageContainer from '@/components/CurrentPageContainer';
+import { GlobalContext } from '@/context/global/context';
 
 const GeneralSettings = () => {
   const { t } = useTranslation(['settings']);
-  const dispatch = useDispatch();
+  const { setThirdLevel } = useContext(GlobalContext);
   const navigate = useNavigate();
 
   const menus = [
@@ -19,8 +18,8 @@ const GeneralSettings = () => {
 
   const [position, setPosition] = useState(0);
   const dispatchSetThirdLevel = useCallback(
-    (position: number) => dispatch(setThirdLevel(position + 1)),
-    [dispatch]
+    (position: number) => setThirdLevel(position + 1),
+    [setThirdLevel]
   );
 
   useEffect(() => {

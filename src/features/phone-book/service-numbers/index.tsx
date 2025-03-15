@@ -1,16 +1,14 @@
-import { useCallback, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setThirdLevel } from '../../../redux/actions';
+import { useCallback, useContext, useEffect } from 'react';
 import S from './styled';
 import { useServiceNumbers } from './hooks/use-service-numbers';
+import { GlobalContext } from '@/context/global/context';
 
 const PhoneBookServiceNos = () => {
-  const dispatch = useDispatch();
   const { contacts } = useServiceNumbers();
-
+  const { setThirdLevel } = useContext(GlobalContext);
   const dispatchSetThirdLevel = useCallback(
-    (position: number) => dispatch(setThirdLevel(position + 1)),
-    [dispatch]
+    (position: number) => setThirdLevel(position + 1),
+    [setThirdLevel]
   );
 
   useEffect(() => {

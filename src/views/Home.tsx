@@ -1,30 +1,29 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {
-  setFifthLevel,
-  setFirstLevel,
-  setFourthLevel,
-  setSecondLevel,
-  setThirdLevel,
-} from '@/redux/actions';
 import CurrentPageContainer from '@/components/CurrentPageContainer';
+import { GlobalContext } from '@/context/global/context';
 
 const Home = () => {
   const { t } = useTranslation(['home']);
+  const {
+    setFirstLevel,
+    setSecondLevel,
+    setThirdLevel,
+    setFourthLevel,
+    setFifthLevel,
+  } = useContext(GlobalContext);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const dispatchSetFirstLevel = useCallback(
-    (position: number) => dispatch(setFirstLevel(position + 1)),
-    [dispatch]
+    (position: number) => setFirstLevel(position + 1),
+    [setFirstLevel]
   );
   const dispatchResetPageIndicator = useCallback(() => {
-    dispatch(setSecondLevel(0));
-    dispatch(setThirdLevel(0));
-    dispatch(setFourthLevel(0));
-    dispatch(setFifthLevel(0));
-  }, [dispatch]);
+    setSecondLevel(0);
+    setThirdLevel(0);
+    setFourthLevel(0);
+    setFifthLevel(0);
+  }, [setFifthLevel, setFourthLevel, setSecondLevel, setThirdLevel]);
   const [menus] = useState([
     { path: '/phonebook', title: t('phonebookTitle') },
     { path: '/messages', title: t('messagesTitle') },

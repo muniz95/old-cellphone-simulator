@@ -18,7 +18,7 @@ export type GlobalContextType = {
 const defaultContext = {
   isDarkMode: false,
   toggleDarkMode: () => {},
-  firstLevel: 1,
+  firstLevel: 0,
   setFirstLevel: () => {},
   secondLevel: 0,
   setSecondLevel: () => {},
@@ -30,6 +30,4 @@ const defaultContext = {
   setFifthLevel: () => {},
 };
 
-export const GlobalContext = createContext<GlobalContextType | null>(
-  defaultContext
-);
+export const GlobalContext = createContext<GlobalContextType>(defaultContext);

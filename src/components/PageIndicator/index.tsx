@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/reducers';
+import { useCallback, useContext, useEffect, useState } from 'react';
+import { GlobalContext } from '@/context/global/context';
 
 const PageIndicator = () => {
+  // const { firstLevel, secondLevel, thirdLevel, fourthLevel, fifthLevel } =
+  //   useSelector((state: RootState) => state);
   const { firstLevel, secondLevel, thirdLevel, fourthLevel, fifthLevel } =
-    useSelector((state: RootState) => state);
+    useContext(GlobalContext);
   const [indicator, setIndicator] = useState('');
   const [firstLevelLabel, setFirstLevelLabel] = useState('');
   const [secondLevelLabel, setSecondLevelLabel] = useState('');

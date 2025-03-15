@@ -1,20 +1,20 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setSecondLevel, setThirdLevel } from '../../redux/actions';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useMenuItems from './menu-items';
 import Menu from './menu';
+import { GlobalContext } from '@/context/global/context';
 
 const PhoneBook = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
+  const { setSecondLevel, setThirdLevel } = useContext(GlobalContext);
   const dispatchSetSecondLevel = useCallback(
-    (position: number) => dispatch(setSecondLevel(position + 1)),
-    [dispatch]
+    (position: number) => setSecondLevel(position + 1),
+    [setSecondLevel]
   );
   const dispatchClearThirdLevel = useCallback(
-    () => dispatch(setThirdLevel(0)),
-    [dispatch]
+    () => setThirdLevel(0),
+    [setThirdLevel]
   );
   const menus = useMenuItems();
   const [position, setPosition] = useState(0);

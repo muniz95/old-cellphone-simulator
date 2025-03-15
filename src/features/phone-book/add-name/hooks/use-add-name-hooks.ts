@@ -13,8 +13,8 @@ export const usePhoneBookAddNameHooks = () => {
   );
 
   const dispatchSetThirdLevel = useCallback(
-    (position: number) => dispatch(setThirdLevel(position + 1)),
-    [dispatch]
+    (position: number) => setThirdLevel(position + 1),
+    []
   );
 
   const [name, setName] = useState('');

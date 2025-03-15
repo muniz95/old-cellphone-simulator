@@ -1,13 +1,13 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setFourthLevel } from '@/redux/actions';
+import { useContext, useEffect } from 'react';
 import S from './styled';
 import useSoundSettings from './hooks/use-sound-settings';
 import { useTranslation } from 'react-i18next';
+import { GlobalContext } from '@/context/global/context';
 
 const SoundSettings = () => {
   const { t } = useTranslation(['settings']);
-  const dispatch = useDispatch();
+
+  const { setFourthLevel } = useContext(GlobalContext);
   const {
     notificationLevel,
     setAppNotificationLevel,
@@ -19,8 +19,8 @@ const SoundSettings = () => {
   } = useSoundSettings();
 
   useEffect(() => {
-    dispatch(setFourthLevel(3));
-  }, [dispatch]);
+    setFourthLevel(3);
+  }, [setFourthLevel]);
 
   return (
     <>

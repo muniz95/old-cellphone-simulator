@@ -13,8 +13,8 @@ export const useProfiles = () => {
 
   useEffect(() => {
     fetchProfiles();
-    dispatch(setSecondLevel(0));
-  }, [dispatch]);
+    setSecondLevel(0);
+  }, []);
 
   const fetchProfiles = () => {
     setProfiles(service.getProfiles());

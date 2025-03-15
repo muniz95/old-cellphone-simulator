@@ -1,16 +1,15 @@
-import { useCallback, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setSecondLevel } from '../../redux/actions';
+import { useCallback, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { usePlayRingtone } from './hooks/use-play-ringtone';
 import { TonesComponent } from './components/tones-component';
+import { GlobalContext } from '@/context/global/context';
 
 const Tones = () => {
   const { t } = useTranslation(['tones']);
-  const dispatch = useDispatch();
+  const { setSecondLevel } = useContext(GlobalContext);
   const dispatchSetSecondLevel = useCallback(
-    (position: number) => dispatch(setSecondLevel(position + 1)),
-    [dispatch]
+    (position: number) => setSecondLevel(position + 1),
+    [setSecondLevel]
   );
 
   useEffect(() => {

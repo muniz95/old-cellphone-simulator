@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setSecondLevel } from '@/redux/actions';
+import { useState, useEffect, useContext } from 'react';
 import { SimNumber } from '@/interfaces/simNumber';
 import service from '@/services/simNumber.service';
 import { say } from '@/utils/sound';
+import { GlobalContext } from '@/context/global/context';
 
 const useSimServices = () => {
   const [simNumbers, setSimNumbers] = useState<SimNumber[]>([]);
   const [currentSimNumber, setCurrentSimNumber] = useState<SimNumber>();
-  const dispatch = useDispatch();
+
+  const { setSecondLevel } = useContext(GlobalContext);
 
   useEffect(() => {
-    dispatch(setSecondLevel(0));
+    setSecondLevel(0);
     setSimNumbers(service.getSimNumbers());
-  }, [dispatch]);
+  }, [setSecondLevel]);
 
   const play = () => {
     if (!currentSimNumber) return;
