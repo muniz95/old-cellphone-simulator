@@ -1,12 +1,12 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
-const handleStoredValue = (value: string | number | boolean | object) => {
+const handleStoredValue = <T>(value: T) => {
   try {
     if (typeof value === 'object') return JSON.stringify(value);
-    return value.toString();
+    return `${value}`;
   } catch (error) {
     console.error(error);
-    return value.toString();
+    return `${value}`;
   }
 };
 
@@ -34,6 +34,8 @@ const useLocalStorage = <T>(
 
           return item;
         }
+      } else {
+        window.localStorage.setItem(key, handleStoredValue(value));
       }
     } catch (error) {
       console.error(error);

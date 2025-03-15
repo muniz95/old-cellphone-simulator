@@ -1,15 +1,18 @@
-import { useState, useCallback, useContext } from 'react';
+import { useCallback, useContext } from 'react';
 import vibration from '@/utils/vibration';
 import { SettingsContext } from '@/context/settings/context';
 import { GlobalContext } from '@/context/global/context';
 
 const useSoundSettings = () => {
   const { openModal } = useContext(GlobalContext);
-  const { setNotificationLevel, setAlarmLevel, setRingLevel } =
-    useContext(SettingsContext);
-  const [notificationLevel, setAppNotificationLevel] = useState(0);
-  const [alarmLevel, setAppAlarmLevel] = useState(0);
-  const [ringLevel, setAppRingLevel] = useState(0);
+  const {
+    alarmLevel,
+    notificationLevel,
+    ringLevel,
+    setNotificationLevel,
+    setAlarmLevel,
+    setRingLevel,
+  } = useContext(SettingsContext);
 
   const save = useCallback(() => {
     setNotificationLevel(notificationLevel);
@@ -29,11 +32,11 @@ const useSoundSettings = () => {
 
   return {
     notificationLevel,
-    setAppNotificationLevel,
+    setNotificationLevel,
     alarmLevel,
-    setAppAlarmLevel,
+    setAlarmLevel,
     ringLevel,
-    setAppRingLevel,
+    setRingLevel,
     save,
   };
 };
