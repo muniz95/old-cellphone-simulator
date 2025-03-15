@@ -1,16 +1,12 @@
-import { ChangeEvent, useEffect, useState } from 'react';
-import service from '@/services/contact.service';
-import { Contact } from '@/interfaces/contact';
+import { ChangeEvent, useState } from 'react';
+import useContacts from '@/hooks/persistence/use-contacts';
 
 const usePhoneBookSearch = () => {
   const [search, setSearch] = useState('');
-  const [contacts, setContacts] = useState<Contact[]>([]);
+  const [contacts] = useContacts();
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.currentTarget.value);
   };
-  useEffect(() => {
-    setContacts(service.getContacts());
-  }, []);
 
   return {
     search,

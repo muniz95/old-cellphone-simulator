@@ -1,11 +1,10 @@
 import { useCallback, useState, ChangeEvent, useContext } from 'react';
 import vibration from '@/utils/vibration';
 import { GlobalContext } from '@/context/global/context';
-import useLocalStorage from '@/hooks/use-local-storage';
-import { Contact } from '@/interfaces/contact';
+import useContacts from '@/hooks/persistence/use-contacts';
 
 export const usePhoneBookAddNameHooks = () => {
-  const [contacts, setContacts] = useLocalStorage<Contact[]>('contacts', []);
+  const [contacts, setContacts] = useContacts();
   const { setThirdLevel, openModal } = useContext(GlobalContext);
   const dispatchSetThirdLevel = useCallback(
     (position: number) => setThirdLevel(position + 1),
