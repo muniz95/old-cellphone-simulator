@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useDispatch } from 'react-redux';
-import { openModal, setFourthLevel } from '@/redux/actions';
+import { openModal } from '@/redux/actions';
 import { setLanguage } from '@/redux/actions/settings';
 import settingsService from '@/services/setting.service';
 import vibration from '@/utils/vibration';
+import { GlobalContext } from '@/context/global/context';
 
 const LANGUAGES = [
   { title: 'Deustch', iso639: 'de' },
@@ -21,9 +22,11 @@ export const useLanguageSettings = () => {
   const dispatch = useDispatch();
   const [language, setAppLanguage] = useState('');
 
+  const { setFourthLevel } = useContext(GlobalContext);
+
   useEffect(() => {
-    dispatch(setFourthLevel(3));
-  }, [dispatch]);
+    setFourthLevel(3);
+  }, []);
 
   const save = () => {
     settingsService.setLanguage(language);

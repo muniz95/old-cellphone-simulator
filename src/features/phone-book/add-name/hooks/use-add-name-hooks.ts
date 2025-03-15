@@ -1,20 +1,22 @@
-import { useCallback, useState, ChangeEvent } from 'react';
+import { useCallback, useState, ChangeEvent, useContext } from 'react';
 import { useDispatch } from 'react-redux';
-import { openModal, setThirdLevel } from '@/redux/actions';
+import { openModal } from '@/redux/actions';
 import service from '@/services/contact.service';
 import vibration from '@/utils/vibration';
+import { GlobalContext } from '@/context/global/context';
 
 export const usePhoneBookAddNameHooks = () => {
   const dispatch = useDispatch();
 
+  const { setThirdLevel } = useContext(GlobalContext);
+  const dispatchSetThirdLevel = useCallback(
+    (position: number) => setThirdLevel(position + 1),
+    [setThirdLevel]
+  );
+
   const dispatchOpenModal = useCallback(
     () => dispatch(openModal()),
     [dispatch]
-  );
-
-  const dispatchSetThirdLevel = useCallback(
-    (position: number) => setThirdLevel(position + 1),
-    []
   );
 
   const [name, setName] = useState('');

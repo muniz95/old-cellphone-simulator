@@ -1,17 +1,20 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import { useDispatch } from 'react-redux';
-import { openModal, setFourthLevel } from '@/redux/actions';
+import { openModal } from '@/redux/actions';
 import { setColor } from '@/redux/actions/settings';
 import settingsService from '@/services/setting.service';
 import vibration from '@/utils/vibration';
+import { GlobalContext } from '@/context/global/context';
 
 export const useColorSettings = () => {
   const dispatch = useDispatch();
   const [appColor, setAppColor] = useState<string>('');
 
+  const { setFourthLevel } = useContext(GlobalContext);
+
   useEffect(() => {
-    dispatch(setFourthLevel(1));
-  }, [dispatch]);
+    setFourthLevel(1);
+  }, [setFourthLevel]);
 
   const handleColorClick = useCallback((color: string) => {
     setAppColor(color);
