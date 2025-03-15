@@ -2,13 +2,9 @@ import { FC } from 'react';
 import { GlobalContext } from './context';
 import { useGlobalState } from './hooks/use-global-state';
 
-interface GlobalContextProviderProps {
+export const GlobalContextProvider: FC<{
   children: React.ReactNode;
-}
-
-export const GlobalContextProvider: FC<GlobalContextProviderProps> = ({
-  children,
-}) => {
+}> = ({ children }) => {
   const globalState = useGlobalState();
 
   return (

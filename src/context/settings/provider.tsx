@@ -2,13 +2,9 @@ import { FC } from 'react';
 import { SettingsContext } from './context';
 import { useSettingsState } from './hooks/use-settings-state';
 
-interface GlobalContextProviderProps {
+export const SettingsContextProvider: FC<{
   children: React.ReactNode;
-}
-
-export const SettingsContextProvider: FC<GlobalContextProviderProps> = ({
-  children,
-}) => {
+}> = ({ children }) => {
   const settingsState = useSettingsState();
 
   return (
