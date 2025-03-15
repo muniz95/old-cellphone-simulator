@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 const handleStoredValue = (value: string | number | boolean | object) => {
   try {
@@ -10,11 +10,11 @@ const handleStoredValue = (value: string | number | boolean | object) => {
   }
 };
 
-const useLocalStorage = (
+const useLocalStorage = <T>(
   key: string,
-  value: string | number | boolean | object
-) => {
-  const [storedValue, setStoredValue] = useState(() => {
+  value: T
+): [T, Dispatch<SetStateAction<T>>] => {
+  const [storedValue, setStoredValue] = useState<T>(() => {
     try {
       const item = window.localStorage.getItem(key);
       if (item) {
