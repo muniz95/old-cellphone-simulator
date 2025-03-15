@@ -1,6 +1,4 @@
-import { Provider } from 'react-redux';
 import App from './App';
-import { store } from './redux/store';
 import registerServiceWorker from './registerServiceWorker';
 import { checkDb, initDb } from './utils/db';
 import { BrowserRouter } from 'react-router-dom';
@@ -19,9 +17,7 @@ if (!checkDb()) {
 root.render(
   <BrowserRouter>
     <AppContextProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <App />
     </AppContextProvider>
   </BrowserRouter>
 );

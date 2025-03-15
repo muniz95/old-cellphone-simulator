@@ -1,9 +1,8 @@
-import { openModal } from '@/redux/actions';
-import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { GlobalContext } from '@/context/global/context';
+import { useCallback, useContext } from 'react';
 
 export const useDispatchOpenModal = () => {
-  const dispatch = useDispatch();
+  const { openModal } = useContext(GlobalContext);
 
-  return useCallback(() => dispatch(openModal()), [dispatch]);
+  return useCallback(() => openModal(), [openModal]);
 };

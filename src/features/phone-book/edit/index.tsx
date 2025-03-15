@@ -1,6 +1,4 @@
 import { useCallback, useContext, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { openModal } from '@/redux/actions';
 import S from './styled';
 import TextInput from '@/components/TextInput';
 import { useTranslation } from 'react-i18next';
@@ -9,12 +7,8 @@ import { GlobalContext } from '@/context/global/context';
 
 const PhoneBookEdit = () => {
   const { t } = useTranslation();
-  const { setThirdLevel } = useContext(GlobalContext);
-  const dispatch = useDispatch();
-  const dispatchOpenModal = useCallback(
-    () => dispatch(openModal()),
-    [dispatch]
-  );
+  const { setThirdLevel, openModal } = useContext(GlobalContext);
+  const dispatchOpenModal = useCallback(() => openModal(), [openModal]);
   const dispatchSetThirdLevel = useCallback(
     (position: number) => setThirdLevel(position + 1),
     [setThirdLevel]

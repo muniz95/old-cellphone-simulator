@@ -11,6 +11,12 @@ export type GlobalContextType = {
   setFourthLevel: Dispatch<SetStateAction<number>>;
   fifthLevel: number;
   setFifthLevel: Dispatch<SetStateAction<number>>;
+  showModal: boolean;
+  openModal: () => void;
+  closeModal: () => void;
+  showStartupScreen: boolean;
+  openStartupScreen: () => void;
+  closeStartupScreen: () => void;
 };
 
 export const defaultContext: GlobalContextType = {
@@ -24,6 +30,12 @@ export const defaultContext: GlobalContextType = {
   setFourthLevel: () => {},
   fifthLevel: 0,
   setFifthLevel: () => {},
+  showModal: false,
+  openModal: () => {},
+  closeModal: () => {},
+  showStartupScreen: false,
+  openStartupScreen: () => {},
+  closeStartupScreen: () => {},
 };
 
 export const GlobalContext = createContext<GlobalContextType>(defaultContext);

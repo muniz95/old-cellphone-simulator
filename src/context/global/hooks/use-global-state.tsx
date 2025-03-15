@@ -9,6 +9,23 @@ export const useGlobalState = () => {
   const [thirdLevel, setThirdLevel] = useState(defaultContext.thirdLevel);
   const [fourthLevel, setFourthLevel] = useState(defaultContext.fourthLevel);
   const [fifthLevel, setFifthLevel] = useState(defaultContext.fifthLevel);
+  const [showModal, setShowModal] = useState(defaultContext.showModal);
+  const [showStartupScreen, setShowStartupScreen] = useState(
+    defaultContext.showStartupScreen
+  );
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+  };
+  const openStartupScreen = () => {
+    setShowStartupScreen(true);
+  };
+  const closeStartupScreen = () => {
+    setShowStartupScreen(false);
+  };
 
   const hook: GlobalStateType = {
     firstLevel,
@@ -21,6 +38,12 @@ export const useGlobalState = () => {
     setFourthLevel,
     fifthLevel,
     setFifthLevel,
+    showModal,
+    openModal,
+    closeModal,
+    showStartupScreen,
+    openStartupScreen,
+    closeStartupScreen,
   };
 
   return hook;

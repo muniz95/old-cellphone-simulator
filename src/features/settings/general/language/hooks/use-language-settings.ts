@@ -1,6 +1,4 @@
 import { useState, useEffect, useContext } from 'react';
-import { useDispatch } from 'react-redux';
-import { openModal } from '@/redux/actions';
 import settingsService from '@/services/setting.service';
 import vibration from '@/utils/vibration';
 import { GlobalContext } from '@/context/global/context';
@@ -19,10 +17,9 @@ const LANGUAGES = [
 ];
 
 export const useLanguageSettings = () => {
-  const dispatch = useDispatch();
   const [language, setAppLanguage] = useState('');
 
-  const { setFourthLevel } = useContext(GlobalContext);
+  const { setFourthLevel, openModal } = useContext(GlobalContext);
   const { setLanguage } = useContext(SettingsContext);
 
   useEffect(() => {
@@ -33,7 +30,7 @@ export const useLanguageSettings = () => {
     settingsService.setLanguage(language);
     setLanguage(language);
     vibration.success();
-    dispatch(openModal());
+    openModal();
   };
 
   return {

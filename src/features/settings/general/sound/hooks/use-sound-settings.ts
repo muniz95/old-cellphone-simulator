@@ -1,12 +1,11 @@
 import { useState, useCallback, useContext } from 'react';
-import { useDispatch } from 'react-redux';
 import settingsService from '@/services/setting.service';
 import vibration from '@/utils/vibration';
-import { openModal } from '@/redux/actions';
 import { SettingsContext } from '@/context/settings/context';
+import { GlobalContext } from '@/context/global/context';
 
 const useSoundSettings = () => {
-  const dispatch = useDispatch();
+  const { openModal } = useContext(GlobalContext);
   const { setNotificationLevel, setAlarmLevel, setRingLevel } =
     useContext(SettingsContext);
   const [notificationLevel, setAppNotificationLevel] = useState(0);
@@ -21,7 +20,7 @@ const useSoundSettings = () => {
     setAlarmLevel(alarmLevel);
     setRingLevel(ringLevel);
     vibration.success();
-    dispatch(openModal());
+    openModal();
   }, [
     notificationLevel,
     alarmLevel,
@@ -29,7 +28,7 @@ const useSoundSettings = () => {
     setNotificationLevel,
     setAlarmLevel,
     setRingLevel,
-    dispatch,
+    openModal,
   ]);
 
   return {

@@ -1,5 +1,4 @@
 import { useRoutes } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import './App.css';
 import BatteryStatus from '@/components/battery-status';
 import BottomBar from '@/components/BottomBar';
@@ -15,7 +14,6 @@ import { useContext, useEffect, useState } from 'react';
 import { SettingsContext } from './context/settings/context';
 
 const App = () => {
-  const dispatch = useDispatch();
   const routing = useRoutes([...routes]);
 
   const { backlightLevel, setBacklightLevel, color, setColor } =
@@ -29,7 +27,7 @@ const App = () => {
     const defaultBacklightLevel =
       settingsService.getBacklightLevel() || defaultValues.backlightLevel;
     setBacklightLevel(defaultBacklightLevel);
-  }, [dispatch, setBacklightLevel, setColor]);
+  }, [setBacklightLevel, setColor]);
 
   useEffect(() => {
     if (firstRender) {
