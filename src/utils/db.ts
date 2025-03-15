@@ -1,25 +1,8 @@
 import { StorageEntity } from '../interfaces/storageEntity';
-import defaults from '@/defaults';
-import seed from './seed/index';
 import { isPlainObject } from './helpers';
 
 export const isOn = () => {
   return localStorage.getItem('appIsOn')!;
-};
-
-export const checkDb = () =>
-  Boolean(localStorage.getItem('simNumbers')) &&
-  Boolean(localStorage.getItem('profiles')) &&
-  Boolean(localStorage.getItem('contacts')) &&
-  Boolean(localStorage.getItem('callRecords'));
-
-export const initDb = () => {
-  localStorage.setItem('contacts', JSON.stringify(seed.contacts));
-  localStorage.setItem('simNumbers', JSON.stringify(seed.simNumbers));
-  localStorage.setItem('profiles', JSON.stringify(seed.profiles));
-  localStorage.setItem('color', defaults.color);
-  localStorage.setItem('currentProfile', JSON.stringify(defaults.profile));
-  localStorage.setItem('callRecords', '[]');
 };
 
 export function getPlain(key: string) {
