@@ -5,7 +5,7 @@ import { GlobalContext } from '@/context/global/context';
 import useLocalStorage from '@/hooks/use-local-storage';
 
 const useSimServices = () => {
-  const [simNumbers] = useLocalStorage('simNumbers', []);
+  const [simNumbers] = useLocalStorage<SimNumber[]>('simNumbers', []);
   const [currentSimNumber, setCurrentSimNumber] = useState<SimNumber>();
 
   const { setSecondLevel } = useContext(GlobalContext);
