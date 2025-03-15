@@ -10,8 +10,11 @@ const handleStoredValue = (value: string | number | boolean | object) => {
   }
 };
 
-const useLocalStorage = <T>(key: string, initialValue: T) => {
-  const [storedValue, setStoredValue] = useState<T>(() => {
+const useLocalStorage = (
+  key: string,
+  value: string | number | boolean | object
+) => {
+  const [storedValue, setStoredValue] = useState(() => {
     try {
       const item = window.localStorage.getItem(key);
       if (item) {
@@ -34,7 +37,7 @@ const useLocalStorage = <T>(key: string, initialValue: T) => {
       }
     } catch (error) {
       console.error(error);
-      return initialValue;
+      return value;
     }
   });
 

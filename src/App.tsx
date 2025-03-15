@@ -5,8 +5,6 @@ import BottomBar from '@/components/BottomBar';
 import Modal from '@/components/Modal';
 import SignalStatus from '@/components/SignalStatus';
 import TopBar from '@/components/TopBar';
-import settingsService from '@/services/setting.service';
-import defaultValues from '@/defaults';
 
 import routes from '@/routes';
 import Startup from '@/components/Startup';
@@ -16,18 +14,8 @@ import { SettingsContext } from './context/settings/context';
 const App = () => {
   const routing = useRoutes([...routes]);
 
-  const { backlightLevel, setBacklightLevel, color, setColor } =
-    useContext(SettingsContext);
+  const { backlightLevel, color } = useContext(SettingsContext);
   const [firstRender, setFirstRender] = useState(true);
-
-  useEffect(() => {
-    const defaultColor = settingsService.getColor() || defaultValues.color;
-    setColor(defaultColor);
-
-    const defaultBacklightLevel =
-      settingsService.getBacklightLevel() || defaultValues.backlightLevel;
-    setBacklightLevel(defaultBacklightLevel);
-  }, [setBacklightLevel, setColor]);
 
   useEffect(() => {
     if (firstRender) {

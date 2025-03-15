@@ -1,5 +1,4 @@
 import { useState, useCallback, useContext } from 'react';
-import settingsService from '@/services/setting.service';
 import vibration from '@/utils/vibration';
 import { SettingsContext } from '@/context/settings/context';
 import { GlobalContext } from '@/context/global/context';
@@ -13,9 +12,6 @@ const useSoundSettings = () => {
   const [ringLevel, setAppRingLevel] = useState(0);
 
   const save = useCallback(() => {
-    settingsService.setNotificationLevel(notificationLevel);
-    settingsService.setAlarmLevel(alarmLevel);
-    settingsService.setRingLevel(ringLevel);
     setNotificationLevel(notificationLevel);
     setAlarmLevel(alarmLevel);
     setRingLevel(ringLevel);
