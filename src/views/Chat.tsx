@@ -1,14 +1,13 @@
-import { useCallback, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setSecondLevel } from '../redux/actions';
+import { useCallback, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { GlobalContext } from '@/context/global/context';
 
 const Chat = () => {
   const { t } = useTranslation(['chat']);
-  const dispatch = useDispatch();
+  const { setSecondLevel } = useContext(GlobalContext);
   const dispatchSetSecondLevel = useCallback(
-    (position: number) => dispatch(setSecondLevel(position + 1)),
-    [dispatch]
+    (position: number) => setSecondLevel(position + 1),
+    [setSecondLevel]
   );
 
   useEffect(() => {

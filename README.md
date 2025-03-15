@@ -18,7 +18,7 @@ Two main reasons:
 I opted for use a specific stack in this project, to extend my knowledge both in web development and technologies/tools:
 
 - TypeScript;
-- ReactJS and its ecossystem (react-router, redux, jest);
+- ReactJS and its ecossystem (react-router, React Context, vitest);
 - SASS and other CSS-related stuff (Flexbox, animations, etc);
 - HTML5 API's and PWA good practices.
 

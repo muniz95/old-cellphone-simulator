@@ -1,19 +1,15 @@
-import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { openModal } from '@/redux/actions';
+import { useCallback, useContext } from 'react';
 import service from '@/services/setting.service';
 import vibration from '@/utils/vibration';
 import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
+import { GlobalContext } from '@/context/global/context';
 
 const RestoreFactorySettings = () => {
   const { t } = useTranslation(['settings']);
+  const { openModal } = useContext(GlobalContext);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const dispatchOpenModal = useCallback(
-    () => dispatch(openModal()),
-    [dispatch]
-  );
+  const dispatchOpenModal = useCallback(() => openModal(), [openModal]);
   const resetData = () => {
     service.resetData();
     vibration.reset();

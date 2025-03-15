@@ -1,17 +1,16 @@
-import { useCallback, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setThirdLevel } from '@/redux/actions';
+import { useCallback, useContext, useEffect } from 'react';
 import S from './styled';
 import { Contact } from '@/interfaces/contact';
 import { useTranslation } from 'react-i18next';
 import usePhoneBookErase from './hooks/use-phone-book-erase';
+import { GlobalContext } from '@/context/global/context';
 
 const PhoneBookErase = () => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const { setThirdLevel } = useContext(GlobalContext);
   const dispatchSetThirdLevel = useCallback(
-    (position: number) => dispatch(setThirdLevel(position + 1)),
-    [dispatch]
+    (position: number) => setThirdLevel(position + 1),
+    [setThirdLevel]
   );
 
   const { contacts, setCurrentContact, removeContact } = usePhoneBookErase();

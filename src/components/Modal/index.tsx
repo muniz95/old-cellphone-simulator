@@ -1,14 +1,13 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { closeModal } from '../../redux/actions';
-import { RootState } from '../../redux/reducers';
-// import '../styles/Modal.scss';
 import S from './styled';
+import { SettingsContext } from '@/context/settings/context';
+import { useContext } from 'react';
+import { GlobalContext } from '@/context/global/context';
 
 const Modal = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { showModal, color } = useSelector((state: RootState) => state);
+  const { showModal, closeModal } = useContext(GlobalContext);
+  const { color } = useContext(SettingsContext);
 
   let checked = false;
   if (showModal) {
@@ -16,7 +15,7 @@ const Modal = () => {
       const location = {
         pathname: '/',
       };
-      dispatch(closeModal());
+      closeModal();
       navigate(location);
     }, 3000);
     checked = true;

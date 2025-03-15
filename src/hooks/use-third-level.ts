@@ -1,17 +1,12 @@
-import { useCallback, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setThirdLevel } from '@/redux/actions';
+import { useContext, useEffect } from 'react';
+import { GlobalContext } from '@/context/global/context';
 
 const useThirdLevel = (position: number) => {
-  const dispatch = useDispatch();
-  const dispatchSetThirdLevel = useCallback(
-    (position: number) => dispatch(setThirdLevel(position + 1)),
-    [dispatch]
-  );
+  const { setThirdLevel } = useContext(GlobalContext);
 
   useEffect(() => {
-    dispatchSetThirdLevel(position);
-  }, [dispatchSetThirdLevel, position]);
+    setThirdLevel(position + 1);
+  }, [position, setThirdLevel]);
 };
 
 export default useThirdLevel;

@@ -1,9 +1,9 @@
+import { SettingsContext } from '@/context/settings/context';
 import S from './styled';
-import { RootState } from '@/redux/reducers';
-import { useSelector } from 'react-redux';
+import { useContext } from 'react';
 
 const Startup = () => {
-  const { color } = useSelector((state: RootState) => state);
+  const { color } = useContext(SettingsContext);
 
   return <S.StartupContainer color={color}>Startup</S.StartupContainer>;
 };

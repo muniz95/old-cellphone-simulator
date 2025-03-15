@@ -1,8 +1,6 @@
-import * as React from 'react';
 import { useRoutes } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import BatteryStatus from '@/components/BatteryStatus';
+import BatteryStatus from '@/components/battery-status';
 import BottomBar from '@/components/BottomBar';
 import Modal from '@/components/Modal';
 import SignalStatus from '@/components/SignalStatus';
@@ -11,59 +9,25 @@ import settingsService from '@/services/setting.service';
 import defaultValues from '@/defaults';
 
 import routes from '@/routes';
-import {
-  charging,
-  decrease,
-  increase,
-  uncharging,
-} from '@/redux/actions/battery';
-import { RootState } from '@/redux/reducers';
-import * as settingsActions from '@/redux/actions/settings';
 import Startup from '@/components/Startup';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { SettingsContext } from './context/settings/context';
 
 const App = () => {
-  const dispatch = useDispatch();
-
   const routing = useRoutes([...routes]);
-  const [firstRender, setFirstRender] = useState(true);
-  const state = useSelector((state: RootState) => state);
 
-  const [color, setColor] = useState('');
-  const [backlightLevel, setBacklightLevel] = useState(0);
-  const [timeSpentOnPage, setTimeSpentOnPage] = useState(0);
+  const { backlightLevel, setBacklightLevel, color, setColor } =
+    useContext(SettingsContext);
+  const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setTimeSpentOnPage((state) => state + 1000);
-    }, 1000);
-
     const defaultColor = settingsService.getColor() || defaultValues.color;
     setColor(defaultColor);
-    dispatch(settingsActions.setColor(defaultColor));
 
     const defaultBacklightLevel =
       settingsService.getBacklightLevel() || defaultValues.backlightLevel;
     setBacklightLevel(defaultBacklightLevel);
-    dispatch(settingsActions.setBacklightLevel(defaultBacklightLevel));
-
-    return () => clearInterval(intervalId);
-  }, [dispatch]);
-  useEffect(() => {
-    if (timeSpentOnPage % 1000 === 0) {
-      dispatch(state.isRecharging ? increase() : decrease());
-    }
-  }, [timeSpentOnPage, state.isRecharging, dispatch]);
-  useEffect(() => {
-    if (state.batteryLevel <= 15) dispatch(charging());
-    if (state.batteryLevel === 100) dispatch(uncharging());
-  }, [state.batteryLevel, dispatch]);
-  useEffect(() => {
-    setColor(state.color);
-  }, [state.color]);
-  useEffect(() => {
-    setBacklightLevel(100 - state.backlightLevel);
-  }, [state.backlightLevel]);
+  }, [setBacklightLevel, setColor]);
 
   useEffect(() => {
     if (firstRender) {
@@ -75,7 +39,7 @@ const App = () => {
 
   const style = {
     backgroundColor: color,
-    backgroundImage: `linear-gradient(rgb(0 0 0/${backlightLevel}%) 0 0)`,
+    backgroundImage: `linear-gradient(rgb(0 0 0/${100 - backlightLevel}%) 0 0)`,
   };
 
   return (

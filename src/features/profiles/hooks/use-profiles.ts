@@ -1,20 +1,21 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect, useContext } from 'react';
 import { Profile } from '@/interfaces/profile';
 import service from '@/services/profile.service';
 import vibration from '@/utils/vibration';
-import { openModal, setSecondLevel } from '@/redux/actions';
-import { setCurrentProfile } from '@/redux/actions/profile';
+import { GlobalContext } from '@/context/global/context';
+import { ProfileContext } from '@/context/profile/context';
 
 export const useProfiles = () => {
-  const dispatch = useDispatch();
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
 
+  const { setSecondLevel, openModal } = useContext(GlobalContext);
+  const { setCurrentProfile } = useContext(ProfileContext);
+
   useEffect(() => {
     fetchProfiles();
-    dispatch(setSecondLevel(0));
-  }, [dispatch]);
+    setSecondLevel(0);
+  }, [setSecondLevel]);
 
   const fetchProfiles = () => {
     setProfiles(service.getProfiles());
@@ -22,9 +23,9 @@ export const useProfiles = () => {
 
   const applyProfile = (profile: Profile) => {
     service.applyProfile(profile);
-    dispatch(setCurrentProfile(profile));
+    setCurrentProfile(profile);
     vibration.success();
-    dispatch(openModal());
+    openModal();
   };
 
   return {

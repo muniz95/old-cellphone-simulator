@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setSecondLevel } from '../../redux/actions';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import CurrentPageContainer from '@/components/CurrentPageContainer';
+import { GlobalContext } from '@/context/global/context';
 
 const Settings = () => {
   const { t } = useTranslation(['settings']);
@@ -16,10 +15,10 @@ const Settings = () => {
   ]);
   const [position, setPosition] = useState(0);
 
-  const dispatch = useDispatch();
+  const { setSecondLevel } = useContext(GlobalContext);
   const dispatchSetSecondLevel = useCallback(
-    (position: number) => dispatch(setSecondLevel(position + 1)),
-    [dispatch]
+    (position: number) => setSecondLevel(position + 1),
+    [setSecondLevel]
   );
 
   useEffect(() => {
