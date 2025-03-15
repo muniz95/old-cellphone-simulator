@@ -1,18 +1,24 @@
 import { renderHook } from '@testing-library/react';
-import { Provider } from 'react-redux';
 import { describe, expect, it } from 'vitest';
-import { configureStore } from '@reduxjs/toolkit';
-import reducer from '@/redux/reducers';
 import useSecondLevel from '@/features/clock/hooks/use-second-level';
-
-const store = configureStore({ reducer });
+import { GlobalContextProvider } from '@/context/global/provider';
+import { useContext } from 'react';
+import { GlobalContext } from '@/context/global/context';
 
 describe('useSecondLevel', () => {
   it('should dispatch setSecondLevel action', () => {
-    renderHook(() => useSecondLevel(), {
-      wrapper: ({ children }) => <Provider store={store}>{children}</Provider>,
-    });
+    const { result } = renderHook(
+      () => {
+        useSecondLevel();
+        return useContext(GlobalContext);
+      },
+      {
+        wrapper: ({ children }) => (
+          <GlobalContextProvider>{children}</GlobalContextProvider>
+        ),
+      }
+    );
 
-    expect(store.getState().secondLevel).toBe(1);
+    expect(result.current.secondLevel).toBe(1);
   });
 });
