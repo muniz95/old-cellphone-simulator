@@ -1,12 +1,16 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import PhoneBookSearch from '@/features/phone-book/phone-book-search';
-import usePhoneBookSearch from '@/features/phone-book/phone-book-search/hooks/use-phone-book-search';
 import useThirdLevel from '@/hooks/use-third-level';
-import React from 'react';
 import { renderWithProvider } from '../../../utils';
+import PhoneBookSearch from '@/features/phone-book/search';
+import usePhoneBookSearch from '@/features/phone-book/search/hooks/use-phone-book-search';
+import { Contact } from '@/interfaces/contact';
 
-const mockContacts = [{ name: 'John' }, { name: 'Jane' }, { name: 'Bob' }];
+const mockContacts: Contact[] = [
+  { name: 'John', isServiceNumber: false, number: '123' },
+  { name: 'Jane', isServiceNumber: false, number: '456' },
+  { name: 'Bob', isServiceNumber: false, number: '789' },
+];
 
 // Mock the hooks
 vi.mock(
@@ -36,7 +40,7 @@ describe('PhoneBookSearch', () => {
 
   it('calls handleSearch when input changes', () => {
     const mockHandleSearch = vi.fn();
-    vi.mocked(usePhoneBookSearch as any).mockReturnValue({
+    vi.mocked(usePhoneBookSearch).mockReturnValue({
       search: '',
       contacts: mockContacts,
       handleSearch: mockHandleSearch,
@@ -48,10 +52,11 @@ describe('PhoneBookSearch', () => {
   });
 
   it('filters contacts based on search input', () => {
-    (usePhoneBookSearch as any).mockReturnValue({
+    const mockHandleSearch = vi.fn();
+    vi.mocked(usePhoneBookSearch).mockReturnValue({
       search: 'Jo',
       contacts: mockContacts,
-      handleSearch: vi.fn(),
+      handleSearch: mockHandleSearch,
     });
     renderWithProvider(<PhoneBookSearch />);
     expect(screen.getByText('John')).toBeTruthy();
@@ -65,10 +70,11 @@ describe('PhoneBookSearch', () => {
   });
 
   it('renders no contacts when search input does not match any contact', () => {
-    (usePhoneBookSearch as any).mockReturnValue({
+    const mockHandleSearch = vi.fn();
+    vi.mocked(usePhoneBookSearch).mockReturnValue({
       search: 'Z',
       contacts: mockContacts,
-      handleSearch: vi.fn(),
+      handleSearch: mockHandleSearch,
     });
     renderWithProvider(<PhoneBookSearch />);
     expect(screen.queryByText('John')).toBeNull();
@@ -77,10 +83,11 @@ describe('PhoneBookSearch', () => {
   });
 
   it('renders all contacts when search input is empty', () => {
-    (usePhoneBookSearch as any).mockReturnValue({
-      search: '',
+    const mockHandleSearch = vi.fn();
+    vi.mocked(usePhoneBookSearch).mockReturnValue({
+      search: 'Jo',
       contacts: mockContacts,
-      handleSearch: vi.fn(),
+      handleSearch: mockHandleSearch,
     });
     renderWithProvider(<PhoneBookSearch />);
     expect(screen.getByText('John')).toBeTruthy();

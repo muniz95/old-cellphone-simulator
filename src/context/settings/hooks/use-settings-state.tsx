@@ -1,20 +1,32 @@
-import { useState } from 'react';
 import { settingsContext } from '../context';
+import useLocalStorage from '@/hooks/use-local-storage';
 
 type SettingsStateType = typeof settingsContext;
 
 export const useSettingsState = () => {
-  const [alarmLevel, setAlarmLevel] = useState(settingsContext.alarmLevel);
-  const [backlightLevel, setBacklightLevel] = useState(
+  const [alarmLevel, setAlarmLevel] = useLocalStorage(
+    'alarmLevel',
+    settingsContext.alarmLevel
+  );
+  const [backlightLevel, setBacklightLevel] = useLocalStorage(
+    'backlightLevel',
     settingsContext.backlightLevel
   );
-  const [color, setColor] = useState(settingsContext.color);
-  const [language, setLanguage] = useState(settingsContext.language);
-  const [notificationLevel, setNotificationLevel] = useState(
+  const [color, setColor] = useLocalStorage('color', settingsContext.color);
+  const [language, setLanguage] = useLocalStorage(
+    'language',
+    settingsContext.language
+  );
+  const [notificationLevel, setNotificationLevel] = useLocalStorage(
+    'notificationLevel',
     settingsContext.notificationLevel
   );
-  const [ringLevel, setRingLevel] = useState(settingsContext.ringLevel);
-  const [inactivityTime, setInactivityTime] = useState(
+  const [ringLevel, setRingLevel] = useLocalStorage(
+    'ringLevel',
+    settingsContext.ringLevel
+  );
+  const [inactivityTime, setInactivityTime] = useLocalStorage(
+    'inactivityTime',
     settingsContext.inactivityTime
   );
 

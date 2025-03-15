@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from 'react';
-import settingsService from '@/services/setting.service';
 import vibration from '@/utils/vibration';
 import { GlobalContext } from '@/context/global/context';
 import { SettingsContext } from '@/context/settings/context';
@@ -15,8 +14,6 @@ export const useLightSettings = () => {
   }, [setFourthLevel]);
 
   const save = () => {
-    settingsService.setBacklightLevel(backlightLevel);
-    settingsService.setInactivityTime(inactivityTime);
     setBacklightLevel(backlightLevel);
     setInactivityTime(inactivityTime);
     vibration.success();

@@ -10,11 +10,11 @@ const SoundSettings = () => {
   const { setFourthLevel } = useContext(GlobalContext);
   const {
     notificationLevel,
-    setAppNotificationLevel,
+    setNotificationLevel,
     alarmLevel,
-    setAppAlarmLevel,
+    setAlarmLevel,
     ringLevel,
-    setAppRingLevel,
+    setRingLevel,
     save,
   } = useSoundSettings();
 
@@ -36,7 +36,7 @@ const SoundSettings = () => {
             id="notification"
             value={notificationLevel}
             onChange={({ target }) =>
-              setAppNotificationLevel(Number(target.value))
+              setNotificationLevel(Number(target.value))
             }
           />
         </S.ControllerSection>
@@ -48,7 +48,7 @@ const SoundSettings = () => {
             max={100}
             id="alarm"
             value={alarmLevel}
-            onChange={({ target }) => setAppAlarmLevel(Number(target.value))}
+            onChange={({ target }) => setAlarmLevel(Number(target.value))}
           />
         </S.ControllerSection>
         <S.ControllerSection>
@@ -59,7 +59,7 @@ const SoundSettings = () => {
             max={100}
             id="ring"
             value={ringLevel}
-            onChange={({ target }) => setAppRingLevel(Number(target.value))}
+            onChange={({ target }) => setRingLevel(Number(target.value))}
           />
         </S.ControllerSection>
       </S.MainContainer>

@@ -1,5 +1,4 @@
 import { useCallback, useContext } from 'react';
-import service from '@/services/setting.service';
 import vibration from '@/utils/vibration';
 import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +10,8 @@ const RestoreFactorySettings = () => {
   const navigate = useNavigate();
   const dispatchOpenModal = useCallback(() => openModal(), [openModal]);
   const resetData = () => {
-    service.resetData();
+    // TODO: implement a resetData function
+    // service.resetData();
     vibration.reset();
     dispatchOpenModal();
   };
