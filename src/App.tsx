@@ -12,14 +12,14 @@ import defaultValues from '@/defaults';
 import routes from '@/routes';
 import Startup from '@/components/Startup';
 import { useContext, useEffect, useState } from 'react';
-import { GlobalContext } from './context/global/context';
+import { SettingsContext } from './context/settings/context';
 
 const App = () => {
   const dispatch = useDispatch();
   const routing = useRoutes([...routes]);
 
   const { backlightLevel, setBacklightLevel, color, setColor } =
-    useContext(GlobalContext);
+    useContext(SettingsContext);
   const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const App = () => {
   return (
     <div className="App" style={style}>
       {firstRender ? (
-        <Startup color={color} />
+        <Startup />
       ) : (
         <>
           <SignalStatus />

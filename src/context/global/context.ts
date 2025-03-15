@@ -11,13 +11,9 @@ export type GlobalContextType = {
   setFourthLevel: Dispatch<SetStateAction<number>>;
   fifthLevel: number;
   setFifthLevel: Dispatch<SetStateAction<number>>;
-  backlightLevel: number;
-  setBacklightLevel: Dispatch<SetStateAction<number>>;
-  color: string;
-  setColor: Dispatch<SetStateAction<string>>;
 };
 
-export const defaultContext = {
+export const defaultContext: GlobalContextType = {
   firstLevel: 0,
   setFirstLevel: () => {},
   secondLevel: 0,
@@ -28,10 +24,6 @@ export const defaultContext = {
   setFourthLevel: () => {},
   fifthLevel: 0,
   setFifthLevel: () => {},
-  backlightLevel: 80,
-  setBacklightLevel: () => {},
-  color: '#c0b400',
-  setColor: () => {},
 };
 
 export const GlobalContext = createContext<GlobalContextType>(defaultContext);

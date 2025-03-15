@@ -9,12 +9,8 @@ export const useGlobalState = () => {
   const [thirdLevel, setThirdLevel] = useState(defaultContext.thirdLevel);
   const [fourthLevel, setFourthLevel] = useState(defaultContext.fourthLevel);
   const [fifthLevel, setFifthLevel] = useState(defaultContext.fifthLevel);
-  const [backlightLevel, setBacklightLevel] = useState(
-    defaultContext.backlightLevel
-  );
-  const [color, setColor] = useState(defaultContext.color);
 
-  return {
+  const hook: GlobalStateType = {
     firstLevel,
     setFirstLevel,
     secondLevel,
@@ -25,9 +21,7 @@ export const useGlobalState = () => {
     setFourthLevel,
     fifthLevel,
     setFifthLevel,
-    backlightLevel,
-    setBacklightLevel,
-    color,
-    setColor,
-  } as GlobalStateType;
+  };
+
+  return hook;
 };

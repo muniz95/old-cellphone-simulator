@@ -4,11 +4,14 @@ import { closeModal } from '../../redux/actions';
 import { RootState } from '../../redux/reducers';
 // import '../styles/Modal.scss';
 import S from './styled';
+import { SettingsContext } from '@/context/settings/context';
+import { useContext } from 'react';
 
 const Modal = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { showModal, color } = useSelector((state: RootState) => state);
+  const { showModal } = useSelector((state: RootState) => state);
+  const { color } = useContext(SettingsContext);
 
   let checked = false;
   if (showModal) {

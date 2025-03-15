@@ -5,10 +5,12 @@ import { setInactivityTime } from '@/redux/actions/settings';
 import settingsService from '@/services/setting.service';
 import vibration from '@/utils/vibration';
 import { GlobalContext } from '@/context/global/context';
+import { SettingsContext } from '@/context/settings/context';
 
 export const useLightSettings = () => {
   const dispatch = useDispatch();
-  const { setFourthLevel, setBacklightLevel } = useContext(GlobalContext);
+  const { setFourthLevel } = useContext(GlobalContext);
+  const { setBacklightLevel } = useContext(SettingsContext);
   const [backlightLevel, setAppBacklightLevel] = useState(0);
   const [inactivityTime, setAppInactivityTime] = useState(0);
 

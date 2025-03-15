@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import './index.scss';
 import './i18n';
-import { GlobalStateProvider } from './context/global/provider';
+import AppContextProvider from './context';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
@@ -18,11 +18,11 @@ if (!checkDb()) {
 
 root.render(
   <BrowserRouter>
-    <GlobalStateProvider>
+    <AppContextProvider>
       <Provider store={store}>
         <App />
       </Provider>
-    </GlobalStateProvider>
+    </AppContextProvider>
   </BrowserRouter>
 );
 registerServiceWorker();
