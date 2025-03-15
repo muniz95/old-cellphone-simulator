@@ -1,8 +1,7 @@
-import { useSelector } from 'react-redux';
 import S from './styled';
-import { RootState } from '../../redux/reducers';
-import Blink from '../Blink';
-import { isBetween } from '../../utils/helpers';
+import Blink from '@/components/Blink';
+import { isBetween } from '@/utils/helpers';
+import { useEffect, useState } from 'react';
 
 type Indicator = 'empty' | 'halfEmpty' | 'half' | 'halfFull' | 'full';
 const indicatorLevelValues = {
@@ -14,9 +13,15 @@ const indicatorLevelValues = {
 };
 
 const BatteryStatus = () => {
-  const { isRecharging, batteryLevel } = useSelector(
-    (state: RootState) => state
-  );
+  const [isRecharging, setIsRecharging] = useState(false);
+  const [batteryLevel, setBatteryLevel] = useState(0);
+  const [timeSpentOnPage, setTimeSpentOnPage] = useState(0);
+  const increase = () => {
+    setBatteryLevel((state) => state + 1);
+  };
+  const decrease = () => {
+    setBatteryLevel((state) => state - 1);
+  };
   const getInterval = (indicatorLevel: Indicator) => {
     const { min, max } = indicatorLevelValues[indicatorLevel];
     if (isRecharging) {
@@ -26,6 +31,29 @@ const BatteryStatus = () => {
   };
   const getVisibility = (indicatorLevel: Indicator) =>
     batteryLevel >= indicatorLevelValues[indicatorLevel].min;
+
+  useEffect(() => {
+    if (timeSpentOnPage % 1000 === 0) {
+      if (isRecharging) {
+        increase();
+      } else {
+        decrease();
+      }
+    }
+  }, [timeSpentOnPage, isRecharging]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTimeSpentOnPage((state) => state + 1000);
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    if (batteryLevel <= 15) setIsRecharging(true);
+    if (batteryLevel === 100) setIsRecharging(false);
+  }, [batteryLevel]);
 
   return (
     <S.BatteryStatus className="noselect">

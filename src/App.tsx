@@ -11,12 +11,6 @@ import settingsService from '@/services/setting.service';
 import defaultValues from '@/defaults';
 
 import routes from '@/routes';
-import {
-  charging,
-  decrease,
-  increase,
-  uncharging,
-} from '@/redux/actions/battery';
 import { RootState } from '@/redux/reducers';
 import * as settingsActions from '@/redux/actions/settings';
 import Startup from '@/components/Startup';
@@ -31,13 +25,8 @@ const App = () => {
 
   const [color, setColor] = useState('');
   const [backlightLevel, setBacklightLevel] = useState(0);
-  const [timeSpentOnPage, setTimeSpentOnPage] = useState(0);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setTimeSpentOnPage((state) => state + 1000);
-    }, 1000);
-
     const defaultColor = settingsService.getColor() || defaultValues.color;
     setColor(defaultColor);
     dispatch(settingsActions.setColor(defaultColor));
@@ -46,18 +35,7 @@ const App = () => {
       settingsService.getBacklightLevel() || defaultValues.backlightLevel;
     setBacklightLevel(defaultBacklightLevel);
     dispatch(settingsActions.setBacklightLevel(defaultBacklightLevel));
-
-    return () => clearInterval(intervalId);
   }, [dispatch]);
-  useEffect(() => {
-    if (timeSpentOnPage % 1000 === 0) {
-      dispatch(state.isRecharging ? increase() : decrease());
-    }
-  }, [timeSpentOnPage, state.isRecharging, dispatch]);
-  useEffect(() => {
-    if (state.batteryLevel <= 15) dispatch(charging());
-    if (state.batteryLevel === 100) dispatch(uncharging());
-  }, [state.batteryLevel, dispatch]);
   useEffect(() => {
     setColor(state.color);
   }, [state.color]);

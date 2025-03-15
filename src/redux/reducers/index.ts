@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import { CLOSE_MODAL, OPEN_MODAL } from '../constants';
-import { batteryLevel, isRecharging } from './battery';
 import {
   color,
   language,
@@ -85,8 +84,6 @@ const reducer = combineReducers({
   thirdLevel,
   fourthLevel,
   fifthLevel,
-  batteryLevel,
-  isRecharging,
   color,
   language,
   notificationLevel,
