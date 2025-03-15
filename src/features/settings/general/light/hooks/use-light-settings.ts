@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { openModal } from '@/redux/actions';
-import { setInactivityTime } from '@/redux/actions/settings';
 import settingsService from '@/services/setting.service';
 import vibration from '@/utils/vibration';
 import { GlobalContext } from '@/context/global/context';
@@ -10,7 +9,7 @@ import { SettingsContext } from '@/context/settings/context';
 export const useLightSettings = () => {
   const dispatch = useDispatch();
   const { setFourthLevel } = useContext(GlobalContext);
-  const { setBacklightLevel } = useContext(SettingsContext);
+  const { setBacklightLevel, setInactivityTime } = useContext(SettingsContext);
   const [backlightLevel, setAppBacklightLevel] = useState(0);
   const [inactivityTime, setAppInactivityTime] = useState(0);
 
@@ -22,7 +21,7 @@ export const useLightSettings = () => {
     settingsService.setBacklightLevel(backlightLevel);
     settingsService.setInactivityTime(inactivityTime);
     setBacklightLevel(backlightLevel);
-    dispatch(setInactivityTime(inactivityTime));
+    setInactivityTime(inactivityTime);
     vibration.success();
     dispatch(openModal());
   };
