@@ -1,8 +1,6 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
 
 export type GlobalContextType = {
-  isDarkMode: boolean;
-  toggleDarkMode: () => void;
   firstLevel: number;
   setFirstLevel: Dispatch<SetStateAction<number>>;
   secondLevel: number;
@@ -13,11 +11,11 @@ export type GlobalContextType = {
   setFourthLevel: Dispatch<SetStateAction<number>>;
   fifthLevel: number;
   setFifthLevel: Dispatch<SetStateAction<number>>;
+  backlightLevel: number;
+  setBacklightLevel: Dispatch<SetStateAction<number>>;
 };
 
 const defaultContext = {
-  isDarkMode: false,
-  toggleDarkMode: () => {},
   firstLevel: 0,
   setFirstLevel: () => {},
   secondLevel: 0,
@@ -28,6 +26,8 @@ const defaultContext = {
   setFourthLevel: () => {},
   fifthLevel: 0,
   setFifthLevel: () => {},
+  backlightLevel: 80,
+  setBacklightLevel: () => {},
 };
 
 export const GlobalContext = createContext<GlobalContextType>(defaultContext);

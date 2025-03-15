@@ -20,11 +20,6 @@ export const setRingLevel = (payload: number) => ({
   payload,
 });
 
-export const setBacklightLevel = (payload: number) => ({
-  type: 'SET_BACKLIGHT_LEVEL',
-  payload,
-});
-
 export const setInactivityTime = (payload: number) => ({
   type: 'SET_INACTIVITY_TIME',
   payload,

@@ -23,22 +23,16 @@ export type GlobalContextType = {
 export const GlobalStateProvider: FC<GlobalStateProviderProps> = ({
   children,
 }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [firstLevel, setFirstLevel] = useState(1);
   const [secondLevel, setSecondLevel] = useState(0);
   const [thirdLevel, setThirdLevel] = useState(0);
   const [fourthLevel, setFourthLevel] = useState(0);
   const [fifthLevel, setFifthLevel] = useState(0);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode((state) => !state);
-  };
+  const [backlightLevel, setBacklightLevel] = useState(80);
 
   return (
     <GlobalContext.Provider
       value={{
-        isDarkMode,
-        toggleDarkMode,
         firstLevel,
         setFirstLevel,
         secondLevel,
@@ -49,6 +43,8 @@ export const GlobalStateProvider: FC<GlobalStateProviderProps> = ({
         setFourthLevel,
         fifthLevel,
         setFifthLevel,
+        backlightLevel,
+        setBacklightLevel,
       }}
     >
       {children}

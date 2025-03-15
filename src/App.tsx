@@ -14,17 +14,19 @@ import routes from '@/routes';
 import { RootState } from '@/redux/reducers';
 import * as settingsActions from '@/redux/actions/settings';
 import Startup from '@/components/Startup';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { GlobalContext } from './context/global/context';
 
 const App = () => {
   const dispatch = useDispatch();
+
+  const { backlightLevel, setBacklightLevel } = useContext(GlobalContext);
 
   const routing = useRoutes([...routes]);
   const [firstRender, setFirstRender] = useState(true);
   const state = useSelector((state: RootState) => state);
 
   const [color, setColor] = useState('');
-  const [backlightLevel, setBacklightLevel] = useState(0);
 
   useEffect(() => {
     const defaultColor = settingsService.getColor() || defaultValues.color;
@@ -34,14 +36,10 @@ const App = () => {
     const defaultBacklightLevel =
       settingsService.getBacklightLevel() || defaultValues.backlightLevel;
     setBacklightLevel(defaultBacklightLevel);
-    dispatch(settingsActions.setBacklightLevel(defaultBacklightLevel));
-  }, [dispatch]);
+  }, [dispatch, setBacklightLevel]);
   useEffect(() => {
     setColor(state.color);
   }, [state.color]);
-  useEffect(() => {
-    setBacklightLevel(100 - state.backlightLevel);
-  }, [state.backlightLevel]);
 
   useEffect(() => {
     if (firstRender) {
@@ -53,7 +51,7 @@ const App = () => {
 
   const style = {
     backgroundColor: color,
-    backgroundImage: `linear-gradient(rgb(0 0 0/${backlightLevel}%) 0 0)`,
+    backgroundImage: `linear-gradient(rgb(0 0 0/${100 - backlightLevel}%) 0 0)`,
   };
 
   return (
