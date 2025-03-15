@@ -1,24 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
-import reducer from "../redux/reducers";
-import { Provider } from "react-redux";
-import { render } from "@testing-library/react";
-import React from "react";
-import { PreloadedState } from "@reduxjs/toolkit";
+import { render } from '@testing-library/react';
+import { ReactNode } from 'react';
+import { GlobalContextProvider } from '@/context/global/provider';
+import { SettingsContextProvider } from '@/context/settings/provider';
+import { ProfileContextProvider } from '@/context/profile/provider';
 
-interface RenderWithProviderOptions {
-  preloadedState?: PreloadedState<typeof reducer>;
-  store?: ReturnType<typeof configureStore>;
-  [key: string]: any;
-}
-
-export const renderWithProvider = (
-  ui,
-  {
-    preloadedState,
-    store = configureStore({ reducer, preloadedState }),
-    ...renderOptions
-  }: RenderWithProviderOptions = {}
-) => {
-  const Wrapper = ({ children }) => <Provider store={store}>{children}</Provider>;
-  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
-}
+export const renderWithProvider = (ui: ReactNode) => {
+  const Wrapper = ({ children }: { children: ReactNode }) => (
+    <GlobalContextProvider>
+      <SettingsContextProvider>
+        <ProfileContextProvider>{children}</ProfileContextProvider>
+      </SettingsContextProvider>
+    </GlobalContextProvider>
+  );
+  return render(ui, { wrapper: Wrapper });
+};
