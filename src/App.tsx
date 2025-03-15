@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useRoutes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import BatteryStatus from '@/components/BatteryStatus';
+import BatteryStatus from '@/components/battery-status';
 import BottomBar from '@/components/BottomBar';
 import Modal from '@/components/Modal';
 import SignalStatus from '@/components/SignalStatus';
