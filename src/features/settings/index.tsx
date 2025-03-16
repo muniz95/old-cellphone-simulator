@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useTranslation } from 'react-i18next';
+import useTranslation from '@/hooks/use-translation';
 import CurrentPageContainer from '@/components/CurrentPageContainer';
 import { GlobalContext } from '@/context/global/context';
 

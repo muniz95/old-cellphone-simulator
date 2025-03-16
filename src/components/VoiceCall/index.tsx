@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import useTranslation from '@/hooks/use-translation';
 import service from '@/services/call.service';
 import S from './styled';
 import { formatTime } from '@/utils/helpers';

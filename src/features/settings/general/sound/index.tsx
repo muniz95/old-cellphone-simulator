@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import S from './styled';
 import useSoundSettings from './hooks/use-sound-settings';
-import { useTranslation } from 'react-i18next';
+import useTranslation from '@/hooks/use-translation';
 import { GlobalContext } from '@/context/global/context';
 
 const SoundSettings = () => {

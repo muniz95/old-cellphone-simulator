@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import useTranslation from '@/hooks/use-translation';
 import { GlobalContext } from '@/context/global/context';
 
 const Chat = () => {

@@ -1,7 +1,7 @@
 import { useCallback, useContext } from 'react';
 import vibration from '@/utils/vibration';
 import { useNavigate } from 'react-router';
-import { useTranslation } from 'react-i18next';
+import useTranslation from '@/hooks/use-translation';
 import { GlobalContext } from '@/context/global/context';
 
 const RestoreFactorySettings = () => {

@@ -20,7 +20,7 @@ export type SettingsContextType = {
 export const settingsContext: SettingsContextType = {
   color: '#c0b400',
   setColor: () => {},
-  language: '',
+  language: 'en',
   setLanguage: () => {},
   notificationLevel: 50,
   setNotificationLevel: () => {},

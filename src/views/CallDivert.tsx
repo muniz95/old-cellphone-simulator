@@ -1,6 +1,6 @@
 import { GlobalContext } from '@/context/global/context';
 import { useCallback, useContext, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import useTranslation from '@/hooks/use-translation';
 
 const CallDivert = () => {
   const { t } = useTranslation(['calldivert']);

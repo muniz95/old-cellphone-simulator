@@ -1,6 +1,6 @@
 import S from './styled';
 import TextInput from '@/components/text-input';
-import { useTranslation } from 'react-i18next';
+import useTranslation from '@/hooks/use-translation';
 import useThirdLevel from '@/hooks/use-third-level';
 import { usePhoneBookAddNameHooks } from './hooks/use-add-name-hooks';
 

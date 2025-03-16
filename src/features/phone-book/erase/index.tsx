@@ -1,7 +1,7 @@
 import { useCallback, useContext, useEffect } from 'react';
 import S from './styled';
 import { Contact } from '@/interfaces/contact';
-import { useTranslation } from 'react-i18next';
+import useTranslation from '@/hooks/use-translation';
 import usePhoneBookErase from './hooks/use-phone-book-erase';
 import { GlobalContext } from '@/context/global/context';
 

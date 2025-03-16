@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import vibration from '@/utils/vibration';
 import { GlobalContext } from '@/context/global/context';
 import { SettingsContext } from '@/context/settings/context';
@@ -16,10 +16,8 @@ const LANGUAGES = [
 ];
 
 export const useLanguageSettings = () => {
-  const [language, setAppLanguage] = useState('');
-
+  const { language, setLanguage } = useContext(SettingsContext);
   const { setFourthLevel, openModal } = useContext(GlobalContext);
-  const { setLanguage } = useContext(SettingsContext);
 
   useEffect(() => {
     setFourthLevel(3);
@@ -33,7 +31,7 @@ export const useLanguageSettings = () => {
 
   return {
     language,
-    setAppLanguage,
+    setLanguage,
     save,
     LANGUAGES,
   };
