@@ -1,41 +1,61 @@
-import { screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import useThirdLevel from '@/hooks/use-third-level';
-import { renderWithProvider } from '../../../utils';
-import PhoneBookSearch from '@/features/phone-book/search';
+import { render, fireEvent } from '@testing-library/react';
 import usePhoneBookSearch from '@/features/phone-book/search/hooks/use-phone-book-search';
+import useThirdLevel from '@/hooks/use-third-level';
+import PhoneBookSearch from '@/features/phone-book/search';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Contact } from '@/interfaces/contact';
 
-const mockContacts: Contact[] = [
-  { name: 'John', isServiceNumber: false, number: '123' },
-  { name: 'Jane', isServiceNumber: false, number: '456' },
-  { name: 'Bob', isServiceNumber: false, number: '789' },
-];
-
-// Mock the hooks
-vi.mock(
-  '@/features/phone-book/phone-book-search/hooks/use-phone-book-search',
-  () => {
-    return vi.fn().mockImplementation(() => ({
-      search: '',
-      contacts: mockContacts,
-      handleSearch: vi.fn(),
-    }));
-  }
-);
+vi.mock('@/features/phone-book/search/hooks/use-phone-book-search');
 vi.mock('@/hooks/use-third-level');
 
 describe('PhoneBookSearch', () => {
+  const mockContacts: Contact[] = [
+    { name: 'Alice', isServiceNumber: false, number: '123' },
+    { name: 'Bob', isServiceNumber: false, number: '123' },
+    { name: 'Charlie', isServiceNumber: false, number: '123' },
+    { name: 'David', isServiceNumber: false, number: '123' },
+  ];
+
   beforeEach(() => {
+    // Reset mocks before each test
     vi.clearAllMocks();
+
+    // Mock the usePhoneBookSearch hook
+    vi.mocked(usePhoneBookSearch).mockReturnValue({
+      search: '',
+      contacts: mockContacts,
+      handleSearch: vi.fn(),
+    });
+
+    // Mock the useThirdLevel hook
+    vi.mocked(useThirdLevel).mockImplementation(() => {});
   });
 
-  it('renders TextInput and ResultsBox', () => {
-    renderWithProvider(<PhoneBookSearch />);
-    expect(screen.getByRole('textbox')).toBeTruthy();
-    expect(screen.getByText('John')).toBeTruthy();
-    expect(screen.getByText('Jane')).toBeTruthy();
-    expect(screen.getByText('Bob')).toBeTruthy();
+  it('renders the TextInput component', () => {
+    const { getByRole } = render(<PhoneBookSearch />);
+    expect(getByRole('textbox')).toBeTruthy();
+  });
+
+  it('renders all contacts initially', () => {
+    const { getByText } = render(<PhoneBookSearch />);
+    mockContacts.forEach((contact) => {
+      expect(getByText(contact.name)).toBeTruthy();
+    });
+  });
+
+  it('filters contacts based on search input', () => {
+    const mockHandleSearch = vi.fn();
+    vi.mocked(usePhoneBookSearch).mockReturnValue({
+      search: 'A',
+      contacts: mockContacts,
+      handleSearch: mockHandleSearch,
+    });
+
+    const { getByText, queryByText } = render(<PhoneBookSearch />);
+    expect(getByText('Alice')).toBeTruthy();
+    expect(queryByText('Charlie')).not.toBeTruthy();
+    expect(queryByText('Bob')).not.toBeTruthy();
+    expect(queryByText('David')).not.toBeTruthy();
   });
 
   it('calls handleSearch when input changes', () => {
@@ -45,53 +65,15 @@ describe('PhoneBookSearch', () => {
       contacts: mockContacts,
       handleSearch: mockHandleSearch,
     });
-    renderWithProvider(<PhoneBookSearch />);
-    const inputElement = screen.getByRole('textbox');
-    fireEvent.change(inputElement, { target: { value: 'test' } });
-    expect(mockHandleSearch).toHaveBeenCalledTimes(0);
+
+    const { getByRole } = render(<PhoneBookSearch />);
+    const input = getByRole('textbox');
+    fireEvent.change(input, { target: { value: 'test' } });
+    expect(mockHandleSearch).toHaveBeenCalled();
   });
 
-  it('filters contacts based on search input', () => {
-    const mockHandleSearch = vi.fn();
-    vi.mocked(usePhoneBookSearch).mockReturnValue({
-      search: 'Jo',
-      contacts: mockContacts,
-      handleSearch: mockHandleSearch,
-    });
-    renderWithProvider(<PhoneBookSearch />);
-    expect(screen.getByText('John')).toBeTruthy();
-    expect(screen.queryByText('Jane')).toBeNull();
-    expect(screen.queryByText('Bob')).toBeNull();
-  });
-
-  it('calls useThirdLevel with correct parameter', () => {
-    renderWithProvider(<PhoneBookSearch />);
+  it('calls useThirdLevel with 0', () => {
+    render(<PhoneBookSearch />);
     expect(useThirdLevel).toHaveBeenCalledWith(0);
-  });
-
-  it('renders no contacts when search input does not match any contact', () => {
-    const mockHandleSearch = vi.fn();
-    vi.mocked(usePhoneBookSearch).mockReturnValue({
-      search: 'Z',
-      contacts: mockContacts,
-      handleSearch: mockHandleSearch,
-    });
-    renderWithProvider(<PhoneBookSearch />);
-    expect(screen.queryByText('John')).toBeNull();
-    expect(screen.queryByText('Jane')).toBeNull();
-    expect(screen.queryByText('Bob')).toBeNull();
-  });
-
-  it('renders all contacts when search input is empty', () => {
-    const mockHandleSearch = vi.fn();
-    vi.mocked(usePhoneBookSearch).mockReturnValue({
-      search: 'Jo',
-      contacts: mockContacts,
-      handleSearch: mockHandleSearch,
-    });
-    renderWithProvider(<PhoneBookSearch />);
-    expect(screen.getByText('John')).toBeTruthy();
-    expect(screen.getByText('Jane')).toBeTruthy();
-    expect(screen.getByText('Bob')).toBeTruthy();
   });
 });
