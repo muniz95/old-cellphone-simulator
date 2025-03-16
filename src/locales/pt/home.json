@@ -1,15 +1,15 @@
 {
-  "phonebookTitle": "Phone Book",
-  "messagesTitle": "Messages",
-  "chatTitle": "Chat",
-  "callregisterTitle": "Call Register",
-  "tonesTitle": "Tones",
-  "settingsTitle": "Settings",
-  "calldivertTitle": "Call Divert",
-  "gamesTitle": "Games",
-  "calculatorTitle": "Calculator",
-  "remindersTitle": "Reminders",
-  "clockTitle": "Clock",
-  "profilesTitle": "Profiles",
-  "simservicesTitle": "SIM Services"
+  "phonebookTitle": "Agenda",
+  "messagesTitle": "Mensagens",
+  "chatTitle": "Conversas",
+  "callregisterTitle": "Registro de chamadas",
+  "tonesTitle": "Toques",
+  "settingsTitle": "Configurações",
+  "calldivertTitle": "Desvio de chamadas",
+  "gamesTitle": "Jogos",
+  "calculatorTitle": "Calculadora",
+  "remindersTitle": "Lembretes",
+  "clockTitle": "Relógio",
+  "profilesTitle": "Perfis",
+  "simservicesTitle": "Serviços SIM"
 }
