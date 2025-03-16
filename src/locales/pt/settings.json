@@ -1,36 +1,36 @@
 {
-  "settingsTitle": "Settings",
-  "callTitle": "Call Settings",
+  "settingsTitle": "Configurações",
+  "callTitle": "Configurações de Chamada",
   "general": {
-    "title": "General Settings",
+    "title": "Configurações Gerais",
     "color": {
-      "title": "Color Settings",
-      "default": "Default",
-      "blue": "Blue",
-      "gray": "Gray",
-      "green": "Green",
-      "orange": "Orange",
-      "purple": "Purple",
-      "red": "Red",
-      "teal": "Teal",
-      "yellow": "Yellow"
+      "title": "Configurações de Cor",
+      "default": "Padrão",
+      "blue": "Azul",
+      "gray": "Cinza",
+      "green": "Verde",
+      "orange": "Laranja",
+      "purple": "Roxo",
+      "red": "Vermelho",
+      "teal": "Verde-azulado",
+      "yellow": "Amarelo"
     },
-    "languageTitle": "Language Settings",
+    "languageTitle": "Configurações de Idioma",
     "light": {
-      "title": "Light Settings",
-      "backlightLevel": "Backlight level",
-      "inactiveAfter": "Inactive after"
+      "title": "Configurações de Luz",
+      "backlightLevel": "Nível de luz de fundo",
+      "inactiveAfter": "Inativo após"
     },
     "sound": {
-      "title": "Sound Settings",
-      "notification": "Notification",
-      "alarm": "Alarm",
-      "ring": "Ring"
+      "title": "Configurações de Som",
+      "notification": "Notificação",
+      "alarm": "Alarme",
+      "ring": "Toque"
     }
   },
-  "securityTitle": "Security Settings",
+  "securityTitle": "Configurações de Segurança",
   "restore": {
-    "title": "Restore Settings",
-    "restoreFactorySettings": "Restore factory settings?"
+    "title": "Restaurar Configurações",
+    "restoreFactorySettings": "Restaurar configurações de fábrica?"
   }
 }
