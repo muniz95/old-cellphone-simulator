@@ -1,13 +1,16 @@
-import { useState, useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import vibration from '@/utils/vibration';
 import { GlobalContext } from '@/context/global/context';
 import { SettingsContext } from '@/context/settings/context';
 
 export const useLightSettings = () => {
   const { setFourthLevel, openModal } = useContext(GlobalContext);
-  const { setBacklightLevel, setInactivityTime } = useContext(SettingsContext);
-  const [backlightLevel, setAppBacklightLevel] = useState(0);
-  const [inactivityTime, setAppInactivityTime] = useState(0);
+  const {
+    backlightLevel,
+    inactivityTime,
+    setBacklightLevel,
+    setInactivityTime,
+  } = useContext(SettingsContext);
 
   useEffect(() => {
     setFourthLevel(3);
@@ -22,9 +25,9 @@ export const useLightSettings = () => {
 
   return {
     backlightLevel,
-    setAppBacklightLevel,
+    setBacklightLevel,
     inactivityTime,
-    setAppInactivityTime,
+    setInactivityTime,
     save,
   };
 };

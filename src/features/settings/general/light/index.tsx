@@ -6,9 +6,9 @@ const LightSettings = () => {
   const { t } = useTranslation(['settings']);
   const {
     backlightLevel,
-    setAppBacklightLevel,
+    setBacklightLevel,
     inactivityTime,
-    setAppInactivityTime,
+    setInactivityTime,
     save,
   } = useLightSettings();
 
@@ -23,9 +23,7 @@ const LightSettings = () => {
             max={100}
             id="backlight"
             value={backlightLevel}
-            onChange={({ target }) =>
-              setAppBacklightLevel(target.valueAsNumber)
-            }
+            onChange={({ target }) => setBacklightLevel(target.valueAsNumber)}
           />
         </S.ControllerSection>
         <S.ControllerSection>
@@ -36,9 +34,7 @@ const LightSettings = () => {
             max={600}
             id="inactivity"
             value={inactivityTime}
-            onChange={({ target }) =>
-              setAppInactivityTime(target.valueAsNumber)
-            }
+            onChange={({ target }) => setInactivityTime(target.valueAsNumber)}
           />
         </S.ControllerSection>
       </S.MainContainer>
