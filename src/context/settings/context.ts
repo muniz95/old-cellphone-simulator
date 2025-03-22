@@ -1,3 +1,4 @@
+import defaults from '@/defaults';
 import { createContext, Dispatch, SetStateAction } from 'react';
 
 export type SettingsContextType = {
@@ -18,19 +19,19 @@ export type SettingsContextType = {
 };
 
 export const settingsContext: SettingsContextType = {
-  color: '#c0b400',
+  color: defaults.settings.color,
   setColor: () => {},
-  language: 'en',
+  language: defaults.settings.language,
   setLanguage: () => {},
-  notificationLevel: 50,
+  notificationLevel: defaults.settings.notificationLevel,
   setNotificationLevel: () => {},
-  alarmLevel: 50,
+  alarmLevel: defaults.settings.alarmLevel,
   setAlarmLevel: () => {},
-  ringLevel: 50,
+  ringLevel: defaults.settings.ringLevel,
   setRingLevel: () => {},
-  backlightLevel: 80,
+  backlightLevel: defaults.settings.backlightLevel,
   setBacklightLevel: () => {},
-  inactivityTime: 60,
+  inactivityTime: defaults.settings.inactivityTime,
   setInactivityTime: () => {},
 };
 

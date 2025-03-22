@@ -21,6 +21,7 @@
       "@/*": ["./src/*"]
     }
   },
+  "files": ["src/declarations.d.ts"],
   "include": ["src"],
   "exclude": ["node_modules", "test"],
 }
