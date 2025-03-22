@@ -1,3 +1,4 @@
+import defaults from '@/defaults';
 import { Profile } from '@/interfaces/profile';
 import { createContext, Dispatch, SetStateAction } from 'react';
 
@@ -9,21 +10,9 @@ export type ProfileContextType = {
 };
 
 export const profileContext: ProfileContextType = {
-  profiles: [],
+  profiles: defaults.profiles.profiles,
   setProfiles: () => {},
-  currentProfile: {
-    isFactoryProfile: true,
-    ringtone: '',
-    ringLevel: 50,
-    notificationTone: '',
-    notificationLevel: 50,
-    alarmTone: '',
-    soundEffectsLevel: 50,
-    soundEffectsEnabled: true,
-    vibrationEnabled: true,
-    blinkingLightsEnabled: true,
-    name: 'Default',
-  },
+  currentProfile: defaults.profiles.currentProfile,
   setCurrentProfile: () => {},
 };
 
