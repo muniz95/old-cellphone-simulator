@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ModalContainer = styled.div<{ showModal: boolean; color: string }>`
+const ModalContainer = styled.div<{ showModal: boolean; color: string }>`
   position: fixed;
   z-index: 1;
   width: 100%;

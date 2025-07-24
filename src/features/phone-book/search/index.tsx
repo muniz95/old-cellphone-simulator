@@ -1,4 +1,4 @@
-import S from './styled';
+import S from '@/components/base';
 import TextInput from '@/components/text-input/index';
 import usePhoneBookSearch from '@/features/phone-book/search/hooks/use-phone-book-search';
 import useThirdLevel from '@/hooks/use-third-level';
@@ -9,7 +9,7 @@ const PhoneBookSearch = () => {
   useThirdLevel(0);
 
   return (
-    <S.Home>
+    <S.MainContainer>
       <TextInput id="name" onChange={handleSearch} />
       <S.ResultsBox>
         {contacts
@@ -18,7 +18,7 @@ const PhoneBookSearch = () => {
             <div key={c.name}>{c.name}</div>
           ))}
       </S.ResultsBox>
-    </S.Home>
+    </S.MainContainer>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import S from './styled';
+import S from '@/components/base';
 import useSoundSettings from './hooks/use-sound-settings';
 import useTranslation from '@/hooks/use-translation';
 import { GlobalContext } from '@/context/global/context';

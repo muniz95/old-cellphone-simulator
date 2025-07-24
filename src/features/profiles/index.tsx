@@ -1,5 +1,5 @@
 import useTranslation from '@/hooks/use-translation';
-import S from './styled';
+import S from '@/components/base';
 import { useProfiles } from './hooks/use-profiles';
 
 const Profiles = () => {

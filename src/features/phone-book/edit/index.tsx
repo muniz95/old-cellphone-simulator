@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect } from 'react';
-import S from './styled';
+import S from '@/components/base';
 import TextInput from '@/components/text-input/index';
 import useTranslation from '@/hooks/use-translation';
 import { usePhoneBookEdit } from './hooks/use-phone-book-edit';
@@ -22,7 +22,7 @@ const PhoneBookEdit = () => {
   }, [dispatchSetThirdLevel]);
 
   return (
-    <S.Container>
+    <S.MainContainer>
       <S.ResultsBox>
         {contacts.map((c) => (
           <div onClick={() => setCurrentContact(c)} key={c.name}>
@@ -39,7 +39,7 @@ const PhoneBookEdit = () => {
       <div>
         <button onClick={saveContact}>{t('save')}</button>
       </div>
-    </S.Container>
+    </S.MainContainer>
   );
 };
 

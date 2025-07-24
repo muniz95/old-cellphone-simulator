@@ -1,6 +1,6 @@
 import useTranslation from '@/hooks/use-translation';
-import S from './styled';
 import { useLanguageSettings } from './hooks/use-language-settings';
+import S from '@/components/base';
 
 const LanguageSettings = () => {
   const { t } = useTranslation();

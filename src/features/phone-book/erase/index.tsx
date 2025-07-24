@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect } from 'react';
-import S from './styled';
+import S from '@/components/base';
 import { Contact } from '@/interfaces/contact';
 import useTranslation from '@/hooks/use-translation';
 import usePhoneBookErase from './hooks/use-phone-book-erase';
@@ -20,7 +20,7 @@ const PhoneBookErase = () => {
   }, [dispatchSetThirdLevel]);
 
   return (
-    <S.Container>
+    <S.MainContainer>
       <S.ResultsBox>
         {contacts.map((c: Contact) => (
           <div onClick={() => setCurrentContact(c)} key={c.name}>
@@ -31,7 +31,7 @@ const PhoneBookErase = () => {
       <div>
         <button onClick={removeContact}>{t('erase')}</button>
       </div>
-    </S.Container>
+    </S.MainContainer>
   );
 };
 

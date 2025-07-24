@@ -2,7 +2,7 @@ import defaults from '@/defaults';
 import { Profile } from '@/interfaces/profile';
 import { createContext, Dispatch, SetStateAction } from 'react';
 
-export type ProfileContextType = {
+type ProfileContextType = {
   profiles: Profile[];
   setProfiles: Dispatch<SetStateAction<Profile[]>>;
   currentProfile: Profile;
