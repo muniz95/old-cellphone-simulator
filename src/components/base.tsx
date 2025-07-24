@@ -25,7 +25,7 @@ const ResultsBox = styled.div`
 `;
 
 const Item = styled.button`
-  min-height: 30%;
+  min-height: 10%;
   width: 100%;
   border: none;
 

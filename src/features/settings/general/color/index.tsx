@@ -27,12 +27,9 @@ const ColorSettings: React.FC = () => {
     <>
       <S.MainContainer>
         {COLORS.map((color) => (
-          <S.ResultsBox
-            key={color.rgb}
-            onClick={() => handleColorClick(color.rgb)}
-          >
-            <S.Item>{t(color.title)}</S.Item>
-          </S.ResultsBox>
+          <S.Item key={color.rgb} onClick={() => handleColorClick(color.rgb)}>
+            {t(color.title)}
+          </S.Item>
         ))}
       </S.MainContainer>
       <S.ButtonContainer>
