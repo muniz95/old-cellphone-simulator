@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import S from './styled';
-import PageIndicator from '../PageIndicator';
+import PageIndicator from '../page-indicator';
 
 const TopBar = () => {
   const [date, setDate] = useState(new Date());

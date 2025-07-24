@@ -1,5 +1,5 @@
 import React from 'react';
-import CurrentPageContainer from '@/components/CurrentPageContainer';
+import CurrentPageContainer from '@/components/current-page-container';
 
 interface MenuProps {
   menus: { path: string; title: string }[];
