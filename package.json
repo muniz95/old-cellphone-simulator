@@ -30,7 +30,8 @@
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "predeploy": "npm run build"
+    "predeploy": "npm run build",
+    "knip": "knip"
   },
   "devDependencies": {
     "@testing-library/react": "^16.2.0",
