@@ -1,7 +1,7 @@
 import defaults from '@/defaults';
 import { createContext, Dispatch, SetStateAction } from 'react';
 
-export type SettingsContextType = {
+type SettingsContextType = {
   color: string;
   setColor: Dispatch<SetStateAction<string>>;
   language: string;

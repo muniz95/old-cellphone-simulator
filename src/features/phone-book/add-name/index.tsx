@@ -1,4 +1,4 @@
-import S from './styled';
+import S from '@/components/base';
 import TextInput from '@/components/text-input';
 import useTranslation from '@/hooks/use-translation';
 import useThirdLevel from '@/hooks/use-third-level';
@@ -11,7 +11,7 @@ const PhoneBookAddName = () => {
   useThirdLevel(0);
 
   return (
-    <S.Container>
+    <S.MainContainer>
       <div>
         <TextInput id="name" onChange={handleChange} />
       </div>
@@ -21,7 +21,7 @@ const PhoneBookAddName = () => {
       <div>
         <button onClick={saveContact}>{t('save')}</button>
       </div>
-    </S.Container>
+    </S.MainContainer>
   );
 };
 

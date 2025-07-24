@@ -5,7 +5,7 @@ interface IProps {
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const TextInput = ({ id, onChange }: IProps) => (
+const TextInput = ({ id, onChange }: IProps) => (
   <input type="text" name={id} id={id} autoComplete="off" onChange={onChange} />
 );
 

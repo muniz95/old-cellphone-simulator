@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const TopBarContainer = styled.div`
+const TopBarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   font-weight: bold;

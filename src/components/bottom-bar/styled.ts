@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const BottomBarContainer = styled.div`
+const BottomBarContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   -moz-box-align: center;

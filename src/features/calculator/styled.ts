@@ -8,7 +8,7 @@ const PageContainer = styled.div`
   align-items: center;
 `;
 
-export const KeyboardContainer = styled.div`
+const KeyboardContainer = styled.div`
   display: flex;
   height: 50%;
   flex-flow: wrap;
@@ -17,7 +17,7 @@ export const KeyboardContainer = styled.div`
   gap: 8px;
 `;
 
-export const Key = styled.button`
+const Key = styled.button`
   // Change to button
   width: 20%;
   display: flex;

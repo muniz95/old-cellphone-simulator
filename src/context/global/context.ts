@@ -1,6 +1,6 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
 
-export type GlobalContextType = {
+type GlobalContextType = {
   firstLevel: number;
   setFirstLevel: Dispatch<SetStateAction<number>>;
   secondLevel: number;
