@@ -1,5 +1,5 @@
 import S from './styled';
-import Blink from '@/components/Blink';
+import Blink from '@/components/blink';
 import { useBatteryStatus } from './hooks/use-battery-status';
 
 const BatteryStatus = () => {

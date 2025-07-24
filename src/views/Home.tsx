@@ -1,7 +1,7 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import useTranslation from '@/hooks/use-translation';
 import { useNavigate } from 'react-router-dom';
-import CurrentPageContainer from '@/components/CurrentPageContainer';
+import CurrentPageContainer from '@/components/current-page-container';
 import { GlobalContext } from '@/context/global/context';
 
 const Home = () => {

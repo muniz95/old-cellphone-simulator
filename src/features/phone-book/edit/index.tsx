@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect } from 'react';
 import S from './styled';
-import TextInput from '@/components/TextInput';
+import TextInput from '@/components/text-input/index';
 import useTranslation from '@/hooks/use-translation';
 import { usePhoneBookEdit } from './hooks/use-phone-book-edit';
 import { GlobalContext } from '@/context/global/context';

@@ -1,5 +1,5 @@
 import S from './styled';
-import TextInput from '@/components/TextInput';
+import TextInput from '@/components/text-input/index';
 import usePhoneBookSearch from '@/features/phone-book/search/hooks/use-phone-book-search';
 import useThirdLevel from '@/hooks/use-third-level';
 
