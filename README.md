@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7e41b3a5-454c-44ed-905d-c364d21f384c/deploy-status)](https://app.netlify.com/projects/vapor-nr1/deploys)
+
 A small web app that simulates the behavior and appearance of a common cell phone in 2001.
 
 Remember when smartphones how we know nowadays were something utopic? Handheld devices were, for our modern standards, very limited.
