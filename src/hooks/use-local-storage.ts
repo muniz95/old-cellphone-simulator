@@ -1,5 +1,26 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
+const memoryStorage: Record<string, string> = {};
+const fallbackStorage: Pick<Storage, 'getItem' | 'setItem'> = {
+  getItem: (key: string) => memoryStorage[key] ?? null,
+  setItem: (key: string, value: string) => {
+    memoryStorage[key] = value;
+  },
+};
+
+const resolveStorage = (): Pick<Storage, 'getItem' | 'setItem'> => {
+  const storage = globalThis?.localStorage as Partial<Storage> | undefined;
+  const hasStorageInterface =
+    typeof storage?.getItem === 'function' &&
+    typeof storage?.setItem === 'function';
+
+  if (hasStorageInterface) {
+    return storage as Pick<Storage, 'getItem' | 'setItem'>;
+  }
+
+  return fallbackStorage;
+};
+
 const handleStoredValue = <T>(value: T) => {
   try {
     if (typeof value === 'object') return JSON.stringify(value);
@@ -14,9 +35,10 @@ const useLocalStorage = <T>(
   key: string,
   value: T
 ): [T, Dispatch<SetStateAction<T>>] => {
+  const storage = resolveStorage();
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
-      const item = window.localStorage.getItem(key);
+      const item = storage.getItem(key);
       if (item) {
         try {
           return JSON.parse(item);
@@ -35,7 +57,7 @@ const useLocalStorage = <T>(
           return item;
         }
       } else {
-        window.localStorage.setItem(key, handleStoredValue(value));
+        storage.setItem(key, handleStoredValue(value));
       }
     } catch (error) {
       console.error(error);
@@ -46,11 +68,11 @@ const useLocalStorage = <T>(
   useEffect(() => {
     try {
       if (!storedValue) return;
-      window.localStorage.setItem(key, handleStoredValue(storedValue));
+      storage.setItem(key, handleStoredValue(storedValue));
     } catch (error) {
       console.error(error);
     }
-  }, [key, storedValue]);
+  }, [key, storage, storedValue]);
 
   return [storedValue, setStoredValue];
 };

@@ -1,11 +1,11 @@
-import { useCallback, useContext, useState } from 'react';
+import { useCallback, useState } from 'react';
 import vibration from '@/utils/vibration';
 import { Contact } from '@/interfaces/contact';
-import { GlobalContext } from '@/context/global/context';
 import useContacts from '@/hooks/persistence/use-contacts';
+import { useUiStore } from '@/stores/ui-store';
 
 const usePhoneBookErase = () => {
-  const { openModal } = useContext(GlobalContext);
+  const openModal = useUiStore((state) => state.openModal);
   const dispatchOpenModal = useCallback(() => openModal(), [openModal]);
 
   const [contacts, setContacts] = useContacts();

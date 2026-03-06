@@ -1,13 +1,13 @@
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import S from '@/components/base';
 import { Contact } from '@/interfaces/contact';
 import useTranslation from '@/hooks/use-translation';
 import usePhoneBookErase from './hooks/use-phone-book-erase';
-import { GlobalContext } from '@/context/global/context';
+import { useUiStore } from '@/stores/ui-store';
 
 const PhoneBookErase = () => {
   const { t } = useTranslation();
-  const { setThirdLevel } = useContext(GlobalContext);
+  const setThirdLevel = useUiStore((state) => state.setThirdLevel);
   const dispatchSetThirdLevel = useCallback(
     (position: number) => setThirdLevel(position + 1),
     [setThirdLevel]

@@ -1,8 +1,8 @@
-import { GlobalContext } from '@/context/global/context';
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
+import { useUiStore } from '@/stores/ui-store';
 
 const useSecondLevel = () => {
-  const { setSecondLevel } = useContext(GlobalContext);
+  const setSecondLevel = useUiStore((state) => state.setSecondLevel);
   const dispatchSetSecondLevel = useCallback(
     (position: number) => setSecondLevel(position + 1),
     [setSecondLevel]

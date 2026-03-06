@@ -1,24 +1,16 @@
 import { renderHook } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import useSecondLevel from '@/features/clock/hooks/use-second-level';
-import { GlobalContextProvider } from '@/context/global/provider';
-import { useContext } from 'react';
-import { GlobalContext } from '@/context/global/context';
+import { resetUiStore, useUiStore } from '@/stores/ui-store';
 
 describe('useSecondLevel', () => {
-  it('should dispatch setSecondLevel action', () => {
-    const { result } = renderHook(
-      () => {
-        useSecondLevel();
-        return useContext(GlobalContext);
-      },
-      {
-        wrapper: ({ children }) => (
-          <GlobalContextProvider>{children}</GlobalContextProvider>
-        ),
-      }
-    );
+  beforeEach(() => {
+    resetUiStore();
+  });
 
-    expect(result.current.secondLevel).toBe(1);
+  it('should dispatch setSecondLevel action', () => {
+    renderHook(() => useSecondLevel());
+
+    expect(useUiStore.getState().secondLevel).toBe(1);
   });
 });

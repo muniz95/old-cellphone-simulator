@@ -1,107 +1,71 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import {
-  resetSettingsToDefaults,
-  saveColorSelection,
-  saveLanguageSelection,
-  saveLightPreferences,
-  saveSoundPreferences,
-} from '@/features/settings/application/actions';
-import {
-  FeedbackPort,
-  SettingsStorePort,
-} from '@/features/settings/application/ports';
+  resetSettingsStore,
+  SETTINGS_STORAGE_KEY,
+  useSettingsStore,
+} from '@/features/settings/state/settings-store';
 import { DEFAULT_SETTINGS } from '@/features/settings/domain/constants';
 
-const createStore = (): SettingsStorePort & {
-  writeSpy: ReturnType<typeof vi.fn>;
-} => {
-  const writeSpy = vi.fn();
-
-  return {
-    read: () => ({ ...DEFAULT_SETTINGS }),
-    write: writeSpy,
-    writeSpy,
-  };
-};
-
-const createFeedback = (): FeedbackPort & {
-  successSpy: ReturnType<typeof vi.fn>;
-  resetSpy: ReturnType<typeof vi.fn>;
-} => {
-  const successSpy = vi.fn();
-  const resetSpy = vi.fn();
-
-  return {
-    success: successSpy,
-    reset: resetSpy,
-    successSpy,
-    resetSpy,
-  };
-};
-
-describe('settings application actions', () => {
-  it('saves selected color and emits success feedback once', () => {
-    const store = createStore();
-    const feedback = createFeedback();
-
-    const next = saveColorSelection(store, feedback, '#0d48eb');
-
-    expect(next.color).toBe('#0d48eb');
-    expect(store.writeSpy).toHaveBeenCalledTimes(1);
-    expect(feedback.successSpy).toHaveBeenCalledTimes(1);
+describe('settings store actions', () => {
+  beforeEach(() => {
+    const storage = globalThis.localStorage as Partial<Storage>;
+    if (typeof storage?.removeItem === 'function') {
+      storage.removeItem(SETTINGS_STORAGE_KEY);
+    }
+    resetSettingsStore();
   });
 
-  it('saves selected language and emits success feedback once', () => {
-    const store = createStore();
-    const feedback = createFeedback();
+  it('saves selected color and ignores unsupported colors', () => {
+    useSettingsStore.getState().setColor('#0d48eb');
+    expect(useSettingsStore.getState().color).toBe('#0d48eb');
 
-    const next = saveLanguageSelection(store, feedback, 'pt');
-
-    expect(next.language).toBe('pt');
-    expect(store.writeSpy).toHaveBeenCalledTimes(1);
-    expect(feedback.successSpy).toHaveBeenCalledTimes(1);
+    useSettingsStore.getState().setColor('#123456');
+    expect(useSettingsStore.getState().color).toBe('#0d48eb');
   });
 
-  it('saves sound settings using normalized values', () => {
-    const store = createStore();
-    const feedback = createFeedback();
+  it('saves selected language and ignores unsupported languages', () => {
+    useSettingsStore.getState().setLanguage('pt');
+    expect(useSettingsStore.getState().language).toBe('pt');
 
-    const next = saveSoundPreferences(store, feedback, {
+    useSettingsStore.getState().setLanguage('jp');
+    expect(useSettingsStore.getState().language).toBe('pt');
+  });
+
+  it('saves sound settings with normalization', () => {
+    useSettingsStore.getState().setSoundLevels({
       notificationLevel: 200,
       alarmLevel: -10,
       ringLevel: 30,
     });
 
-    expect(next.notificationLevel).toBe(100);
-    expect(next.alarmLevel).toBe(0);
-    expect(next.ringLevel).toBe(30);
-    expect(store.writeSpy).toHaveBeenCalledTimes(1);
-    expect(feedback.successSpy).toHaveBeenCalledTimes(1);
+    const state = useSettingsStore.getState();
+    expect(state.notificationLevel).toBe(100);
+    expect(state.alarmLevel).toBe(0);
+    expect(state.ringLevel).toBe(30);
   });
 
-  it('saves light settings using normalized values', () => {
-    const store = createStore();
-    const feedback = createFeedback();
-
-    const next = saveLightPreferences(store, feedback, {
+  it('saves light settings with normalization', () => {
+    useSettingsStore.getState().setLightSettings({
       backlightLevel: 5,
       inactivityTime: 999,
     });
 
-    expect(next.backlightLevel).toBe(20);
-    expect(next.inactivityTime).toBe(600);
-    expect(store.writeSpy).toHaveBeenCalledTimes(1);
-    expect(feedback.successSpy).toHaveBeenCalledTimes(1);
+    const state = useSettingsStore.getState();
+    expect(state.backlightLevel).toBe(20);
+    expect(state.inactivityTime).toBe(600);
   });
 
-  it('resets settings to defaults and emits reset feedback once', () => {
-    const store = createStore();
-    const feedback = createFeedback();
+  it('resets settings to defaults', () => {
+    useSettingsStore.getState().setLanguage('pt');
+    useSettingsStore.getState().resetDefaults();
 
-    const next = resetSettingsToDefaults(store, feedback);
-
-    expect(next).toEqual(DEFAULT_SETTINGS);
-    expect(store.writeSpy).toHaveBeenCalledTimes(1);
-    expect(feedback.resetSpy).toHaveBeenCalledTimes(1);
+    const state = useSettingsStore.getState();
+    expect(state.color).toBe(DEFAULT_SETTINGS.color);
+    expect(state.language).toBe(DEFAULT_SETTINGS.language);
+    expect(state.notificationLevel).toBe(DEFAULT_SETTINGS.notificationLevel);
+    expect(state.alarmLevel).toBe(DEFAULT_SETTINGS.alarmLevel);
+    expect(state.ringLevel).toBe(DEFAULT_SETTINGS.ringLevel);
+    expect(state.backlightLevel).toBe(DEFAULT_SETTINGS.backlightLevel);
+    expect(state.inactivityTime).toBe(DEFAULT_SETTINGS.inactivityTime);
   });
 });

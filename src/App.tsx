@@ -8,22 +8,23 @@ import TopBar from '@/components/top-bar';
 
 import routes from '@/routes';
 import Startup from '@/components/startup';
-import { useContext, useEffect, useState } from 'react';
-import { SettingsContext } from './context/settings/context';
+import { useEffect, useState } from 'react';
+import { useSettingsStore } from '@/features/settings/state/settings-store';
 
 const App = () => {
   const routing = useRoutes([...routes]);
 
-  const { backlightLevel, color } = useContext(SettingsContext);
+  const backlightLevel = useSettingsStore((state) => state.backlightLevel);
+  const color = useSettingsStore((state) => state.color);
   const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
-    if (firstRender) {
-      setTimeout(() => {
-        setFirstRender(false);
-      }, 3000);
-    }
-  });
+    const timeout = setTimeout(() => {
+      setFirstRender(false);
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   const style = {
     backgroundColor: color,

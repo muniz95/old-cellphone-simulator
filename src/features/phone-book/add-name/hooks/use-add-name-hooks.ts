@@ -1,11 +1,12 @@
-import { useCallback, useState, ChangeEvent, useContext } from 'react';
+import { useCallback, useState, ChangeEvent } from 'react';
 import vibration from '@/utils/vibration';
-import { GlobalContext } from '@/context/global/context';
 import useContacts from '@/hooks/persistence/use-contacts';
+import { useUiStore } from '@/stores/ui-store';
 
 export const usePhoneBookAddNameHooks = () => {
   const [contacts, setContacts] = useContacts();
-  const { setThirdLevel, openModal } = useContext(GlobalContext);
+  const setThirdLevel = useUiStore((state) => state.setThirdLevel);
+  const openModal = useUiStore((state) => state.openModal);
   const dispatchSetThirdLevel = useCallback(
     (position: number) => setThirdLevel(position + 1),
     [setThirdLevel]

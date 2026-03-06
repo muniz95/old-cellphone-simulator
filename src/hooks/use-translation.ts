@@ -1,10 +1,9 @@
-import { SettingsContext } from '@/context/settings/context';
+import { useSettingsStore } from '@/features/settings/state/settings-store';
 import { ResourcesType } from '@/locales';
-import { useContext } from 'react';
 import { useTranslation as useTranslationHook } from 'react-i18next';
 
 const useTranslation = (section?: ResourcesType[]) => {
-  const { language } = useContext(SettingsContext);
+  const language = useSettingsStore((state) => state.language);
   return useTranslationHook(section, { lng: language });
 };
 

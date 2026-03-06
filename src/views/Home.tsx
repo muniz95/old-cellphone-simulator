@@ -1,44 +1,36 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import useTranslation from '@/hooks/use-translation';
 import { useNavigate } from 'react-router-dom';
 import CurrentPageContainer from '@/components/current-page-container';
-import { GlobalContext } from '@/context/global/context';
+import { useUiStore } from '@/stores/ui-store';
 
 const Home = () => {
   const { t } = useTranslation(['home']);
-  const {
-    setFirstLevel,
-    setSecondLevel,
-    setThirdLevel,
-    setFourthLevel,
-    setFifthLevel,
-  } = useContext(GlobalContext);
+  const setFirstLevel = useUiStore((state) => state.setFirstLevel);
+  const resetLevels = useUiStore((state) => state.resetLevels);
   const navigate = useNavigate();
   const dispatchSetFirstLevel = useCallback(
     (position: number) => setFirstLevel(position + 1),
     [setFirstLevel]
   );
-  const dispatchResetPageIndicator = useCallback(() => {
-    setSecondLevel(0);
-    setThirdLevel(0);
-    setFourthLevel(0);
-    setFifthLevel(0);
-  }, [setFifthLevel, setFourthLevel, setSecondLevel, setThirdLevel]);
-  const [menus] = useState([
-    { path: '/phonebook', title: t('phonebookTitle') },
-    { path: '/messages', title: t('messagesTitle') },
-    { path: '/chat', title: t('chatTitle') },
-    { path: '/callregister', title: t('callregisterTitle') },
-    { path: '/tones', title: t('tonesTitle') },
-    { path: '/settings', title: t('settingsTitle') },
-    { path: '/calldivert', title: t('calldivertTitle') },
-    { path: '/games', title: t('gamesTitle') },
-    { path: '/calculator', title: t('calculatorTitle') },
-    { path: '/reminders', title: t('remindersTitle') },
-    { path: '/clock', title: t('clockTitle') },
-    { path: '/profiles', title: t('profilesTitle') },
-    { path: '/simservices', title: t('simservicesTitle') },
-  ]);
+  const menus = useMemo(
+    () => [
+      { path: '/phonebook', title: t('phonebookTitle') },
+      { path: '/messages', title: t('messagesTitle') },
+      { path: '/chat', title: t('chatTitle') },
+      { path: '/callregister', title: t('callregisterTitle') },
+      { path: '/tones', title: t('tonesTitle') },
+      { path: '/settings', title: t('settingsTitle') },
+      { path: '/calldivert', title: t('calldivertTitle') },
+      { path: '/games', title: t('gamesTitle') },
+      { path: '/calculator', title: t('calculatorTitle') },
+      { path: '/reminders', title: t('remindersTitle') },
+      { path: '/clock', title: t('clockTitle') },
+      { path: '/profiles', title: t('profilesTitle') },
+      { path: '/simservices', title: t('simservicesTitle') },
+    ],
+    [t]
+  );
   const [position, setPosition] = useState(0);
 
   const handleTap = () => {
@@ -57,7 +49,9 @@ const Home = () => {
     dispatchSetFirstLevel(position);
   }, [dispatchSetFirstLevel, position]);
 
-  useEffect(dispatchResetPageIndicator);
+  useEffect(() => {
+    resetLevels();
+  }, [resetLevels]);
 
   const label = menus[position];
   return (

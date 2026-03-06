@@ -1,32 +1,35 @@
 import { useCallback, useEffect, useState } from 'react';
-import { saveSoundPreferences } from '@/features/settings/application/actions';
-import { useFeedbackPort } from '@/features/settings/infrastructure/adapters/use-feedback-port';
-import { usePageIndicatorPort } from '@/features/settings/infrastructure/adapters/use-page-indicator-port';
-import { useSettingsStorePort } from '@/features/settings/infrastructure/adapters/use-settings-store-port';
+import { useSettingsStore } from '@/features/settings/state/settings-store';
+import { useUiStore } from '@/stores/ui-store';
+import vibration from '@/utils/vibration';
 
 export const useSoundSettingsController = () => {
-  const store = useSettingsStorePort();
-  const feedback = useFeedbackPort();
-  const { setFourth } = usePageIndicatorPort();
+  const notification = useSettingsStore((state) => state.notificationLevel);
+  const alarm = useSettingsStore((state) => state.alarmLevel);
+  const ring = useSettingsStore((state) => state.ringLevel);
+  const setSoundLevels = useSettingsStore((state) => state.setSoundLevels);
+  const setFourthLevel = useUiStore((state) => state.setFourthLevel);
+  const openModal = useUiStore((state) => state.openModal);
 
-  const settings = store.read();
   const [notificationLevel, setNotificationLevel] = useState(
-    settings.notificationLevel
+    notification
   );
-  const [alarmLevel, setAlarmLevel] = useState(settings.alarmLevel);
-  const [ringLevel, setRingLevel] = useState(settings.ringLevel);
+  const [alarmLevel, setAlarmLevel] = useState(alarm);
+  const [ringLevel, setRingLevel] = useState(ring);
 
   useEffect(() => {
-    setFourth(3);
-  }, [setFourth]);
+    setFourthLevel(4);
+  }, [setFourthLevel]);
 
   const save = useCallback(() => {
-    saveSoundPreferences(store, feedback, {
+    setSoundLevels({
       notificationLevel,
       alarmLevel,
       ringLevel,
     });
-  }, [alarmLevel, feedback, notificationLevel, ringLevel, store]);
+    vibration.success();
+    openModal();
+  }, [alarmLevel, notificationLevel, openModal, ringLevel, setSoundLevels]);
 
   return {
     notificationLevel,

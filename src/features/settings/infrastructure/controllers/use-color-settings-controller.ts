@@ -1,24 +1,25 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { saveColorSelection } from '@/features/settings/application/actions';
 import { COLOR_OPTIONS } from '@/features/settings/domain/constants';
-import { useFeedbackPort } from '@/features/settings/infrastructure/adapters/use-feedback-port';
-import { usePageIndicatorPort } from '@/features/settings/infrastructure/adapters/use-page-indicator-port';
-import { useSettingsStorePort } from '@/features/settings/infrastructure/adapters/use-settings-store-port';
+import { useSettingsStore } from '@/features/settings/state/settings-store';
+import { useUiStore } from '@/stores/ui-store';
+import vibration from '@/utils/vibration';
 
 export const useColorSettingsController = () => {
   const [color, setColor] = useState('');
-  const feedback = useFeedbackPort();
-  const store = useSettingsStorePort();
-  const { setFourth } = usePageIndicatorPort();
+  const saveColor = useSettingsStore((state) => state.setColor);
+  const setFourthLevel = useUiStore((state) => state.setFourthLevel);
+  const openModal = useUiStore((state) => state.openModal);
 
   useEffect(() => {
-    setFourth(0);
-  }, [setFourth]);
+    setFourthLevel(1);
+  }, [setFourthLevel]);
 
   const save = useCallback(() => {
     if (!color) return;
-    saveColorSelection(store, feedback, color);
-  }, [color, feedback, store]);
+    saveColor(color);
+    vibration.success();
+    openModal();
+  }, [color, openModal, saveColor]);
 
   const options = useMemo(() => COLOR_OPTIONS, []);
 

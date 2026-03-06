@@ -1,25 +1,25 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import S from './styled';
-import { SettingsContext } from '@/context/settings/context';
-import { useContext } from 'react';
-import { GlobalContext } from '@/context/global/context';
+import { useSettingsStore } from '@/features/settings/state/settings-store';
+import { useUiStore } from '@/stores/ui-store';
 
 const Modal = () => {
   const navigate = useNavigate();
-  const { showModal, closeModal } = useContext(GlobalContext);
-  const { color } = useContext(SettingsContext);
+  const showModal = useUiStore((state) => state.showModal);
+  const closeModal = useUiStore((state) => state.closeModal);
+  const color = useSettingsStore((state) => state.color);
 
-  let checked = false;
-  if (showModal) {
-    setTimeout(() => {
-      const location = {
-        pathname: '/',
-      };
+  useEffect(() => {
+    if (!showModal) return;
+
+    const timeout = setTimeout(() => {
       closeModal();
-      navigate(location);
+      navigate('/');
     }, 3000);
-    checked = true;
-  }
+
+    return () => clearTimeout(timeout);
+  }, [closeModal, navigate, showModal]);
 
   return (
     <S.ModalContainer showModal={showModal} color={color}>
@@ -30,7 +30,7 @@ const Modal = () => {
           id="ok"
           style={{ opacity: 0 }}
           readOnly
-          checked={checked}
+          checked={showModal}
         />
         <label htmlFor="ok">
           <span>&nbsp;</span>

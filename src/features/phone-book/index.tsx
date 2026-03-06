@@ -1,13 +1,14 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useMenuItems from './menu-items';
 import Menu from './menu';
-import { GlobalContext } from '@/context/global/context';
+import { useUiStore } from '@/stores/ui-store';
 
-const PhoneBook = () => {
+  const PhoneBook = () => {
   const navigate = useNavigate();
 
-  const { setSecondLevel, setThirdLevel } = useContext(GlobalContext);
+  const setSecondLevel = useUiStore((state) => state.setSecondLevel);
+  const setThirdLevel = useUiStore((state) => state.setThirdLevel);
   const dispatchSetSecondLevel = useCallback(
     (position: number) => setSecondLevel(position + 1),
     [setSecondLevel]

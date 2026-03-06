@@ -1,14 +1,14 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { SimNumber } from '@/interfaces/simNumber';
 import { say } from '@/utils/sound';
-import { GlobalContext } from '@/context/global/context';
 import useLocalStorage from '@/hooks/use-local-storage';
+import { useUiStore } from '@/stores/ui-store';
 
 const useSimServices = () => {
   const [simNumbers] = useLocalStorage<SimNumber[]>('simNumbers', []);
   const [currentSimNumber, setCurrentSimNumber] = useState<SimNumber>();
 
-  const { setSecondLevel } = useContext(GlobalContext);
+  const setSecondLevel = useUiStore((state) => state.setSecondLevel);
 
   useEffect(() => {
     setSecondLevel(0);

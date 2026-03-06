@@ -1,9 +1,8 @@
-import { SettingsContext } from '@/context/settings/context';
 import S from './styled';
-import { useContext } from 'react';
+import { useSettingsStore } from '@/features/settings/state/settings-store';
 
 const Startup = () => {
-  const { color } = useContext(SettingsContext);
+  const color = useSettingsStore((state) => state.color);
 
   return <S.StartupContainer color={color}>Startup</S.StartupContainer>;
 };

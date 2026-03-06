@@ -1,10 +1,7 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import { fireEvent, render } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { ReactNode, SetStateAction } from 'react';
 import '@/i18n';
-import { GlobalContext, defaultContext } from '@/context/global/context';
-import { SettingsContext, settingsContext } from '@/context/settings/context';
 import { settingsModule } from '@/features/settings/module';
 import SettingsPage from '@/features/settings/ui/pages/settings-page';
 import GeneralSettingsPage from '@/features/settings/ui/pages/general-settings-page';
@@ -13,19 +10,24 @@ import LanguageSettingsPage from '@/features/settings/ui/pages/language-settings
 import LightSettingsPage from '@/features/settings/ui/pages/light-settings-page';
 import SoundSettingsPage from '@/features/settings/ui/pages/sound-settings-page';
 import RestoreFactorySettingsPage from '@/features/settings/ui/pages/restore-factory-settings-page';
+import {
+  resetSettingsStore,
+  SETTINGS_STORAGE_KEY,
+  useSettingsStore,
+} from '@/features/settings/state/settings-store';
+import { resetUiStore } from '@/stores/ui-store';
 import { DEFAULT_SETTINGS } from '@/features/settings/domain/constants';
 
-const renderWithSettingsProviders = (ui: ReactNode) => {
-  return render(
-    <GlobalContext.Provider value={{ ...defaultContext }}>
-      <SettingsContext.Provider value={{ ...settingsContext }}>
-        {ui}
-      </SettingsContext.Provider>
-    </GlobalContext.Provider>
-  );
-};
-
 describe('settings module integration', () => {
+  beforeEach(() => {
+    const storage = globalThis.localStorage as Partial<Storage>;
+    if (typeof storage?.removeItem === 'function') {
+      storage.removeItem(SETTINGS_STORAGE_KEY);
+    }
+    resetSettingsStore();
+    resetUiStore();
+  });
+
   it('exposes all expected routes', () => {
     const routePaths = settingsModule.routes
       .map((route) => route.path)
@@ -43,7 +45,7 @@ describe('settings module integration', () => {
   });
 
   it('navigates from settings menu on tap', () => {
-    const { getByText } = renderWithSettingsProviders(
+    const { getByText } = render(
       <MemoryRouter initialEntries={['/settings']}>
         <Routes>
           <Route path="/settings" element={<SettingsPage />} />
@@ -62,7 +64,7 @@ describe('settings module integration', () => {
   });
 
   it('navigates from general settings menu on tap', () => {
-    const { getByText } = renderWithSettingsProviders(
+    const { getByText } = render(
       <MemoryRouter initialEntries={['/settings/general']}>
         <Routes>
           <Route path="/settings/general" element={<GeneralSettingsPage />} />
@@ -80,91 +82,24 @@ describe('settings module integration', () => {
     expect(getByText('COLOR')).toBeTruthy();
   });
 
-  it('saves updated values in pages using context-backed store', () => {
-    let currentSettings = { ...DEFAULT_SETTINGS };
-
-    const settingsValue = {
-      ...settingsContext,
-      get color() {
-        return currentSettings.color;
-      },
-      setColor: (value: SetStateAction<string>) => {
-        currentSettings.color =
-          typeof value === 'function' ? value(currentSettings.color) : value;
-      },
-      get language() {
-        return currentSettings.language;
-      },
-      setLanguage: (value: SetStateAction<string>) => {
-        currentSettings.language =
-          typeof value === 'function'
-            ? value(currentSettings.language)
-            : value;
-      },
-      get notificationLevel() {
-        return currentSettings.notificationLevel;
-      },
-      setNotificationLevel: (value: SetStateAction<number>) => {
-        currentSettings.notificationLevel =
-          typeof value === 'function'
-            ? value(currentSettings.notificationLevel)
-            : value;
-      },
-      get alarmLevel() {
-        return currentSettings.alarmLevel;
-      },
-      setAlarmLevel: (value: SetStateAction<number>) => {
-        currentSettings.alarmLevel =
-          typeof value === 'function' ? value(currentSettings.alarmLevel) : value;
-      },
-      get ringLevel() {
-        return currentSettings.ringLevel;
-      },
-      setRingLevel: (value: SetStateAction<number>) => {
-        currentSettings.ringLevel =
-          typeof value === 'function' ? value(currentSettings.ringLevel) : value;
-      },
-      get backlightLevel() {
-        return currentSettings.backlightLevel;
-      },
-      setBacklightLevel: (value: SetStateAction<number>) => {
-        currentSettings.backlightLevel =
-          typeof value === 'function'
-            ? value(currentSettings.backlightLevel)
-            : value;
-      },
-      get inactivityTime() {
-        return currentSettings.inactivityTime;
-      },
-      setInactivityTime: (value: SetStateAction<number>) => {
-        currentSettings.inactivityTime =
-          typeof value === 'function'
-            ? value(currentSettings.inactivityTime)
-            : value;
-      },
-    };
-
-    const { getAllByText, getByText, getByLabelText, unmount } = render(
+  it('saves updated values through store-backed pages', () => {
+    const { getAllByText, getByText, getByLabelText } = render(
       <MemoryRouter initialEntries={['/settings/restore']}>
-        <GlobalContext.Provider value={{ ...defaultContext }}>
-          <SettingsContext.Provider value={settingsValue}>
-            <ColorSettingsPage />
-            <LanguageSettingsPage />
-            <LightSettingsPage />
-            <SoundSettingsPage />
-            <RestoreFactorySettingsPage />
-          </SettingsContext.Provider>
-        </GlobalContext.Provider>
+        <ColorSettingsPage />
+        <LanguageSettingsPage />
+        <LightSettingsPage />
+        <SoundSettingsPage />
+        <RestoreFactorySettingsPage />
       </MemoryRouter>
     );
 
     fireEvent.click(getByText(/Blue|general\.color\.blue/i));
     fireEvent.click(getAllByText(/Save|save|Salvar/i)[0]);
-    expect(currentSettings.color).toBe('#0d48eb');
+    expect(useSettingsStore.getState().color).toBe('#0d48eb');
 
     fireEvent.click(getByText('Português'));
     fireEvent.click(getAllByText(/Save|save|Salvar/i)[1]);
-    expect(currentSettings.language).toBe('pt');
+    expect(useSettingsStore.getState().language).toBe('pt');
 
     fireEvent.change(
       getByLabelText(
@@ -175,21 +110,17 @@ describe('settings module integration', () => {
       }
     );
     fireEvent.change(
-      getByLabelText(
-        /Inactive after|general\.light\.inactiveAfter|Inativo após/i
-      ),
+      getByLabelText(/Inactive after|general\.light\.inactiveAfter|Inativo após/i),
       {
         target: { value: '600', valueAsNumber: 600 },
       }
     );
     fireEvent.click(getAllByText(/Save|save|Salvar/i)[2]);
-    expect(currentSettings.backlightLevel).toBe(20);
-    expect(currentSettings.inactivityTime).toBe(600);
+    expect(useSettingsStore.getState().backlightLevel).toBe(20);
+    expect(useSettingsStore.getState().inactivityTime).toBe(600);
 
     fireEvent.change(
-      getByLabelText(
-        /Notification|general\.sound\.notification|Notificação/i
-      ),
+      getByLabelText(/Notification|general\.sound\.notification|Notificação/i),
       {
         target: { value: '30', valueAsNumber: 30 },
       }
@@ -201,13 +132,19 @@ describe('settings module integration', () => {
       target: { value: '50', valueAsNumber: 50 },
     });
     fireEvent.click(getAllByText(/Save|save|Salvar/i)[3]);
-    expect(currentSettings.notificationLevel).toBe(30);
-    expect(currentSettings.alarmLevel).toBe(40);
-    expect(currentSettings.ringLevel).toBe(50);
+    expect(useSettingsStore.getState().notificationLevel).toBe(30);
+    expect(useSettingsStore.getState().alarmLevel).toBe(40);
+    expect(useSettingsStore.getState().ringLevel).toBe(50);
 
-    fireEvent.click(getByText(/Yes|yes/i));
-    expect(currentSettings).toEqual(DEFAULT_SETTINGS);
+    fireEvent.click(getByText(/Yes|yes|Sim/i));
 
-    unmount();
+    const settings = useSettingsStore.getState();
+    expect(settings.color).toBe(DEFAULT_SETTINGS.color);
+    expect(settings.language).toBe(DEFAULT_SETTINGS.language);
+    expect(settings.notificationLevel).toBe(DEFAULT_SETTINGS.notificationLevel);
+    expect(settings.alarmLevel).toBe(DEFAULT_SETTINGS.alarmLevel);
+    expect(settings.ringLevel).toBe(DEFAULT_SETTINGS.ringLevel);
+    expect(settings.backlightLevel).toBe(DEFAULT_SETTINGS.backlightLevel);
+    expect(settings.inactivityTime).toBe(DEFAULT_SETTINGS.inactivityTime);
   });
 });

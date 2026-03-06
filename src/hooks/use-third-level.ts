@@ -1,8 +1,8 @@
-import { useContext, useEffect } from 'react';
-import { GlobalContext } from '@/context/global/context';
+import { useEffect } from 'react';
+import { useUiStore } from '@/stores/ui-store';
 
 const useThirdLevel = (position: number) => {
-  const { setThirdLevel } = useContext(GlobalContext);
+  const setThirdLevel = useUiStore((state) => state.setThirdLevel);
 
   useEffect(() => {
     setThirdLevel(position + 1);

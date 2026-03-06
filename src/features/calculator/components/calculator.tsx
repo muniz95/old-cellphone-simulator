@@ -1,11 +1,11 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useCalculator } from '../hooks/use-calculator';
 import S from '../styled';
-import { GlobalContext } from '@/context/global/context';
+import { useUiStore } from '@/stores/ui-store';
 
 const Calculator = () => {
   const { expression, handleClick, clear, back, evaluate } = useCalculator();
-  const { setSecondLevel } = useContext(GlobalContext);
+  const setSecondLevel = useUiStore((state) => state.setSecondLevel);
 
   useEffect(() => {
     setSecondLevel(1);

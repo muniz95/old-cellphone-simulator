@@ -1,10 +1,10 @@
-import { GlobalContext } from '@/context/global/context';
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import useTranslation from '@/hooks/use-translation';
+import { useUiStore } from '@/stores/ui-store';
 
 const CallRegister = () => {
   const { t } = useTranslation(['callregister']);
-  const { setSecondLevel } = useContext(GlobalContext);
+  const setSecondLevel = useUiStore((state) => state.setSecondLevel);
   const dispatchSetSecondLevel = useCallback(
     (position: number) => setSecondLevel(position + 1),
     [setSecondLevel]

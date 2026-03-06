@@ -1,13 +1,14 @@
 import { useState, useEffect, useContext } from 'react';
 import { Profile } from '@/interfaces/profile';
 import vibration from '@/utils/vibration';
-import { GlobalContext } from '@/context/global/context';
 import { ProfileContext } from '@/context/profile/context';
+import { useUiStore } from '@/stores/ui-store';
 
 export const useProfiles = () => {
   const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
 
-  const { setSecondLevel, openModal } = useContext(GlobalContext);
+  const setSecondLevel = useUiStore((state) => state.setSecondLevel);
+  const openModal = useUiStore((state) => state.openModal);
   const { profiles, setCurrentProfile } = useContext(ProfileContext);
 
   useEffect(() => {

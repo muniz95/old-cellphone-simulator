@@ -1,13 +1,14 @@
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import S from '@/components/base';
 import TextInput from '@/components/text-input/index';
 import useTranslation from '@/hooks/use-translation';
 import { usePhoneBookEdit } from './hooks/use-phone-book-edit';
-import { GlobalContext } from '@/context/global/context';
+import { useUiStore } from '@/stores/ui-store';
 
 const PhoneBookEdit = () => {
   const { t } = useTranslation();
-  const { setThirdLevel, openModal } = useContext(GlobalContext);
+  const setThirdLevel = useUiStore((state) => state.setThirdLevel);
+  const openModal = useUiStore((state) => state.openModal);
   const dispatchOpenModal = useCallback(() => openModal(), [openModal]);
   const dispatchSetThirdLevel = useCallback(
     (position: number) => setThirdLevel(position + 1),

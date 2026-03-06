@@ -1,17 +1,19 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { resetSettingsToDefaults } from '@/features/settings/application/actions';
-import { useFeedbackPort } from '@/features/settings/infrastructure/adapters/use-feedback-port';
-import { useSettingsStorePort } from '@/features/settings/infrastructure/adapters/use-settings-store-port';
+import vibration from '@/utils/vibration';
+import { useSettingsStore } from '@/features/settings/state/settings-store';
+import { useUiStore } from '@/stores/ui-store';
 
 export const useRestoreSettingsController = () => {
-  const store = useSettingsStorePort();
-  const feedback = useFeedbackPort();
+  const resetDefaults = useSettingsStore((state) => state.resetDefaults);
+  const openModal = useUiStore((state) => state.openModal);
   const navigate = useNavigate();
 
   const resetData = useCallback(() => {
-    resetSettingsToDefaults(store, feedback);
-  }, [feedback, store]);
+    resetDefaults();
+    vibration.reset();
+    openModal();
+  }, [openModal, resetDefaults]);
 
   const goBack = useCallback(() => {
     navigate(-1);

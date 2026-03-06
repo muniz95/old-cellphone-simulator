@@ -1,9 +1,9 @@
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import useTranslation from '@/hooks/use-translation';
-import { GlobalContext } from '@/context/global/context';
+import { useUiStore } from '@/stores/ui-store';
 
 const Reminders = () => {
-  const { setSecondLevel } = useContext(GlobalContext);
+  const setSecondLevel = useUiStore((state) => state.setSecondLevel);
   const { t } = useTranslation(['reminders']);
   const dispatchSetSecondLevel = useCallback(
     (position: number) => setSecondLevel(position + 1),

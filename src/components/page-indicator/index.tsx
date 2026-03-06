@@ -1,61 +1,22 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
-import { GlobalContext } from '@/context/global/context';
+import { useMemo } from 'react';
+import { useUiStore } from '@/stores/ui-store';
 
 const PageIndicator = () => {
-  // const { firstLevel, secondLevel, thirdLevel, fourthLevel, fifthLevel } =
-  //   useSelector((state: RootState) => state);
-  const { firstLevel, secondLevel, thirdLevel, fourthLevel, fifthLevel } =
-    useContext(GlobalContext);
-  const [indicator, setIndicator] = useState('');
-  const [firstLevelLabel, setFirstLevelLabel] = useState('');
-  const [secondLevelLabel, setSecondLevelLabel] = useState('');
-  const [thirdLevelLabel, setThirdLevelLabel] = useState('');
-  const [fourthLevelLabel, setFourthLevelLabel] = useState('');
-  const [fifthLevelLabel, setFifthLevelLabel] = useState('');
+  const firstLevel = useUiStore((state) => state.firstLevel);
+  const secondLevel = useUiStore((state) => state.secondLevel);
+  const thirdLevel = useUiStore((state) => state.thirdLevel);
+  const fourthLevel = useUiStore((state) => state.fourthLevel);
+  const fifthLevel = useUiStore((state) => state.fifthLevel);
 
-  const buildIndicator = useCallback(() => {
-    setIndicator(
-      firstLevelLabel +
-        secondLevelLabel +
-        thirdLevelLabel +
-        fourthLevelLabel +
-        fifthLevelLabel
-    );
-  }, [
-    firstLevelLabel,
-    secondLevelLabel,
-    thirdLevelLabel,
-    fourthLevelLabel,
-    fifthLevelLabel,
-  ]);
+  const indicator = useMemo(() => {
+    const firstLabel = firstLevel === 0 ? '' : `${firstLevel}`;
+    const secondLabel = secondLevel > 0 ? `-${secondLevel}` : '';
+    const thirdLabel = thirdLevel === 0 ? '' : `-${thirdLevel}`;
+    const fourthLabel = fourthLevel === 0 ? '' : `-${fourthLevel}`;
+    const fifthLabel = fifthLevel === 0 ? '' : `-${fifthLevel}`;
 
-  useEffect(() => {
-    setFirstLevelLabel(firstLevel === 0 ? '' : `${firstLevel}`);
-  }, [firstLevel]);
-  useEffect(() => {
-    setSecondLevelLabel(secondLevel > 0 ? `-${secondLevel}` : '');
-  }, [secondLevel]);
-  useEffect(() => {
-    setThirdLevelLabel(thirdLevel === 0 ? '' : `-${thirdLevel}`);
-  }, [thirdLevel]);
-  useEffect(() => {
-    setFourthLevelLabel(fourthLevel === 0 ? '' : `-${fourthLevel}`);
-  }, [fourthLevel]);
-  useEffect(() => {
-    setFifthLevelLabel(fifthLevel === 0 ? '' : `-${fifthLevel}`);
-  }, [fifthLevel]);
-
-  useEffect(() => {
-    buildIndicator();
-  }, [
-    firstLevel,
-    secondLevel,
-    thirdLevel,
-    fourthLevel,
-    fifthLevel,
-    buildIndicator,
-  ]);
-  // useEffect(buildIndicator);
+    return `${firstLabel}${secondLabel}${thirdLabel}${fourthLabel}${fifthLabel}`;
+  }, [firstLevel, secondLevel, thirdLevel, fourthLevel, fifthLevel]);
 
   return <h6>{indicator}</h6>;
 };

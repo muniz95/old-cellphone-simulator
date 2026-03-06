@@ -1,24 +1,26 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { saveLanguageSelection } from '@/features/settings/application/actions';
 import { LANGUAGE_OPTIONS } from '@/features/settings/domain/constants';
-import { useFeedbackPort } from '@/features/settings/infrastructure/adapters/use-feedback-port';
-import { usePageIndicatorPort } from '@/features/settings/infrastructure/adapters/use-page-indicator-port';
-import { useSettingsStorePort } from '@/features/settings/infrastructure/adapters/use-settings-store-port';
+import { useSettingsStore } from '@/features/settings/state/settings-store';
+import { useUiStore } from '@/stores/ui-store';
+import vibration from '@/utils/vibration';
 
 export const useLanguageSettingsController = () => {
-  const store = useSettingsStorePort();
-  const feedback = useFeedbackPort();
-  const { setFourth } = usePageIndicatorPort();
-  const [language, setLanguage] = useState(store.read().language);
+  const currentLanguage = useSettingsStore((state) => state.language);
+  const saveLanguage = useSettingsStore((state) => state.setLanguage);
+  const setFourthLevel = useUiStore((state) => state.setFourthLevel);
+  const openModal = useUiStore((state) => state.openModal);
+  const [language, setLanguage] = useState(currentLanguage);
 
   useEffect(() => {
-    setFourth(1);
-  }, [setFourth]);
+    setFourthLevel(2);
+  }, [setFourthLevel]);
 
   const save = useCallback(() => {
     if (!language) return;
-    saveLanguageSelection(store, feedback, language);
-  }, [feedback, language, store]);
+    saveLanguage(language);
+    vibration.success();
+    openModal();
+  }, [language, openModal, saveLanguage]);
 
   const options = useMemo(() => LANGUAGE_OPTIONS, []);
 

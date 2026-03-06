@@ -1,11 +1,11 @@
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import S from '@/components/base';
 import { useServiceNumbers } from './hooks/use-service-numbers';
-import { GlobalContext } from '@/context/global/context';
+import { useUiStore } from '@/stores/ui-store';
 
 const PhoneBookServiceNos = () => {
   const { contacts } = useServiceNumbers();
-  const { setThirdLevel } = useContext(GlobalContext);
+  const setThirdLevel = useUiStore((state) => state.setThirdLevel);
   const dispatchSetThirdLevel = useCallback(
     (position: number) => setThirdLevel(position + 1),
     [setThirdLevel]

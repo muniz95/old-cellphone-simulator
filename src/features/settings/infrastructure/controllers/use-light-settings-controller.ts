@@ -1,25 +1,26 @@
 import { useCallback, useEffect, useState } from 'react';
-import { saveLightPreferences } from '@/features/settings/application/actions';
-import { useFeedbackPort } from '@/features/settings/infrastructure/adapters/use-feedback-port';
-import { usePageIndicatorPort } from '@/features/settings/infrastructure/adapters/use-page-indicator-port';
-import { useSettingsStorePort } from '@/features/settings/infrastructure/adapters/use-settings-store-port';
+import { useSettingsStore } from '@/features/settings/state/settings-store';
+import { useUiStore } from '@/stores/ui-store';
+import vibration from '@/utils/vibration';
 
 export const useLightSettingsController = () => {
-  const store = useSettingsStorePort();
-  const feedback = useFeedbackPort();
-  const { setFourth } = usePageIndicatorPort();
-
-  const settings = store.read();
-  const [backlightLevel, setBacklightLevel] = useState(settings.backlightLevel);
-  const [inactivityTime, setInactivityTime] = useState(settings.inactivityTime);
+  const currentBacklightLevel = useSettingsStore((state) => state.backlightLevel);
+  const currentInactivityTime = useSettingsStore((state) => state.inactivityTime);
+  const setLightSettings = useSettingsStore((state) => state.setLightSettings);
+  const setFourthLevel = useUiStore((state) => state.setFourthLevel);
+  const openModal = useUiStore((state) => state.openModal);
+  const [backlightLevel, setBacklightLevel] = useState(currentBacklightLevel);
+  const [inactivityTime, setInactivityTime] = useState(currentInactivityTime);
 
   useEffect(() => {
-    setFourth(2);
-  }, [setFourth]);
+    setFourthLevel(3);
+  }, [setFourthLevel]);
 
   const save = useCallback(() => {
-    saveLightPreferences(store, feedback, { backlightLevel, inactivityTime });
-  }, [backlightLevel, feedback, inactivityTime, store]);
+    setLightSettings({ backlightLevel, inactivityTime });
+    vibration.success();
+    openModal();
+  }, [backlightLevel, inactivityTime, openModal, setLightSettings]);
 
   return {
     backlightLevel,
