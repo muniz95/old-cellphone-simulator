@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
       environment: 'jsdom',
       exclude: ['**/node_modules/**', '**/dist/**', '**/browser/**'],
       globals: true,
-      include: ['src/__tests__/**/*.test.{ts,tsx}'],
+      include: ['src/**/*.test.{ts,tsx}'],
       typecheck: {
         tsconfig: './tsconfig.json',
       },
