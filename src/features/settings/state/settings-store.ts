@@ -1,9 +1,5 @@
 import { create } from 'zustand';
-import {
-  createJSONStorage,
-  persist,
-  StateStorage,
-} from 'zustand/middleware';
+import { createJSONStorage, persist, StateStorage } from 'zustand/middleware';
 import { DEFAULT_SETTINGS } from '@/features/settings/domain/constants';
 import {
   restoreDefaults,
@@ -100,7 +96,9 @@ export const useSettingsStore = create<SettingsState>()(
       ...mapPreferencesToState(DEFAULT_SETTINGS),
       setColor: (value) =>
         set((state) =>
-          mapPreferencesToState(selectColor(mapStateToPreferences(state), value))
+          mapPreferencesToState(
+            selectColor(mapStateToPreferences(state), value)
+          )
         ),
       setLanguage: (value) =>
         set((state) =>

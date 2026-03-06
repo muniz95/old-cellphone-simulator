@@ -4,8 +4,12 @@ import { useUiStore } from '@/stores/ui-store';
 import vibration from '@/utils/vibration';
 
 export const useLightSettingsController = () => {
-  const currentBacklightLevel = useSettingsStore((state) => state.backlightLevel);
-  const currentInactivityTime = useSettingsStore((state) => state.inactivityTime);
+  const currentBacklightLevel = useSettingsStore(
+    (state) => state.backlightLevel
+  );
+  const currentInactivityTime = useSettingsStore(
+    (state) => state.inactivityTime
+  );
   const setLightSettings = useSettingsStore((state) => state.setLightSettings);
   const setFourthLevel = useUiStore((state) => state.setFourthLevel);
   const openModal = useUiStore((state) => state.openModal);

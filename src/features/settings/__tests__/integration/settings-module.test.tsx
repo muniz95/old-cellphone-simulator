@@ -110,7 +110,9 @@ describe('settings module integration', () => {
       }
     );
     fireEvent.change(
-      getByLabelText(/Inactive after|general\.light\.inactiveAfter|Inativo após/i),
+      getByLabelText(
+        /Inactive after|general\.light\.inactiveAfter|Inativo após/i
+      ),
       {
         target: { value: '600', valueAsNumber: 600 },
       }

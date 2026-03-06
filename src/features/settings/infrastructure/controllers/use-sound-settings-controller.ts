@@ -11,9 +11,7 @@ export const useSoundSettingsController = () => {
   const setFourthLevel = useUiStore((state) => state.setFourthLevel);
   const openModal = useUiStore((state) => state.openModal);
 
-  const [notificationLevel, setNotificationLevel] = useState(
-    notification
-  );
+  const [notificationLevel, setNotificationLevel] = useState(notification);
   const [alarmLevel, setAlarmLevel] = useState(alarm);
   const [ringLevel, setRingLevel] = useState(ring);
 
