@@ -1,4 +1,4 @@
-import { Tone } from '@/interfaces/tone';
+import { Tone } from '@/entities/tone/model/tone';
 import useRingtone from '../hooks/use-ringtone';
 
 interface TonesComponentProps {

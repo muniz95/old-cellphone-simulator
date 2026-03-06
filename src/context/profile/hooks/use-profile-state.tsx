@@ -1,5 +1,5 @@
 import { profileContext } from '../context';
-import useLocalStorage from '@/hooks/use-local-storage';
+import useLocalStorage from '@/shared/hooks/use-local-storage';
 
 type ProfileStateType = typeof profileContext;
 

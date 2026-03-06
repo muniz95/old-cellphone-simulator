@@ -1,7 +1,7 @@
 import { ChangeEvent, useState, useCallback } from 'react';
-import { Contact } from '@/interfaces/contact';
-import vibration from '@/utils/vibration';
-import useContacts from '@/hooks/persistence/use-contacts';
+import { Contact } from '@/entities/contact/model/contact';
+import vibration from '@/shared/lib/vibration';
+import useContacts from '@/entities/contact/api/use-contacts';
 
 export const usePhoneBookEdit = (dispatchOpenModal: () => void) => {
   const [name, setName] = useState('');

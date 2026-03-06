@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react';
-import useContacts from '@/hooks/persistence/use-contacts';
+import useContacts from '@/entities/contact/api/use-contacts';
 
 const usePhoneBookSearch = () => {
   const [search, setSearch] = useState('');

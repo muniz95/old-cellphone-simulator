@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import useTranslation from '@/hooks/use-translation';
+import useTranslation from '@/shared/hooks/use-translation';
 import { TonesComponent } from './components/tones-component';
 import { useTones } from './hooks/use-tones';
 import { useUiStore } from '@/stores/ui-store';

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { SimNumber } from '@/interfaces/simNumber';
-import { say } from '@/utils/sound';
-import useLocalStorage from '@/hooks/use-local-storage';
+import { SimNumber } from '@/entities/sim-number/model/sim-number';
+import { say } from '@/shared/lib/sound';
+import useLocalStorage from '@/shared/hooks/use-local-storage';
 import { useUiStore } from '@/stores/ui-store';
 
 const useSimServices = () => {

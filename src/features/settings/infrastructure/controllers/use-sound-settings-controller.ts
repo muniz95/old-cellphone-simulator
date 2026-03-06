@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSettingsStore } from '@/features/settings/state/settings-store';
 import { useUiStore } from '@/stores/ui-store';
-import vibration from '@/utils/vibration';
+import vibration from '@/shared/lib/vibration';
 
 export const useSoundSettingsController = () => {
   const notification = useSettingsStore((state) => state.notificationLevel);

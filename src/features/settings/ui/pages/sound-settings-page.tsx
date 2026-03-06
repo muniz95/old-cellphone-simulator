@@ -1,5 +1,5 @@
-import S from '@/components/base';
-import useTranslation from '@/hooks/use-translation';
+import S from '@/shared/ui/base';
+import useTranslation from '@/shared/hooks/use-translation';
 import { useSoundSettingsController } from '@/features/settings/infrastructure/controllers/use-sound-settings-controller';
 
 const SoundSettingsPage = () => {

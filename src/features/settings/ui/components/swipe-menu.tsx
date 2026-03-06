@@ -1,4 +1,4 @@
-import CurrentPageContainer from '@/components/current-page-container';
+import CurrentPageContainer from '@/shared/ui/current-page-container';
 
 interface SwipeMenuProps {
   label: string;

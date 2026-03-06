@@ -1,4 +1,4 @@
-import useTranslation from '@/hooks/use-translation';
+import useTranslation from '@/shared/hooks/use-translation';
 import { useRestoreSettingsController } from '@/features/settings/infrastructure/controllers/use-restore-settings-controller';
 
 const RestoreFactorySettingsPage = () => {

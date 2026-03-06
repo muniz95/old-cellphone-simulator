@@ -1,4 +1,4 @@
-import useTranslation from '@/hooks/use-translation';
+import useTranslation from '@/shared/hooks/use-translation';
 
 const useMenuItems = () => {
   const { t } = useTranslation(['phonebook']);

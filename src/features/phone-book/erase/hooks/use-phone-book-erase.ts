@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
-import vibration from '@/utils/vibration';
-import { Contact } from '@/interfaces/contact';
-import useContacts from '@/hooks/persistence/use-contacts';
+import vibration from '@/shared/lib/vibration';
+import { Contact } from '@/entities/contact/model/contact';
+import useContacts from '@/entities/contact/api/use-contacts';
 import { useUiStore } from '@/stores/ui-store';
 
 const usePhoneBookErase = () => {

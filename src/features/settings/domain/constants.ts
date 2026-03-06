@@ -1,4 +1,4 @@
-import defaults from '@/defaults/settings';
+import defaults from '@/shared/config/defaults/settings';
 import {
   ColorOption,
   LanguageOption,

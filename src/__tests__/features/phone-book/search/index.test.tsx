@@ -1,12 +1,12 @@
 import { render, fireEvent } from '@testing-library/react';
 import usePhoneBookSearch from '@/features/phone-book/search/hooks/use-phone-book-search';
-import useThirdLevel from '@/hooks/use-third-level';
+import useThirdLevel from '@/shared/hooks/use-third-level';
 import PhoneBookSearch from '@/features/phone-book/search';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { Contact } from '@/interfaces/contact';
+import { Contact } from '@/entities/contact/model/contact';
 
 vi.mock('@/features/phone-book/search/hooks/use-phone-book-search');
-vi.mock('@/hooks/use-third-level');
+vi.mock('@/shared/hooks/use-third-level');
 
 describe('PhoneBookSearch', () => {
   const mockContacts: Contact[] = [

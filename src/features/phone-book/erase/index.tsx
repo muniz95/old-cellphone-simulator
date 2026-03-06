@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
-import S from '@/components/base';
-import { Contact } from '@/interfaces/contact';
-import useTranslation from '@/hooks/use-translation';
+import S from '@/shared/ui/base';
+import { Contact } from '@/entities/contact/model/contact';
+import useTranslation from '@/shared/hooks/use-translation';
 import usePhoneBookErase from './hooks/use-phone-book-erase';
 import { useUiStore } from '@/stores/ui-store';
 

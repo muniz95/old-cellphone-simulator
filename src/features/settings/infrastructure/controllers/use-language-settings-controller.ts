@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { LANGUAGE_OPTIONS } from '@/features/settings/domain/constants';
 import { useSettingsStore } from '@/features/settings/state/settings-store';
 import { useUiStore } from '@/stores/ui-store';
-import vibration from '@/utils/vibration';
+import vibration from '@/shared/lib/vibration';
 
 export const useLanguageSettingsController = () => {
   const currentLanguage = useSettingsStore((state) => state.language);

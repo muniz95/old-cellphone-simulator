@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useTranslation from '@/hooks/use-translation';
+import useTranslation from '@/shared/hooks/use-translation';
 import { buildGeneralSettingsMenu } from '@/features/settings/application/menus';
 import { useCircularMenuController } from '@/features/settings/infrastructure/controllers/use-circular-menu-controller';
 import { useUiStore } from '@/stores/ui-store';

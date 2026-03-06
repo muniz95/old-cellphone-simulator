@@ -1,5 +1,5 @@
-import useTranslation from '@/hooks/use-translation';
-import S from '@/components/base';
+import useTranslation from '@/shared/hooks/use-translation';
+import S from '@/shared/ui/base';
 import useSimServices from './hooks/use-sim-services';
 
 const SimServices = () => {

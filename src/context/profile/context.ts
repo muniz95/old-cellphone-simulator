@@ -1,5 +1,5 @@
-import defaults from '@/defaults';
-import { Profile } from '@/interfaces/profile';
+import defaults from '@/shared/config/defaults';
+import { Profile } from '@/entities/profile/model/profile';
 import { createContext, Dispatch, SetStateAction } from 'react';
 
 type ProfileContextType = {

@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import S from '@/components/base';
+import S from '@/shared/ui/base';
 import { useServiceNumbers } from './hooks/use-service-numbers';
 import { useUiStore } from '@/stores/ui-store';
 

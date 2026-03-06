@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client';
 import './index.scss';
 import './i18n';
 import AppContextProvider from './context';
-import { ensureInitialData } from '@/utils/db';
+import { ensureInitialData } from '@/shared/lib/db';
 
 ensureInitialData();
 

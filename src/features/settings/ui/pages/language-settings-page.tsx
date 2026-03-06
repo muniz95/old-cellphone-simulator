@@ -1,5 +1,5 @@
-import S from '@/components/base';
-import useTranslation from '@/hooks/use-translation';
+import S from '@/shared/ui/base';
+import useTranslation from '@/shared/hooks/use-translation';
 import { useLanguageSettingsController } from '@/features/settings/infrastructure/controllers/use-language-settings-controller';
 
 const LanguageSettingsPage = () => {

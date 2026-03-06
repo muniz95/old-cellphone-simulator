@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
-import { Profile } from '@/interfaces/profile';
-import vibration from '@/utils/vibration';
+import { Profile } from '@/entities/profile/model/profile';
+import vibration from '@/shared/lib/vibration';
 import { ProfileContext } from '@/context/profile/context';
 import { useUiStore } from '@/stores/ui-store';
 

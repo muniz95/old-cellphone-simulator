@@ -1,6 +1,6 @@
 import { useCallback, useState, ChangeEvent } from 'react';
-import vibration from '@/utils/vibration';
-import useContacts from '@/hooks/persistence/use-contacts';
+import vibration from '@/shared/lib/vibration';
+import useContacts from '@/entities/contact/api/use-contacts';
 import { useUiStore } from '@/stores/ui-store';
 
 export const usePhoneBookAddNameHooks = () => {

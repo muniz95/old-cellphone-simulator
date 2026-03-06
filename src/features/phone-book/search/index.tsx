@@ -1,7 +1,7 @@
-import S from '@/components/base';
-import TextInput from '@/components/text-input/index';
+import S from '@/shared/ui/base';
+import TextInput from '@/shared/ui/text-input';
 import usePhoneBookSearch from '@/features/phone-book/search/hooks/use-phone-book-search';
-import useThirdLevel from '@/hooks/use-third-level';
+import useThirdLevel from '@/shared/hooks/use-third-level';
 
 const PhoneBookSearch = () => {
   const { search, contacts, handleSearch } = usePhoneBookSearch();

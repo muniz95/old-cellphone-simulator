@@ -1,7 +1,7 @@
-import S from '@/components/base';
-import TextInput from '@/components/text-input';
-import useTranslation from '@/hooks/use-translation';
-import useThirdLevel from '@/hooks/use-third-level';
+import S from '@/shared/ui/base';
+import TextInput from '@/shared/ui/text-input';
+import useTranslation from '@/shared/hooks/use-translation';
+import useThirdLevel from '@/shared/hooks/use-third-level';
 import { usePhoneBookAddNameHooks } from './hooks/use-add-name-hooks';
 
 const PhoneBookAddName = () => {

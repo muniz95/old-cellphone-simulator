@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
-import S from '@/components/base';
-import TextInput from '@/components/text-input/index';
-import useTranslation from '@/hooks/use-translation';
+import S from '@/shared/ui/base';
+import TextInput from '@/shared/ui/text-input';
+import useTranslation from '@/shared/hooks/use-translation';
 import { usePhoneBookEdit } from './hooks/use-phone-book-edit';
 import { useUiStore } from '@/stores/ui-store';
 
