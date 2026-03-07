@@ -1,12 +1,12 @@
-import { useNavigate } from 'react-router';
 import S from './styled';
+import { useBottomBarNavigation } from './hooks/use-bottom-bar-navigation';
 
 const BottomBar = () => {
-  const navigate = useNavigate();
+  const { goBack, goHome } = useBottomBarNavigation();
   return (
     <S.BottomBarContainer>
-      <div onClick={() => navigate('/', { replace: true })}>O</div>
-      <div onClick={() => navigate(-1)}>&lt;</div>
+      <div onClick={() => goHome()}>O</div>
+      <div onClick={() => goBack()}>&lt;</div>
     </S.BottomBarContainer>
   );
 };

@@ -5,20 +5,32 @@ interface CircularMenuControllerInput {
   menuItems: SettingsMenuItem[];
   setLevel: (position: number) => void;
   goTo: (path: string) => void;
+  initialPosition?: number;
 }
+
+const clampPosition = (position: number, length: number) => {
+  if (length <= 0) return 0;
+  if (position < 0) return 0;
+  if (position > length - 1) return length - 1;
+  return position;
+};
 
 export const useCircularMenuController = ({
   menuItems,
   setLevel,
   goTo,
+  initialPosition = 0,
 }: CircularMenuControllerInput) => {
-  const [position, setPosition] = useState(0);
+  const [position, setPosition] = useState(() =>
+    clampPosition(initialPosition, menuItems.length)
+  );
 
   useEffect(() => {
-    if (position > menuItems.length - 1) {
-      setPosition(0);
-    }
-  }, [menuItems.length, position]);
+    const nextPosition = clampPosition(initialPosition, menuItems.length);
+    setPosition((current) =>
+      current === nextPosition ? current : nextPosition
+    );
+  }, [initialPosition, menuItems.length]);
 
   useEffect(() => {
     setLevel(position);
