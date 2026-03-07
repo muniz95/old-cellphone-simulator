@@ -17,9 +17,3 @@ export const say = (sentence: string) => {
   const utter = defaultVoice(sentence, speech!);
   speech?.speak(utter);
 };
-
-const voice = {
-  say,
-};
-
-export default voice;

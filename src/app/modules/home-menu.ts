@@ -1,7 +1,7 @@
 import { ModuleMenuEntry } from '@/app/modules/feature-module';
 import { featureModules } from '@/app/modules/registry';
 
-export interface HomeMenuItem {
+interface HomeMenuItem {
   path: string;
   title: string;
 }

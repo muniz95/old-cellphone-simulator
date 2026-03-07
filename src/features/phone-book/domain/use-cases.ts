@@ -3,7 +3,7 @@ import { NewContactInput } from '@/features/phone-book/domain/types';
 
 const normalize = (value: string) => value.trim().toLowerCase();
 
-export const isSameContact = (left: Contact, right: Contact) => {
+const isSameContact = (left: Contact, right: Contact) => {
   if (left.id && right.id) {
     return left.id === right.id;
   }
