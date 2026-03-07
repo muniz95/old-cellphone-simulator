@@ -1,22 +1,28 @@
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import S from './styled';
-import PageIndicator from '../page-indicator';
 
-const TopBar = () => {
+interface TopBarProps {
+  lockLabel?: string;
+  pageIndicator: ReactNode;
+}
+
+const TopBar = ({ lockLabel = 'Lock', pageIndicator }: TopBarProps) => {
   const [date, setDate] = useState(new Date());
-  const tick = () => {
-    setDate(new Date());
-  };
-  const timerID = setInterval(tick, 1000);
 
   useEffect(() => {
-    return () => clearInterval(timerID);
-  });
+    const timerId = setInterval(() => {
+      setDate(new Date());
+    }, 1000);
+
+    return () => {
+      clearInterval(timerId);
+    };
+  }, []);
 
   return (
-    <S.TopBarContainer className="noselect">
-      <div>Lock</div>
-      <PageIndicator />
+    <S.TopBarContainer>
+      <div>{lockLabel}</div>
+      {pageIndicator}
       <div>{`${date.toLocaleTimeString().slice(0, 5)}`}</div>
     </S.TopBarContainer>
   );

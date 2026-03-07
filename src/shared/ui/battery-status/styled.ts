@@ -1,6 +1,9 @@
 import styled from 'styled-components';
+import { colors } from '@/shared/styles/tokens';
+import { noSelect } from '@/shared/styles/mixins';
 
 const BatteryStatus = styled.div`
+  ${noSelect}
   text-align: right;
   width: 15%;
   padding: 5px;
@@ -8,7 +11,7 @@ const BatteryStatus = styled.div`
 
 const StatusBar = styled.div<{ isVisible: boolean }>`
   background-color: ${({ isVisible }) =>
-    isVisible ? '#000000d6' : '00000000'};
+    isVisible ? colors.textPrimary : colors.transparent};
   display: inline-block;
   margin: 1px;
 `;

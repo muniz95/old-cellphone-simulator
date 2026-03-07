@@ -1,12 +1,13 @@
 import { useClockController } from '@/features/clock/infrastructure/controllers/use-clock-controller';
+import HomeScreen from '@/shared/ui/home-screen';
 
 const ClockPage = () => {
   const { timeLabel } = useClockController();
 
   return (
-    <div className="home">
+    <HomeScreen>
       <h1 id="time">{timeLabel}</h1>
-    </div>
+    </HomeScreen>
   );
 };
 

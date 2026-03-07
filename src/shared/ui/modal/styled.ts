@@ -1,4 +1,10 @@
 import styled from 'styled-components';
+import { colors } from '@/shared/styles/tokens';
+import { visuallyHidden } from '@/shared/styles/mixins';
+
+const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
+  ${visuallyHidden}
+`;
 
 const ModalContainer = styled.div<{ showModal: boolean; color: string }>`
   position: fixed;
@@ -13,8 +19,7 @@ const ModalContainer = styled.div<{ showModal: boolean; color: string }>`
   align-items: center;
 
   & input[type='checkbox'] {
-    height: 0;
-    width: 0;
+    ${visuallyHidden}
   }
 
   & input[type='checkbox'] + label {
@@ -22,7 +27,7 @@ const ModalContainer = styled.div<{ showModal: boolean; color: string }>`
     display: flex;
     margin: 0.6em 0;
     align-items: center;
-    color: #9e9e9e;
+    color: ${colors.textMuted};
     transition: color 250ms cubic-bezier(0.4, 0, 0.23, 1);
   }
 
@@ -42,7 +47,7 @@ const ModalContainer = styled.div<{ showModal: boolean; color: string }>`
     position: absolute;
     bottom: 0;
     font-style: normal;
-    color: #000000d6;
+    color: ${colors.textPrimary};
   }
 
   & input[type='checkbox'] + label > span {
@@ -53,7 +58,7 @@ const ModalContainer = styled.div<{ showModal: boolean; color: string }>`
     width: 1em;
     height: 1em;
     background: transparent;
-    border: 2px solid #9e9e9e;
+    border: 2px solid ${colors.borderNeutral};
     border-radius: 2px;
     cursor: pointer;
     transition: all 250ms cubic-bezier(0.4, 0, 0.23, 1);
@@ -61,12 +66,12 @@ const ModalContainer = styled.div<{ showModal: boolean; color: string }>`
 
   & input[type='checkbox'] + label:hover,
   & input[type='checkbox']:focus + label {
-    color: #fff;
+    color: ${colors.textInverse};
   }
 
   & input[type='checkbox'] + label:hover > span,
   & input[type='checkbox']:focus + label > span {
-    background: rgba(255, 255, 255, 0.1);
+    background: ${colors.hoverOverlay};
   }
 
   & input[type='checkbox']:checked + label > ins {
@@ -74,7 +79,7 @@ const ModalContainer = styled.div<{ showModal: boolean; color: string }>`
   }
 
   & input[type='checkbox']:checked + label > span {
-    border: 2px dotted #34352d;
+    border: 2px dotted ${colors.modalBorder};
     animation: shrink-bounce 3000ms cubic-bezier(0.4, 0, 0.23, 1);
     background-color: ${({ color }) => color};
   }
@@ -108,7 +113,7 @@ const ModalContainer = styled.div<{ showModal: boolean; color: string }>`
     0% {
       width: 0;
       height: 0;
-      border-color: #212121;
+      border-color: ${colors.borderDark};
       transform: translate3d(0, 0, 0) rotate(45deg);
     }
     33% {
@@ -119,13 +124,14 @@ const ModalContainer = styled.div<{ showModal: boolean; color: string }>`
     100% {
       width: 0.2em;
       height: 0.5em;
-      border-color: #212121;
+      border-color: ${colors.borderDark};
       transform: translate3d(0, -0.5em, 0) rotate(45deg);
     }
   }
 `;
 
 const S = {
+  HiddenCheckbox,
   ModalContainer,
 };
 

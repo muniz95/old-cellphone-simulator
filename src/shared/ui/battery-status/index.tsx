@@ -6,7 +6,7 @@ const BatteryStatus = () => {
   const { getInterval, getVisibility } = useBatteryStatus();
 
   return (
-    <S.BatteryStatus className="noselect">
+    <S.BatteryStatus>
       <Blink interval={getInterval('full')}>
         <S.StatusBar isVisible={getVisibility('full')}>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

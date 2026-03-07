@@ -1,4 +1,4 @@
-import SwipeMenu from '@/features/phone-book/ui/components/swipe-menu';
+import SwipeMenu from '@/shared/ui/swipe-menu';
 import { usePhoneBookMenuController } from '@/features/phone-book/infrastructure/controllers/use-phone-book-menu-controller';
 
 const PhoneBookPage = () => {

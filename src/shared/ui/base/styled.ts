@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { colors } from '@/shared/styles/tokens';
 
 const MainContainer = styled.div`
   height: 80%;
@@ -32,8 +33,8 @@ const Item = styled.button`
   &:active,
   &:focus {
     font-weight: bold;
-    background-color: #000000c6;
-    color: #ffffffc6;
+    background-color: ${colors.focusBackground};
+    color: ${colors.textInverse};
   }
 `;
 
@@ -54,7 +55,7 @@ const SliderInput = styled.input.attrs({ type: 'range' })`
 
   &::-webkit-slider-runnable-track,
   &::-moz-range-track {
-    background: #053a5f;
+    background: ${colors.sliderTrack};
     height: 0.5rem;
   }
 `;
