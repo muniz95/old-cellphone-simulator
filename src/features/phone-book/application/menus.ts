@@ -1,7 +1,8 @@
-import useTranslation from '@/shared/hooks/use-translation';
+import { PhoneBookMenuItem } from '@/features/phone-book/domain/types';
 
-const useMenuItems = () => {
-  const { t } = useTranslation(['phonebook']);
+export const buildPhoneBookMenu = (
+  t: (key: string, options?: { ns?: string }) => string
+): PhoneBookMenuItem[] => {
   return [
     { path: '/phonebook/search', title: t('searchTitle') },
     { path: '/phonebook/servicenos', title: t('servicenosTitle') },
@@ -15,5 +16,3 @@ const useMenuItems = () => {
     { path: '/phonebook/voicetags', title: t('voicetagsTitle') },
   ];
 };
-
-export default useMenuItems;

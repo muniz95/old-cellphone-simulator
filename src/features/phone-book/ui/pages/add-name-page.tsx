@@ -1,14 +1,11 @@
+import useTranslation from '@/shared/hooks/use-translation';
 import S from '@/shared/ui/base';
 import TextInput from '@/shared/ui/text-input';
-import useTranslation from '@/shared/hooks/use-translation';
-import useThirdLevel from '@/shared/hooks/use-third-level';
-import { usePhoneBookAddNameHooks } from './hooks/use-add-name-hooks';
+import { useAddNameController } from '@/features/phone-book/infrastructure/controllers/use-add-name-controller';
 
-const PhoneBookAddName = () => {
+const AddNamePage = () => {
   const { t } = useTranslation();
-  const { handleChange, saveContact } = usePhoneBookAddNameHooks();
-
-  useThirdLevel(0);
+  const { handleChange, saveContact } = useAddNameController();
 
   return (
     <S.MainContainer>
@@ -25,4 +22,4 @@ const PhoneBookAddName = () => {
   );
 };
 
-export default PhoneBookAddName;
+export default AddNamePage;
