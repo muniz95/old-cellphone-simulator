@@ -58,16 +58,19 @@ const useLocalStorage = <T>(
         }
       } else {
         storage.setItem(key, handleStoredValue(value));
+        return value;
       }
     } catch (error) {
       console.error(error);
       return value;
     }
+
+    return value;
   });
 
   useEffect(() => {
     try {
-      if (!storedValue) return;
+      if (storedValue === undefined) return;
       storage.setItem(key, handleStoredValue(storedValue));
     } catch (error) {
       console.error(error);
