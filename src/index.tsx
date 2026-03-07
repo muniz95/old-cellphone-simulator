@@ -1,11 +1,10 @@
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import App from '@/app/app';
+import registerServiceWorker from '@/app/service-worker/register-service-worker';
 import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
-import './index.scss';
-import './i18n';
-import AppContextProvider from './context';
-import { ensureInitialData } from '@/utils/db';
+import '@/app/styles/index.scss';
+import '@/app/providers/i18n';
+import { ensureInitialData } from '@/shared/lib/db';
 
 ensureInitialData();
 
@@ -14,9 +13,7 @@ const root = createRoot(container!);
 
 root.render(
   <BrowserRouter>
-    <AppContextProvider>
-      <App />
-    </AppContextProvider>
+    <App />
   </BrowserRouter>
 );
 registerServiceWorker();

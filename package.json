@@ -15,12 +15,7 @@
     "react-router": "^6.18.0",
     "react-router-dom": "^6.18.0",
     "styled-components": "^5.2.3",
-    "workbox-cacheable-response": "^7.0.0",
-    "workbox-core": "^7.0.0",
-    "workbox-expiration": "^7.0.0",
-    "workbox-precaching": "^7.0.0",
-    "workbox-routing": "^7.0.0",
-    "workbox-strategies": "^7.0.0"
+    "zustand": "^5.0.11"
   },
   "scripts": {
     "dev": "vite",
@@ -52,6 +47,12 @@
     "vite": "^7.0.5",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.0.6",
-    "vitest-browser-react": "^0.1.1"
+    "@eslint/js": "^9.22.0"
+  },
+  "knip": {
+    "ignoreDependencies": [
+      "@vitest/coverage-v8",
+      "locales"
+    ]
   }
 }
