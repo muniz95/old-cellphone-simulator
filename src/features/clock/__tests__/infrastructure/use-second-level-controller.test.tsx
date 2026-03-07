@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
-import useSecondLevel from '@/features/clock/hooks/use-second-level';
+import { useSecondLevelController } from '@/features/clock/infrastructure/controllers/use-second-level-controller';
 import { resetUiStore, useUiStore } from '@/stores/ui-store';
 
 describe('useSecondLevel', () => {
@@ -9,7 +9,7 @@ describe('useSecondLevel', () => {
   });
 
   it('should dispatch setSecondLevel action', () => {
-    renderHook(() => useSecondLevel());
+    renderHook(() => useSecondLevelController());
 
     expect(useUiStore.getState().secondLevel).toBe(1);
   });

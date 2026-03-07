@@ -6,11 +6,11 @@ import Tones from '@/features/tones';
 import CallDivert from '@/pages/CallDivert';
 import Games from '@/pages/Games';
 import Reminders from '@/pages/Reminders';
-import Clock from '@/features/clock';
 import SimServices from '@/features/sim-services';
 import { RouteObject } from 'react-router-dom';
 import { profilesModule } from '@/features/profiles/module';
 import { calculatorModule } from '@/features/calculator/module';
+import { clockModule } from '@/features/clock/module';
 
 const routes: RouteObject[] = [
   { path: '/', element: <Home /> },
@@ -22,7 +22,7 @@ const routes: RouteObject[] = [
   { path: '/games', element: <Games /> },
   ...calculatorModule.routes,
   { path: '/reminders', element: <Reminders /> },
-  { path: '/clock', element: <Clock /> },
+  ...clockModule.routes,
   ...profilesModule.routes,
   { path: '/simservices', element: <SimServices /> },
 ];

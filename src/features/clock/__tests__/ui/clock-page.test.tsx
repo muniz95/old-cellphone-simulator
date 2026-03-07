@@ -1,7 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { renderWithProvider } from '../../utils';
-import { act } from '@testing-library/react';
-import Clock from '@/features/clock';
+import { act, render } from '@testing-library/react';
+import ClockPage from '@/features/clock/ui/pages/clock-page';
 
 describe('Clock', () => {
   beforeEach(() => {
@@ -15,19 +14,19 @@ describe('Clock', () => {
   });
 
   it('renders correctly', () => {
-    const { container } = renderWithProvider(<Clock />);
+    const { container } = render(<ClockPage />);
     expect(container).toBeTruthy();
   });
 
   it('displays the current time', () => {
     vi.setSystemTime(new Date('2021-01-01T12:00:00'));
-    const { container } = renderWithProvider(<Clock />);
+    const { container } = render(<ClockPage />);
     expect(container.querySelector('#time')?.innerHTML).eq('12:00:00');
   });
 
   it('advances time correctly', () => {
     vi.setSystemTime(new Date('2021-01-01T10:00:00'));
-    const { container } = renderWithProvider(<Clock />);
+    const { container } = render(<ClockPage />);
     expect(container.querySelector('#time')?.innerHTML).eq('10:00:00');
     act(() => {
       vi.advanceTimersByTime(2 * 60 * 60 * 1000);
