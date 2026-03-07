@@ -56,6 +56,10 @@ const pressBack = () => {
   fireEvent.click(screen.getByText('<'));
 };
 
+const pressHome = () => {
+  fireEvent.click(screen.getByText('O'));
+};
+
 const advancePastStartup = () => {
   act(() => {
     vi.advanceTimersByTime(3000);
@@ -194,5 +198,21 @@ describe('page indicator navigation integration', () => {
 
     pressBack();
     expectNoFifthSegment();
+  });
+
+  it('resets first-level indicator when navigating home from deeper levels', () => {
+    renderApp();
+
+    navigateHomeToSettings();
+    expectIndicator('6');
+
+    pressHome();
+
+    expectIndicator('1');
+    expect(useUiStore.getState().firstLevel).toBe(1);
+    expect(useUiStore.getState().secondLevel).toBe(0);
+    expect(useUiStore.getState().thirdLevel).toBe(0);
+    expect(useUiStore.getState().fourthLevel).toBe(0);
+    expect(useUiStore.getState().fifthLevel).toBe(0);
   });
 });
