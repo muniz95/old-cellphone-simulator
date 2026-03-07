@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { colors, borders } from '@/shared/styles/tokens';
-import nokiaFontUrl from '@/app/styles/nokiafc22.ttf';
+import nokiaFontUrl from '@/shared/assets/fonts/nokiafc22.ttf';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
