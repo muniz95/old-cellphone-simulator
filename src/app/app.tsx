@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useNavigate, useRoutes } from 'react-router-dom';
+import { useLocation, useNavigate, useRoutes } from 'react-router-dom';
 import BatteryStatus from '@/shared/ui/battery-status';
 import BottomBar from '@/shared/ui/bottom-bar';
 import Modal from '@/shared/ui/modal';
@@ -16,6 +16,7 @@ import { useUiStore } from '@/app/state/ui-store';
 
 const App = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const routing = useRoutes([...routes]);
 
   const backlightLevel = useSettingsStore((state) => state.backlightLevel);
@@ -28,6 +29,14 @@ const App = () => {
   const fourthLevel = useUiStore((state) => state.fourthLevel);
   const fifthLevel = useUiStore((state) => state.fifthLevel);
   const [firstRender, setFirstRender] = useState(true);
+  const pathDepth = location.pathname
+    .split('/')
+    .filter((segment) => segment.length > 0).length;
+
+  const visibleSecondLevel = pathDepth >= 1 ? secondLevel : 0;
+  const visibleThirdLevel = pathDepth >= 2 ? thirdLevel : 0;
+  const visibleFourthLevel = pathDepth >= 3 ? fourthLevel : 0;
+  const visibleFifthLevel = pathDepth >= 4 ? fifthLevel : 0;
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -55,10 +64,10 @@ const App = () => {
               pageIndicator={
                 <PageIndicator
                   firstLevel={firstLevel}
-                  secondLevel={secondLevel}
-                  thirdLevel={thirdLevel}
-                  fourthLevel={fourthLevel}
-                  fifthLevel={fifthLevel}
+                  secondLevel={visibleSecondLevel}
+                  thirdLevel={visibleThirdLevel}
+                  fourthLevel={visibleFourthLevel}
+                  fifthLevel={visibleFifthLevel}
                 />
               }
             />
