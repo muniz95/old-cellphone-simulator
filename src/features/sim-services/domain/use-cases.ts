@@ -1,4 +1,4 @@
-import { SimNumber } from '@/entities/sim-number/model/sim-number';
+import { SimNumber } from '@/features/sim-services/domain/sim-number';
 
 export const hasSelectedSimService = (
   selected: SimNumber | null | undefined

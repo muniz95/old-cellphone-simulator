@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { Contact } from '@/entities/contact/model/contact';
+import { Contact } from '@/features/phone-book/domain/contact';
 import {
   buildNewContact,
   filterContactsByName,

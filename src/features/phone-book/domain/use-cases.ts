@@ -1,4 +1,4 @@
-import { Contact } from '@/entities/contact/model/contact';
+import { Contact } from '@/features/phone-book/domain/contact';
 import { NewContactInput } from '@/features/phone-book/domain/types';
 
 const normalize = (value: string) => value.trim().toLowerCase();

@@ -1,10 +1,15 @@
+import { useEffect } from 'react';
+import { useUiStore } from '@/app/state/ui-store';
 import { formatClockTime } from '@/features/clock/domain/use-cases';
-import { useSecondLevelController } from '@/features/clock/infrastructure/controllers/use-second-level-controller';
 import { useTimerController } from '@/features/clock/infrastructure/controllers/use-timer-controller';
 
 export const useClockController = () => {
   const date = useTimerController();
-  useSecondLevelController();
+  const setSecondLevel = useUiStore((state) => state.setSecondLevel);
+
+  useEffect(() => {
+    setSecondLevel(1);
+  }, [setSecondLevel]);
 
   return {
     timeLabel: formatClockTime(date),

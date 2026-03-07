@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback, useState } from 'react';
-import { Contact } from '@/entities/contact/model/contact';
-import useContacts from '@/entities/contact/api/use-contacts';
+import { Contact } from '@/features/phone-book/domain/contact';
+import useContactsData from '@/features/phone-book/infrastructure/hooks/use-contacts-data';
 import vibration from '@/shared/lib/vibration';
 import { replaceContact } from '@/features/phone-book/domain/use-cases';
 import { usePhoneBookThirdLevel } from '@/features/phone-book/infrastructure/controllers/use-phone-book-third-level';
@@ -9,7 +9,7 @@ import { useUiStore } from '@/app/state/ui-store';
 export const useEditController = () => {
   usePhoneBookThirdLevel();
 
-  const [contacts, setContacts] = useContacts();
+  const [contacts, setContacts] = useContactsData();
   const [currentContact, setCurrentContact] = useState<Contact>();
   const [name, setName] = useState('');
   const openModal = useUiStore((state) => state.openModal);

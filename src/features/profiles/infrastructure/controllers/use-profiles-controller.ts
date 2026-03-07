@@ -1,17 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Profile } from '@/entities/profile/model/profile';
+import { Profile } from '@/features/profiles/domain/profile';
 import vibration from '@/shared/lib/vibration';
 import { useUiStore } from '@/app/state/ui-store';
-import { useProfilesStore } from '@/features/profiles/state/profiles-store';
+import useProfilesData from '@/features/profiles/infrastructure/hooks/use-profiles-data';
 
 export const useProfilesController = () => {
   const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
   const setSecondLevel = useUiStore((state) => state.setSecondLevel);
   const openModal = useUiStore((state) => state.openModal);
-  const profiles = useProfilesStore((state) => state.profiles);
-  const setCurrentProfile = useProfilesStore(
-    (state) => state.setCurrentProfile
-  );
+  const { profiles, setCurrentProfile } = useProfilesData();
 
   useEffect(() => {
     setSecondLevel(0);

@@ -1,4 +1,4 @@
-import { Tone } from '@/entities/tone/model/tone';
+import { Tone } from '@/features/tones/domain/tone';
 
 export const canPlayTone = (tone: Tone | null | undefined) => {
   if (!tone) return false;

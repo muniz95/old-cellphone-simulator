@@ -1,22 +1,23 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { Tone } from '@/entities/tone/model/tone';
+import { Tone } from '@/features/tones/domain/tone';
 import { tonesModule } from '@/features/tones/module';
 import TonesPage from '@/features/tones/ui/pages/tones-page';
 import { resetUiStore, useUiStore } from '@/app/state/ui-store';
+import { resetTonesStore } from '@/features/tones/state/tones-store';
 
 const mocks = vi.hoisted(() => ({
-  useLocalStorage: vi.fn(),
+  useTonesData: vi.fn(),
   play: vi.fn(),
   stop: vi.fn(),
 }));
 
-vi.mock('@/shared/hooks/use-local-storage', () => ({
-  default: mocks.useLocalStorage,
+vi.mock('@/features/tones/infrastructure/hooks/use-tones-data', () => ({
+  default: mocks.useTonesData,
 }));
 
-vi.mock('@/features/tones/infrastructure/audio/use-ringtone', () => ({
+vi.mock('@/shared/hooks/use-ringtone', () => ({
   default: () => ({
     play: mocks.play,
     stop: mocks.stop,
@@ -32,9 +33,10 @@ const toneMock: Tone = {
 describe('tones module integration', () => {
   beforeEach(() => {
     resetUiStore();
+    resetTonesStore();
     mocks.play.mockReset();
     mocks.stop.mockReset();
-    mocks.useLocalStorage.mockReturnValue([[toneMock], vi.fn()]);
+    mocks.useTonesData.mockReturnValue([toneMock]);
   });
 
   it('exposes expected route path', () => {

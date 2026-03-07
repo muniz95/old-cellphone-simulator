@@ -26,6 +26,7 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "predeploy": "npm run build",
+    "prepare": "husky",
     "knip": "knip"
   },
   "devDependencies": {

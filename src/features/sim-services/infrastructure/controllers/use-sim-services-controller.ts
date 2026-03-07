@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { SimNumber } from '@/entities/sim-number/model/sim-number';
-import useLocalStorage from '@/shared/hooks/use-local-storage';
+import { SimNumber } from '@/features/sim-services/domain/sim-number';
+import useSimNumbersData from '@/features/sim-services/infrastructure/hooks/use-sim-numbers-data';
 import { say } from '@/shared/lib/sound';
 import {
   getSelectedSimServiceMessage,
@@ -9,7 +9,7 @@ import {
 import { useUiStore } from '@/app/state/ui-store';
 
 export const useSimServicesController = () => {
-  const [simNumbers] = useLocalStorage<SimNumber[]>('simNumbers', []);
+  const simNumbers = useSimNumbersData();
   const [currentSimNumber, setCurrentSimNumber] = useState<SimNumber | null>(
     null
   );

@@ -2,23 +2,27 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import '@/app/providers/i18n';
-import { SimNumber } from '@/entities/sim-number/model/sim-number';
+import { SimNumber } from '@/features/sim-services/domain/sim-number';
 import { simServicesModule } from '@/features/sim-services/module';
 import SimServicesPage from '@/features/sim-services/ui/pages/sim-services-page';
 import { resetUiStore } from '@/app/state/ui-store';
+import { resetSimNumbersStore } from '@/features/sim-services/state/sim-numbers-store';
 
 const mocks = vi.hoisted(() => ({
   say: vi.fn(),
-  useLocalStorage: vi.fn(),
+  useSimNumbersData: vi.fn(),
 }));
 
 vi.mock('@/shared/lib/sound', () => ({
   say: mocks.say,
 }));
 
-vi.mock('@/shared/hooks/use-local-storage', () => ({
-  default: mocks.useLocalStorage,
-}));
+vi.mock(
+  '@/features/sim-services/infrastructure/hooks/use-sim-numbers-data',
+  () => ({
+    default: mocks.useSimNumbersData,
+  })
+);
 
 const mockSimNumbers: SimNumber[] = [
   {
@@ -38,8 +42,9 @@ const mockSimNumbers: SimNumber[] = [
 describe('sim-services module integration', () => {
   beforeEach(() => {
     resetUiStore();
+    resetSimNumbersStore();
     mocks.say.mockReset();
-    mocks.useLocalStorage.mockReturnValue([mockSimNumbers, vi.fn()]);
+    mocks.useSimNumbersData.mockReturnValue(mockSimNumbers);
   });
 
   it('exposes expected route path', () => {
