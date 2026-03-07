@@ -1,12 +1,12 @@
 import { useRoutes } from 'react-router-dom';
-import './App.css';
+import '@/app/styles/app.css';
 import BatteryStatus from '@/shared/ui/battery-status';
 import BottomBar from '@/shared/ui/bottom-bar';
 import Modal from '@/shared/ui/modal';
 import SignalStatus from '@/shared/ui/signal-status';
 import TopBar from '@/shared/ui/top-bar';
 
-import routes from '@/routes';
+import routes from '@/app/routes';
 import Startup from '@/shared/ui/startup';
 import { useEffect, useState } from 'react';
 import { useSettingsStore } from '@/features/settings/state/settings-store';

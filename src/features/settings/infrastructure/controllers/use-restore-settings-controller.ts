@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import vibration from '@/shared/lib/vibration';
 import { useSettingsStore } from '@/features/settings/state/settings-store';
-import { useUiStore } from '@/stores/ui-store';
+import { useUiStore } from '@/app/state/ui-store';
 
 export const useRestoreSettingsController = () => {
   const resetDefaults = useSettingsStore((state) => state.resetDefaults);

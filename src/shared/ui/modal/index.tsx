@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import S from './styled';
 import { useSettingsStore } from '@/features/settings/state/settings-store';
-import { useUiStore } from '@/stores/ui-store';
+import { useUiStore } from '@/app/state/ui-store';
 
 const Modal = () => {
   const navigate = useNavigate();

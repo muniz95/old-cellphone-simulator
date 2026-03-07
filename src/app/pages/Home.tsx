@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import useTranslation from '@/shared/hooks/use-translation';
 import { useNavigate } from 'react-router-dom';
 import CurrentPageContainer from '@/shared/ui/current-page-container';
-import { useUiStore } from '@/stores/ui-store';
+import { useUiStore } from '@/app/state/ui-store';
 import { buildHomeMenu } from '@/app/modules/home-menu';
 
 const Home = () => {

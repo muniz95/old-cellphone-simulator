@@ -1,10 +1,10 @@
 import { useCallback, useEffect } from 'react';
 import useTranslation from '@/shared/hooks/use-translation';
-import { useUiStore } from '@/stores/ui-store';
+import { useUiStore } from '@/app/state/ui-store';
 
-const Reminders = () => {
+const Games = () => {
+  const { t } = useTranslation(['games']);
   const setSecondLevel = useUiStore((state) => state.setSecondLevel);
-  const { t } = useTranslation(['reminders']);
   const dispatchSetSecondLevel = useCallback(
     (position: number) => setSecondLevel(position + 1),
     [setSecondLevel]
@@ -16,4 +16,4 @@ const Reminders = () => {
   return <div className="home">{t('title')}</div>;
 };
 
-export default Reminders;
+export default Games;

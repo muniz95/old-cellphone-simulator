@@ -1,11 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import '@/i18n';
+import '@/app/providers/i18n';
 import { SimNumber } from '@/entities/sim-number/model/sim-number';
 import { simServicesModule } from '@/features/sim-services/module';
 import SimServicesPage from '@/features/sim-services/ui/pages/sim-services-page';
-import { resetUiStore } from '@/stores/ui-store';
+import { resetUiStore } from '@/app/state/ui-store';
 
 const mocks = vi.hoisted(() => ({
   say: vi.fn(),

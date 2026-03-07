@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useUiStore } from '@/stores/ui-store';
+import { useUiStore } from '@/app/state/ui-store';
 
 const PageIndicator = () => {
   const firstLevel = useUiStore((state) => state.firstLevel);

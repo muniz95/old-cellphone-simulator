@@ -1,10 +1,10 @@
-import Home from '@/pages/Home';
-import Messages from '@/pages/Messages';
-import Chat from '@/pages/Chat';
-import CallRegister from '@/pages/CallRegister';
-import CallDivert from '@/pages/CallDivert';
-import Games from '@/pages/Games';
-import Reminders from '@/pages/Reminders';
+import Home from '@/app/pages/Home';
+import Messages from '@/app/pages/Messages';
+import Chat from '@/app/pages/Chat';
+import CallRegister from '@/app/pages/CallRegister';
+import CallDivert from '@/app/pages/CallDivert';
+import Games from '@/app/pages/Games';
+import Reminders from '@/app/pages/Reminders';
 import { RouteObject } from 'react-router-dom';
 
 const routes: RouteObject[] = [

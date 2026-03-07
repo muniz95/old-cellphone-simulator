@@ -6,7 +6,7 @@ import {
   getSelectedSimServiceMessage,
   hasSelectedSimService,
 } from '@/features/sim-services/domain/use-cases';
-import { useUiStore } from '@/stores/ui-store';
+import { useUiStore } from '@/app/state/ui-store';
 
 export const useSimServicesController = () => {
   const [simNumbers] = useLocalStorage<SimNumber[]>('simNumbers', []);

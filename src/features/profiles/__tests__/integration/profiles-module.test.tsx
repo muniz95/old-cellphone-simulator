@@ -1,11 +1,11 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { fireEvent, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import '@/i18n';
+import '@/app/providers/i18n';
 import { Profile } from '@/entities/profile/model/profile';
 import { profilesModule } from '@/features/profiles/module';
 import ProfilesPage from '@/features/profiles/ui/pages/profiles-page';
-import { resetUiStore, useUiStore } from '@/stores/ui-store';
+import { resetUiStore, useUiStore } from '@/app/state/ui-store';
 import {
   resetProfilesStore,
   useProfilesStore,

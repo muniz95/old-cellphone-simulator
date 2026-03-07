@@ -1,9 +1,9 @@
 import { useCallback, useEffect } from 'react';
 import useTranslation from '@/shared/hooks/use-translation';
-import { useUiStore } from '@/stores/ui-store';
+import { useUiStore } from '@/app/state/ui-store';
 
-const CallRegister = () => {
-  const { t } = useTranslation(['callregister']);
+const Chat = () => {
+  const { t } = useTranslation(['chat']);
   const setSecondLevel = useUiStore((state) => state.setSecondLevel);
   const dispatchSetSecondLevel = useCallback(
     (position: number) => setSecondLevel(position + 1),
@@ -16,4 +16,4 @@ const CallRegister = () => {
   return <div className="home">{t('title')}</div>;
 };
 
-export default CallRegister;
+export default Chat;

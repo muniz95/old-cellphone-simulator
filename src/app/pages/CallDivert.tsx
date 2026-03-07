@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import useTranslation from '@/shared/hooks/use-translation';
-import { useUiStore } from '@/stores/ui-store';
+import { useUiStore } from '@/app/state/ui-store';
 
 const CallDivert = () => {
   const { t } = useTranslation(['calldivert']);

@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { Tone } from '@/entities/tone/model/tone';
 import { tonesModule } from '@/features/tones/module';
 import TonesPage from '@/features/tones/ui/pages/tones-page';
-import { resetUiStore, useUiStore } from '@/stores/ui-store';
+import { resetUiStore, useUiStore } from '@/app/state/ui-store';
 
 const mocks = vi.hoisted(() => ({
   useLocalStorage: vi.fn(),

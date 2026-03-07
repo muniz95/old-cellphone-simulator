@@ -4,7 +4,7 @@ import useContacts from '@/entities/contact/api/use-contacts';
 import vibration from '@/shared/lib/vibration';
 import { removeContactFromList } from '@/features/phone-book/domain/use-cases';
 import { usePhoneBookThirdLevel } from '@/features/phone-book/infrastructure/controllers/use-phone-book-third-level';
-import { useUiStore } from '@/stores/ui-store';
+import { useUiStore } from '@/app/state/ui-store';
 
 export const useEraseController = () => {
   usePhoneBookThirdLevel();

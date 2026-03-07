@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { evaluateExpression } from '@/features/calculator/domain/use-cases';
-import { useUiStore } from '@/stores/ui-store';
+import { useUiStore } from '@/app/state/ui-store';
 
 export const useCalculatorController = () => {
   const [expression, setExpression] = useState('');

@@ -1,9 +1,9 @@
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import App from '@/app/app';
+import registerServiceWorker from '@/app/service-worker/registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
-import './index.scss';
-import './i18n';
+import '@/app/styles/index.scss';
+import '@/app/providers/i18n';
 import { ensureInitialData } from '@/shared/lib/db';
 
 ensureInitialData();

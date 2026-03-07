@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Profile } from '@/entities/profile/model/profile';
 import vibration from '@/shared/lib/vibration';
-import { useUiStore } from '@/stores/ui-store';
+import { useUiStore } from '@/app/state/ui-store';
 import { useProfilesStore } from '@/features/profiles/state/profiles-store';
 
 export const useProfilesController = () => {

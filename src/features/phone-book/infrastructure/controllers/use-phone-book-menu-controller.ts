@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useTranslation from '@/shared/hooks/use-translation';
 import { buildPhoneBookMenu } from '@/features/phone-book/application/menus';
-import { useUiStore } from '@/stores/ui-store';
+import { useUiStore } from '@/app/state/ui-store';
 
 export const usePhoneBookMenuController = () => {
   const { t } = useTranslation(['phonebook']);

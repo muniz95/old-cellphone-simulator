@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { fireEvent, render } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import '@/i18n';
+import '@/app/providers/i18n';
 import { settingsModule } from '@/features/settings/module';
 import SettingsPage from '@/features/settings/ui/pages/settings-page';
 import GeneralSettingsPage from '@/features/settings/ui/pages/general-settings-page';
@@ -15,7 +15,7 @@ import {
   SETTINGS_STORAGE_KEY,
   useSettingsStore,
 } from '@/features/settings/state/settings-store';
-import { resetUiStore } from '@/stores/ui-store';
+import { resetUiStore } from '@/app/state/ui-store';
 import { DEFAULT_SETTINGS } from '@/features/settings/domain/constants';
 
 describe('settings module integration', () => {

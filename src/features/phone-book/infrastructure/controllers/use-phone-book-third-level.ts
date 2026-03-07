@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useUiStore } from '@/stores/ui-store';
+import { useUiStore } from '@/app/state/ui-store';
 
 export const usePhoneBookThirdLevel = () => {
   const setThirdLevel = useUiStore((state) => state.setThirdLevel);

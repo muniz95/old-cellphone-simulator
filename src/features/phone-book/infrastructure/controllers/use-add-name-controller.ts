@@ -3,7 +3,7 @@ import useContacts from '@/entities/contact/api/use-contacts';
 import vibration from '@/shared/lib/vibration';
 import { usePhoneBookThirdLevel } from '@/features/phone-book/infrastructure/controllers/use-phone-book-third-level';
 import { buildNewContact } from '@/features/phone-book/domain/use-cases';
-import { useUiStore } from '@/stores/ui-store';
+import { useUiStore } from '@/app/state/ui-store';
 
 export const useAddNameController = () => {
   usePhoneBookThirdLevel();

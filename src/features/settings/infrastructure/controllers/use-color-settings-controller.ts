@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { COLOR_OPTIONS } from '@/features/settings/domain/constants';
 import { useSettingsStore } from '@/features/settings/state/settings-store';
-import { useUiStore } from '@/stores/ui-store';
+import { useUiStore } from '@/app/state/ui-store';
 import vibration from '@/shared/lib/vibration';
 
 export const useColorSettingsController = () => {
