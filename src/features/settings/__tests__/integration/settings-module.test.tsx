@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { fireEvent, render } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { MemoryRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import '@/app/providers/i18n';
 import { settingsModule } from '@/features/settings/module';
 import SettingsPage from '@/features/settings/ui/pages/settings-page';
@@ -15,8 +15,13 @@ import {
   SETTINGS_STORAGE_KEY,
   useSettingsStore,
 } from '@/features/settings/state/settings-store';
-import { resetUiStore } from '@/app/state/ui-store';
+import { resetUiStore, useUiStore } from '@/app/state/ui-store';
 import { DEFAULT_SETTINGS } from '@/features/settings/domain/constants';
+
+const BackPage = () => {
+  const navigate = useNavigate();
+  return <button onClick={() => navigate(-1)}>BACK</button>;
+};
 
 describe('settings module integration', () => {
   beforeEach(() => {
@@ -80,6 +85,46 @@ describe('settings module integration', () => {
     fireEvent.touchEnd(label);
 
     expect(getByText('COLOR')).toBeTruthy();
+  });
+
+  it('keeps third-level index when returning from a fourth-level page', () => {
+    const { getByText } = render(
+      <MemoryRouter initialEntries={['/settings/general']}>
+        <Routes>
+          <Route path="/settings/general" element={<GeneralSettingsPage />} />
+          <Route path="/settings/general/light" element={<BackPage />} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    const colorLabel = getByText(/Color Settings|general\.color\.title/i);
+    fireEvent.touchStart(colorLabel, {
+      targetTouches: [{ clientX: 120, clientY: 10 }],
+    });
+    fireEvent.touchMove(colorLabel, {
+      targetTouches: [{ clientX: 20, clientY: 10 }],
+    });
+    fireEvent.touchEnd(colorLabel);
+
+    const languageLabel = getByText(/Language|general\.languageTitle/i);
+    fireEvent.touchStart(languageLabel, {
+      targetTouches: [{ clientX: 120, clientY: 10 }],
+    });
+    fireEvent.touchMove(languageLabel, {
+      targetTouches: [{ clientX: 20, clientY: 10 }],
+    });
+    fireEvent.touchEnd(languageLabel);
+
+    const lightLabel = getByText(/Light Settings|general\.light\.title/i);
+    fireEvent.touchStart(lightLabel, {
+      targetTouches: [{ clientX: 10, clientY: 10 }],
+    });
+    fireEvent.touchEnd(lightLabel);
+
+    fireEvent.click(getByText('BACK'));
+
+    expect(getByText(/Light Settings|general\.light\.title/i)).toBeTruthy();
+    expect(useUiStore.getState().thirdLevel).toBe(3);
   });
 
   it('saves updated values through store-backed pages', () => {

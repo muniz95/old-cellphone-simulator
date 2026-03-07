@@ -5,8 +5,16 @@ import CurrentPageContainer from '@/shared/ui/current-page-container';
 import { useUiStore } from '@/app/state/ui-store';
 import { buildHomeMenu } from '@/app/modules/home-menu';
 
+const clampPosition = (position: number, length: number) => {
+  if (length <= 0) return 0;
+  if (position < 0) return 0;
+  if (position > length - 1) return length - 1;
+  return position;
+};
+
 const Home = () => {
   const { t } = useTranslation(['home']);
+  const firstLevel = useUiStore((state) => state.firstLevel);
   const setFirstLevel = useUiStore((state) => state.setFirstLevel);
   const resetLevels = useUiStore((state) => state.resetLevels);
   const navigate = useNavigate();
@@ -15,7 +23,19 @@ const Home = () => {
     [setFirstLevel]
   );
   const menus = useMemo(() => buildHomeMenu(t), [t]);
-  const [position, setPosition] = useState(0);
+  const [position, setPosition] = useState(() =>
+    clampPosition(firstLevel > 0 ? firstLevel - 1 : 0, menus.length)
+  );
+
+  useEffect(() => {
+    const nextPosition = clampPosition(
+      firstLevel > 0 ? firstLevel - 1 : 0,
+      menus.length
+    );
+    setPosition((current) =>
+      current === nextPosition ? current : nextPosition
+    );
+  }, [firstLevel, menus.length]);
 
   const handleTap = () => {
     navigate(menus[position].path);
