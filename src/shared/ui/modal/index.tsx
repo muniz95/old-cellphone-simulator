@@ -1,34 +1,39 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router';
 import S from './styled';
-import { useSettingsStore } from '@/features/settings/state/settings-store';
-import { useUiStore } from '@/app/state/ui-store';
 
-const Modal = () => {
-  const navigate = useNavigate();
-  const showModal = useUiStore((state) => state.showModal);
-  const closeModal = useUiStore((state) => state.closeModal);
-  const color = useSettingsStore((state) => state.color);
+interface ModalProps {
+  color: string;
+  isOpen: boolean;
+  onAutoClose?: () => void;
+  autoCloseMs?: number;
+  message?: string;
+}
 
+const Modal = ({
+  color,
+  isOpen,
+  onAutoClose,
+  autoCloseMs = 3000,
+  message = 'Done!',
+}: ModalProps) => {
   useEffect(() => {
-    if (!showModal) return;
+    if (!isOpen || !onAutoClose) return;
 
     const timeout = setTimeout(() => {
-      closeModal();
-      navigate('/');
-    }, 3000);
+      onAutoClose();
+    }, autoCloseMs);
 
     return () => clearTimeout(timeout);
-  }, [closeModal, navigate, showModal]);
+  }, [autoCloseMs, isOpen, onAutoClose]);
 
   return (
-    <S.ModalContainer showModal={showModal} color={color}>
+    <S.ModalContainer showModal={isOpen} color={color}>
       <div>
-        <S.HiddenCheckbox name="ok" id="ok" readOnly checked={showModal} />
+        <S.HiddenCheckbox name="ok" id="ok" readOnly checked={isOpen} />
         <label htmlFor="ok">
           <span>&nbsp;</span>
           <ins>
-            <i>Done!</i>
+            <i>{message}</i>
           </ins>
         </label>
       </div>

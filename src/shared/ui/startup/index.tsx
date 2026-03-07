@@ -1,10 +1,13 @@
 import S from './styled';
-import { useSettingsStore } from '@/features/settings/state/settings-store';
+import { ReactNode } from 'react';
 
-const Startup = () => {
-  const color = useSettingsStore((state) => state.color);
+interface StartupProps {
+  color: string;
+  label?: ReactNode;
+}
 
-  return <S.StartupContainer color={color}>Startup</S.StartupContainer>;
+const Startup = ({ color, label = 'Startup' }: StartupProps) => {
+  return <S.StartupContainer color={color}>{label}</S.StartupContainer>;
 };
 
 export default Startup;
