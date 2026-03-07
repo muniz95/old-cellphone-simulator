@@ -17,7 +17,7 @@ vi.mock('@/features/tones/infrastructure/hooks/use-tones-data', () => ({
   default: mocks.useTonesData,
 }));
 
-vi.mock('@/features/tones/infrastructure/audio/use-ringtone', () => ({
+vi.mock('@/shared/hooks/use-ringtone', () => ({
   default: () => ({
     play: mocks.play,
     stop: mocks.stop,

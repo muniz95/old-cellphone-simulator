@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { Tone } from '@/features/tones/domain/tone';
-import useRingtone from '@/features/tones/infrastructure/audio/use-ringtone';
 import useTonesData from '@/features/tones/infrastructure/hooks/use-tones-data';
 import { getTonePlaybackInput } from '@/features/tones/domain/use-cases';
 import { useUiStore } from '@/app/state/ui-store';
+import useRingtone from '@/shared/hooks/use-ringtone';
 
 export const useTonesController = () => {
   const tones = useTonesData();
