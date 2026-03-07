@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import useTranslation from '@/shared/hooks/use-translation';
 import { useUiStore } from '@/app/state/ui-store';
+import HomeScreen from '@/shared/ui/home-screen';
 
 const Messages = () => {
   const { t } = useTranslation(['messages']);
@@ -14,7 +15,7 @@ const Messages = () => {
     dispatchSetSecondLevel(0);
   }, [dispatchSetSecondLevel]);
 
-  return <div className="home">{t('title')}</div>;
+  return <HomeScreen>{t('title')}</HomeScreen>;
 };
 
 export default Messages;
