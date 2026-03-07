@@ -1,12 +1,7 @@
 import { RouteObject } from 'react-router-dom';
+import { featureRoutes } from '@/app/modules/registry';
 import mainRoutes from './main';
-import { phoneBookModule } from '@/features/phone-book/module';
-import { settingsModule } from '@/features/settings/module';
 
-const routes: RouteObject[] = [
-  ...mainRoutes,
-  ...phoneBookModule.routes,
-  ...settingsModule.routes,
-];
+const routes: RouteObject[] = [...mainRoutes, ...featureRoutes];
 
 export default routes;

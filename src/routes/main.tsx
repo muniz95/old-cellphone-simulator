@@ -6,25 +6,15 @@ import CallDivert from '@/pages/CallDivert';
 import Games from '@/pages/Games';
 import Reminders from '@/pages/Reminders';
 import { RouteObject } from 'react-router-dom';
-import { profilesModule } from '@/features/profiles/module';
-import { calculatorModule } from '@/features/calculator/module';
-import { clockModule } from '@/features/clock/module';
-import { simServicesModule } from '@/features/sim-services/module';
-import { tonesModule } from '@/features/tones/module';
 
 const routes: RouteObject[] = [
   { path: '/', element: <Home /> },
   { path: '/messages', element: <Messages /> },
   { path: '/chat', element: <Chat /> },
   { path: '/callregister', element: <CallRegister /> },
-  ...tonesModule.routes,
   { path: '/calldivert', element: <CallDivert /> },
   { path: '/games', element: <Games /> },
-  ...calculatorModule.routes,
   { path: '/reminders', element: <Reminders /> },
-  ...clockModule.routes,
-  ...profilesModule.routes,
-  ...simServicesModule.routes,
 ];
 
 export default routes;
