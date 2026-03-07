@@ -1,6 +1,6 @@
 import useTranslation from '@/shared/hooks/use-translation';
 import S from '@/shared/ui/base';
-import { Contact } from '@/entities/contact/model/contact';
+import { Contact } from '@/features/phone-book/domain/contact';
 import { useEraseController } from '@/features/phone-book/infrastructure/controllers/use-erase-controller';
 
 const ErasePage = () => {

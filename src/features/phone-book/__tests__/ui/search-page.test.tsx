@@ -2,7 +2,7 @@ import { render, fireEvent } from '@testing-library/react';
 import { useSearchController } from '@/features/phone-book/infrastructure/controllers/use-search-controller';
 import SearchPage from '@/features/phone-book/ui/pages/search-page';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { Contact } from '@/entities/contact/model/contact';
+import { Contact } from '@/features/phone-book/domain/contact';
 
 vi.mock(
   '@/features/phone-book/infrastructure/controllers/use-search-controller'

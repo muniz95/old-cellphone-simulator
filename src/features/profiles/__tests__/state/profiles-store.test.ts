@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { Profile } from '@/entities/profile/model/profile';
+import { Profile } from '@/features/profiles/domain/profile';
 import {
   CURRENT_PROFILE_STORAGE_KEY,
   PROFILES_STORAGE_KEY,

@@ -1,4 +1,4 @@
-import { StorageEntity } from '@/entities/shared/model/storage-entity';
+import { StorageEntity } from '@/shared/types/storage-entity';
 
 export interface Contact extends StorageEntity {
   name: string;

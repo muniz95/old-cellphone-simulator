@@ -5,10 +5,12 @@ import '@/app/providers/i18n';
 import { phoneBookModule } from '@/features/phone-book/module';
 import PhoneBookPage from '@/features/phone-book/ui/pages/phone-book-page';
 import { resetUiStore } from '@/app/state/ui-store';
+import { resetContactsStore } from '@/features/phone-book/state/contacts-store';
 
 describe('phone-book module integration', () => {
   beforeEach(() => {
     resetUiStore();
+    resetContactsStore();
   });
 
   it('exposes all expected routes', () => {

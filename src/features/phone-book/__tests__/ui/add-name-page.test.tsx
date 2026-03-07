@@ -1,8 +1,13 @@
 import { fireEvent, render } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import AddNamePage from '@/features/phone-book/ui/pages/add-name-page';
+import { resetContactsStore } from '@/features/phone-book/state/contacts-store';
 
 describe('PhoneBookAddName Component', () => {
+  beforeEach(() => {
+    resetContactsStore();
+  });
+
   it('should render the input and button', () => {
     const { getByText, getByRole } = render(<AddNamePage />);
     expect(getByRole('textbox')).toBeTruthy();

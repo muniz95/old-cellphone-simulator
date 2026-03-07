@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { fireEvent, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import '@/app/providers/i18n';
-import { Profile } from '@/entities/profile/model/profile';
+import { Profile } from '@/features/profiles/domain/profile';
 import { profilesModule } from '@/features/profiles/module';
 import ProfilesPage from '@/features/profiles/ui/pages/profiles-page';
 import { resetUiStore, useUiStore } from '@/app/state/ui-store';

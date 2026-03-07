@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import defaults from '@/shared/config/defaults';
-import { Profile } from '@/entities/profile/model/profile';
+import { Profile } from '@/features/profiles/domain/profile';
 
 const PROFILES_STORAGE_KEY = 'profiles';
 const CURRENT_PROFILE_STORAGE_KEY = 'currentProfile';
