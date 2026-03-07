@@ -1,6 +1,6 @@
 import contacts from './contacts';
 import profiles from './profiles';
-import simNumbers from './simNumbers';
+import simNumbers from './sim-numbers';
 
 const seed = {
   contacts,

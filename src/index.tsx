@@ -1,5 +1,5 @@
 import App from '@/app/app';
-import registerServiceWorker from '@/app/service-worker/registerServiceWorker';
+import registerServiceWorker from '@/app/service-worker/register-service-worker';
 import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import '@/app/styles/index.scss';
