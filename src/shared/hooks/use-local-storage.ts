@@ -39,7 +39,7 @@ const useLocalStorage = <T>(
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
       const item = storage.getItem(key);
-      if (item) {
+      if (item !== null) {
         try {
           return JSON.parse(item);
         } catch {
@@ -47,6 +47,10 @@ const useLocalStorage = <T>(
             return true;
           } else if (item.toLowerCase() === 'false') {
             return false;
+          }
+
+          if (item === '') {
+            return item;
           }
 
           const number = Number(item);

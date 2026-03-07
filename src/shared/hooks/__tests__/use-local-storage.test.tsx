@@ -77,6 +77,15 @@ describe('useLocalStorage', () => {
     expect(textHook.result.current[0]).toBe('legacy-value');
   });
 
+  it('keeps persisted empty-string values instead of replacing them with defaults', () => {
+    localStorage.setItem('nickname', '');
+
+    const { result } = renderHook(() => useLocalStorage('nickname', 'Guest'));
+
+    expect(result.current[0]).toBe('');
+    expect(localStorage.getItem('nickname')).toBe('');
+  });
+
   it('persists falsy updates (0, false, empty string)', async () => {
     const numberHook = renderHook(() => useLocalStorage('n', 1));
     const boolHook = renderHook(() => useLocalStorage('b', true));
