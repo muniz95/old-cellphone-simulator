@@ -40,6 +40,7 @@ describe('profiles module integration', () => {
     useProfilesStore.setState({
       profiles: [factoryProfile, customProfile],
       currentProfile: factoryProfile,
+      hydrated: true,
     });
   });
 
