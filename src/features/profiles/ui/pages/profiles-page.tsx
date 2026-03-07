@@ -1,18 +1,21 @@
 import useTranslation from '@/shared/hooks/use-translation';
 import S from '@/shared/ui/base';
-import { useProfiles } from './hooks/use-profiles';
+import { useProfilesController } from '@/features/profiles/infrastructure/controllers/use-profiles-controller';
 
-const Profiles = () => {
+const ProfilesPage = () => {
   const { t } = useTranslation(['profiles']);
   const { profiles, selectedProfile, setSelectedProfile, applyProfile } =
-    useProfiles();
+    useProfilesController();
 
   return (
     <>
       <S.MainContainer>
-        {profiles.map((x) => (
-          <S.ResultsBox key={x.name} onClick={() => setSelectedProfile(x)}>
-            <S.Item>{x.isFactoryProfile ? t(x.name) : x.name}</S.Item>
+        {profiles.map((profile) => (
+          <S.ResultsBox
+            key={profile.name}
+            onClick={() => setSelectedProfile(profile)}
+          >
+            <S.Item>{profile.isFactoryProfile ? t(profile.name) : profile.name}</S.Item>
           </S.ResultsBox>
         ))}
       </S.MainContainer>
@@ -28,4 +31,4 @@ const Profiles = () => {
   );
 };
 
-export default Profiles;
+export default ProfilesPage;

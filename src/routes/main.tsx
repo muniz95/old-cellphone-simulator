@@ -7,10 +7,10 @@ import CallDivert from '@/pages/CallDivert';
 import Games from '@/pages/Games';
 import Reminders from '@/pages/Reminders';
 import Clock from '@/features/clock';
-import Profiles from '@/features/profiles';
 import SimServices from '@/features/sim-services';
 import { RouteObject } from 'react-router-dom';
 import { Calculator } from '@/features/calculator';
+import { profilesModule } from '@/features/profiles/module';
 
 const routes: RouteObject[] = [
   { path: '/', element: <Home /> },
@@ -23,7 +23,7 @@ const routes: RouteObject[] = [
   { path: '/calculator', element: <Calculator /> },
   { path: '/reminders', element: <Reminders /> },
   { path: '/clock', element: <Clock /> },
-  { path: '/profiles', element: <Profiles /> },
+  ...profilesModule.routes,
   { path: '/simservices', element: <SimServices /> },
 ];
 
