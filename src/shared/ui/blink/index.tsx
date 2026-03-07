@@ -1,4 +1,5 @@
 import { ReactElement, useEffect, useRef, useState } from 'react';
+import S from './styled';
 
 interface IProps {
   children: ReactElement | ReactElement[];
@@ -6,7 +7,7 @@ interface IProps {
 }
 
 const Blink = ({ children, interval }: IProps) => {
-  const currentTimer = useRef<NodeJS.Timeout>();
+  const currentTimer = useRef<ReturnType<typeof setInterval> | null>(null);
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -15,16 +16,20 @@ const Blink = ({ children, interval }: IProps) => {
         setIsVisible((state) => !state);
       }, interval);
     } else {
-      clearInterval(currentTimer.current);
+      if (currentTimer.current) {
+        clearInterval(currentTimer.current);
+      }
       setIsVisible(true);
     }
+
+    return () => {
+      if (currentTimer.current) {
+        clearInterval(currentTimer.current);
+      }
+    };
   }, [interval]);
 
-  return (
-    <div style={{ visibility: isVisible ? 'visible' : 'hidden' }}>
-      {children}
-    </div>
-  );
+  return <S.BlinkContainer isVisible={isVisible}>{children}</S.BlinkContainer>;
 };
 
 export default Blink;

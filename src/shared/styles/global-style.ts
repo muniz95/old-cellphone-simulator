@@ -1,6 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 import { colors, borders } from '@/shared/styles/tokens';
-import { noSelect } from '@/shared/styles/mixins';
 import nokiaFontUrl from '@/app/styles/nokiafc22.ttf';
 
 const GlobalStyle = createGlobalStyle`
@@ -24,18 +23,6 @@ const GlobalStyle = createGlobalStyle`
 
   *:focus {
     outline: none;
-  }
-
-  .active {
-    background-color: ${colors.active};
-  }
-
-  .inactive {
-    background-color: ${colors.inactive};
-  }
-
-  .noselect {
-    ${noSelect}
   }
 
   input[type='text'] {

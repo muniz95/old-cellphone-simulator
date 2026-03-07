@@ -24,14 +24,7 @@ const Modal = () => {
   return (
     <S.ModalContainer showModal={showModal} color={color}>
       <div>
-        <input
-          type="checkbox"
-          name="ok"
-          id="ok"
-          style={{ opacity: 0 }}
-          readOnly
-          checked={showModal}
-        />
+        <S.HiddenCheckbox name="ok" id="ok" readOnly checked={showModal} />
         <label htmlFor="ok">
           <span>&nbsp;</span>
           <ins>

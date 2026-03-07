@@ -8,3 +8,10 @@ export const noSelect = css`
   -ms-user-select: none;
   user-select: none;
 `;
+
+export const visuallyHidden = css`
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+`;

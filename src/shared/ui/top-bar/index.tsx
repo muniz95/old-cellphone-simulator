@@ -4,17 +4,19 @@ import PageIndicator from '../page-indicator';
 
 const TopBar = () => {
   const [date, setDate] = useState(new Date());
-  const tick = () => {
-    setDate(new Date());
-  };
-  const timerID = setInterval(tick, 1000);
 
   useEffect(() => {
-    return () => clearInterval(timerID);
-  });
+    const timerId = setInterval(() => {
+      setDate(new Date());
+    }, 1000);
+
+    return () => {
+      clearInterval(timerId);
+    };
+  }, []);
 
   return (
-    <S.TopBarContainer className="noselect">
+    <S.TopBarContainer>
       <div>Lock</div>
       <PageIndicator />
       <div>{`${date.toLocaleTimeString().slice(0, 5)}`}</div>
