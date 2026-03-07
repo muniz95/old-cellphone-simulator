@@ -78,7 +78,10 @@ const persistState = (
 ) => {
   const storage = resolveStorage();
   storage.setItem(PROFILES_STORAGE_KEY, JSON.stringify(state.profiles));
-  storage.setItem(CURRENT_PROFILE_STORAGE_KEY, JSON.stringify(state.currentProfile));
+  storage.setItem(
+    CURRENT_PROFILE_STORAGE_KEY,
+    JSON.stringify(state.currentProfile)
+  );
 };
 
 export const useProfilesStore = create<ProfilesState>()((set) => ({

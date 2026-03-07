@@ -4,7 +4,9 @@ import SearchPage from '@/features/phone-book/ui/pages/search-page';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Contact } from '@/entities/contact/model/contact';
 
-vi.mock('@/features/phone-book/infrastructure/controllers/use-search-controller');
+vi.mock(
+  '@/features/phone-book/infrastructure/controllers/use-search-controller'
+);
 
 describe('PhoneBookSearch', () => {
   const mockContacts: Contact[] = [

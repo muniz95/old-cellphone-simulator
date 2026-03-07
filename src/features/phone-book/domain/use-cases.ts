@@ -22,7 +22,10 @@ export const buildNewContact = (
   isServiceNumber: false,
 });
 
-export const filterContactsByName = (contacts: Contact[], searchTerm: string) => {
+export const filterContactsByName = (
+  contacts: Contact[],
+  searchTerm: string
+) => {
   const search = normalize(searchTerm);
   if (!search) return contacts;
 
@@ -35,7 +38,10 @@ export const replaceContact = (contacts: Contact[], updated: Contact) => {
   );
 };
 
-export const removeContactFromList = (contacts: Contact[], selected: Contact) => {
+export const removeContactFromList = (
+  contacts: Contact[],
+  selected: Contact
+) => {
   return contacts.filter((contact) => !isSameContact(contact, selected));
 };
 

@@ -15,7 +15,9 @@ const ProfilesPage = () => {
             key={profile.name}
             onClick={() => setSelectedProfile(profile)}
           >
-            <S.Item>{profile.isFactoryProfile ? t(profile.name) : profile.name}</S.Item>
+            <S.Item>
+              {profile.isFactoryProfile ? t(profile.name) : profile.name}
+            </S.Item>
           </S.ResultsBox>
         ))}
       </S.MainContainer>

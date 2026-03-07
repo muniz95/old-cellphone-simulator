@@ -6,7 +6,10 @@ import { Profile } from '@/entities/profile/model/profile';
 import { profilesModule } from '@/features/profiles/module';
 import ProfilesPage from '@/features/profiles/ui/pages/profiles-page';
 import { resetUiStore, useUiStore } from '@/stores/ui-store';
-import { resetProfilesStore, useProfilesStore } from '@/features/profiles/state/profiles-store';
+import {
+  resetProfilesStore,
+  useProfilesStore,
+} from '@/features/profiles/state/profiles-store';
 
 const factoryProfile: Profile = {
   id: 'factory-profile',

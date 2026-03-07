@@ -9,7 +9,9 @@ export const useProfilesController = () => {
   const setSecondLevel = useUiStore((state) => state.setSecondLevel);
   const openModal = useUiStore((state) => state.openModal);
   const profiles = useProfilesStore((state) => state.profiles);
-  const setCurrentProfile = useProfilesStore((state) => state.setCurrentProfile);
+  const setCurrentProfile = useProfilesStore(
+    (state) => state.setCurrentProfile
+  );
 
   useEffect(() => {
     setSecondLevel(0);

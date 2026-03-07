@@ -2,7 +2,9 @@ import { RouteObject } from 'react-router-dom';
 import { FeatureModule } from '@/app/modules/feature-module';
 import CalculatorPage from '@/features/calculator/ui/pages/calculator-page';
 
-const routes: RouteObject[] = [{ path: '/calculator', element: <CalculatorPage /> }];
+const routes: RouteObject[] = [
+  { path: '/calculator', element: <CalculatorPage /> },
+];
 
 export const calculatorModule: FeatureModule = {
   id: 'calculator',

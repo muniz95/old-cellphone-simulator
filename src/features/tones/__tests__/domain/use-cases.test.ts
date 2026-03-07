@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { canPlayTone, getTonePlaybackInput } from '@/features/tones/domain/use-cases';
+import {
+  canPlayTone,
+  getTonePlaybackInput,
+} from '@/features/tones/domain/use-cases';
 
 describe('tones domain use-cases', () => {
   it('validates if a tone can be played', () => {

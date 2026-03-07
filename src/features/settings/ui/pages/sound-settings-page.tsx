@@ -18,14 +18,18 @@ const SoundSettingsPage = () => {
     <>
       <S.MainContainer>
         <S.ControllerSection>
-          <label htmlFor="notification">{t('general.sound.notification')}</label>
+          <label htmlFor="notification">
+            {t('general.sound.notification')}
+          </label>
           <S.SliderInput
             step={10}
             min={0}
             max={100}
             id="notification"
             value={notificationLevel}
-            onChange={({ target }) => setNotificationLevel(target.valueAsNumber)}
+            onChange={({ target }) =>
+              setNotificationLevel(target.valueAsNumber)
+            }
           />
         </S.ControllerSection>
         <S.ControllerSection>
