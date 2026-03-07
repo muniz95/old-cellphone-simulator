@@ -37,11 +37,11 @@ const useRingtone = () => {
   const play = (notes: string, bpm: number) => {
     if (!audioContextRef.current) return;
 
-    let g: GainNode;
+    let gainNode: GainNode;
     let startTime: number;
     const oscillator = audioContextRef.current.createOscillator();
     oscillator
-      .connect((g = audioContextRef.current.createGain()))
+      .connect((gainNode = audioContextRef.current.createGain()))
       .connect(audioContextRef.current.destination);
     oscillator.type = 'sine';
     oscillator.start();
@@ -58,15 +58,15 @@ const useRingtone = () => {
           +!!command[3] +
           12 * clamp(Number(command[5]), 1, 3));
       const clampedValue = clamp(Number(command[1]) || 4, 1, 64);
-      const d = (24 / bpm / clampedValue) * (1 + +!!command[2] / 2);
+      const duration = (24 / bpm / clampedValue) * (1 + +!!command[2] / 2);
       setAudioParamValue(
         oscillator.frequency,
         261.63 * 2 ** (calculatedNote / 12)
       );
-      setAudioParamValue(g.gain, (~asciiNote & 8) / 8);
-      startTime = startTime + d * 7;
-      setAudioParamValue(g.gain, 0);
-      startTime = startTime + d * 3;
+      setAudioParamValue(gainNode.gain, (~asciiNote & 8) / 8);
+      startTime = startTime + duration * 7;
+      setAudioParamValue(gainNode.gain, 0);
+      startTime = startTime + duration * 3;
     }
   };
 
