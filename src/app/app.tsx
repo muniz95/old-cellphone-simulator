@@ -1,5 +1,4 @@
 import { useRoutes } from 'react-router-dom';
-import '@/app/styles/app.css';
 import BatteryStatus from '@/shared/ui/battery-status';
 import BottomBar from '@/shared/ui/bottom-bar';
 import Modal from '@/shared/ui/modal';
@@ -10,6 +9,8 @@ import routes from '@/app/routes';
 import Startup from '@/shared/ui/startup';
 import { useEffect, useState } from 'react';
 import { useSettingsStore } from '@/features/settings/state/settings-store';
+import GlobalStyle from '@/shared/styles/global-style';
+import S from '@/app/ui/app-shell';
 
 const App = () => {
   const routing = useRoutes([...routes]);
@@ -26,28 +27,24 @@ const App = () => {
     return () => clearTimeout(timeout);
   }, []);
 
-  const style = {
-    backgroundColor: color,
-    backgroundImage: `linear-gradient(rgb(0 0 0/${100 - backlightLevel}%) 0 0)`,
-  };
-
   return (
-    <div className="App" style={style}>
+    <S.AppShell backgroundColor={color} backlightLevel={backlightLevel}>
+      <GlobalStyle />
       {firstRender ? (
         <Startup />
       ) : (
         <>
           <SignalStatus />
-          <div className="container">
+          <S.AppMainContainer>
             <TopBar />
-            <div className="page-container">{routing}</div>
+            <S.AppPageContainer>{routing}</S.AppPageContainer>
             <BottomBar />
-          </div>
+          </S.AppMainContainer>
           <BatteryStatus />
           <Modal />
         </>
       )}
-    </div>
+    </S.AppShell>
   );
 };
 
