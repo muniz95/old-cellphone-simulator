@@ -1,11 +1,11 @@
-import { evaluatePostfix } from '@/features/calculator/utils/evaluate-postfix';
+import { evaluatePostfix } from '@/features/calculator/domain/use-cases';
 import { describe, it, expect } from 'vitest';
 
 describe('evaluatePostfix', () => {
   it('should evaluate a valid postfix expression', () => {
     const postfix = ['3', '5', '2', '8', '-', '*', '+'];
     const result = evaluatePostfix(postfix);
-    expect(result).toBe(-13);
+    expect(result).toBe(-27);
   });
 
   it('should return null for division by zero', () => {

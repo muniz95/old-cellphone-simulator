@@ -1,4 +1,4 @@
-import { tokenize } from '@/features/calculator/utils/tokenize';
+import { tokenize } from '@/features/calculator/domain/use-cases';
 import { describe, it, expect } from 'vitest';
 
 describe('tokenize', () => {

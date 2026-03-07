@@ -9,8 +9,8 @@ import Reminders from '@/pages/Reminders';
 import Clock from '@/features/clock';
 import SimServices from '@/features/sim-services';
 import { RouteObject } from 'react-router-dom';
-import { Calculator } from '@/features/calculator';
 import { profilesModule } from '@/features/profiles/module';
+import { calculatorModule } from '@/features/calculator/module';
 
 const routes: RouteObject[] = [
   { path: '/', element: <Home /> },
@@ -20,7 +20,7 @@ const routes: RouteObject[] = [
   { path: '/tones', element: <Tones /> },
   { path: '/calldivert', element: <CallDivert /> },
   { path: '/games', element: <Games /> },
-  { path: '/calculator', element: <Calculator /> },
+  ...calculatorModule.routes,
   { path: '/reminders', element: <Reminders /> },
   { path: '/clock', element: <Clock /> },
   ...profilesModule.routes,

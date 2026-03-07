@@ -18,25 +18,22 @@ const KeyboardContainer = styled.div`
 `;
 
 const Key = styled.button`
-  // Change to button
   width: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: none; // Remove default button background
-  border: none; // Remove default button border
-  cursor: pointer; // Add a pointer cursor for better UX
-  padding: 0; // Remove default button padding
-  box-sizing: border-box; // Important for consistent sizing
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  box-sizing: border-box;
 
   &:not(:last-child) {
-    // Add dotted borders to all but the last child
     border-bottom-style: dotted;
     border-right-style: dotted;
   }
 
   &::after {
-    // add psuedo element to replace the inner div
     content: inherit;
     display: flex;
     align-items: center;
@@ -46,7 +43,6 @@ const Key = styled.button`
   }
 
   & > * {
-    // hide the direct children
     display: none;
   }
 `;

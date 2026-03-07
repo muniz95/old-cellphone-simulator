@@ -1,16 +1,16 @@
 import { describe, expect, it } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithProvider } from '@/__tests__/utils';
-import { Calculator } from '@/features/calculator';
+import CalculatorPage from '@/features/calculator/ui/pages/calculator-page';
 
 describe('Calculator', () => {
   it('renders correctly', () => {
-    const { container } = renderWithProvider(<Calculator />);
+    const { container } = renderWithProvider(<CalculatorPage />);
     expect(container).toBeTruthy();
   });
 
   it('displays numbers when keys are clicked', () => {
-    renderWithProvider(<Calculator />);
+    renderWithProvider(<CalculatorPage />);
     const key1 = screen.getByText('1');
     const key2 = screen.getByText('2');
     const key3 = screen.getByText('3');
@@ -22,7 +22,7 @@ describe('Calculator', () => {
   });
 
   it('clears the expression when CC is clicked', () => {
-    renderWithProvider(<Calculator />);
+    renderWithProvider(<CalculatorPage />);
     const key1 = screen.getByText('1');
     const clearKey = screen.getByText('CC');
     fireEvent.click(key1);
@@ -32,7 +32,7 @@ describe('Calculator', () => {
   });
 
   it('removes the last character when c is clicked', () => {
-    renderWithProvider(<Calculator />);
+    renderWithProvider(<CalculatorPage />);
     const key1 = screen.getByText('1');
     const key2 = screen.getByText('2');
     const backKey = screen.getByText('c');
@@ -44,7 +44,7 @@ describe('Calculator', () => {
   });
 
   it('evaluates the expression when = is clicked', () => {
-    renderWithProvider(<Calculator />);
+    renderWithProvider(<CalculatorPage />);
     const key1 = screen.getByText('1');
     const keyPlus = screen.getByText('+');
     const key2 = screen.getByText('2');
@@ -58,7 +58,7 @@ describe('Calculator', () => {
   });
 
   it('handles edge cases for evaluation', () => {
-    renderWithProvider(<Calculator />);
+    renderWithProvider(<CalculatorPage />);
 
     // Test division by zero
     const key1 = screen.getByText('1');
@@ -87,5 +87,16 @@ describe('Calculator', () => {
     fireEvent.click(key0);
     fireEvent.click(equalKey);
     expect(textarea.value).toBe(''); // Assuming the evaluate function handles multiple operators
+  });
+
+  it('keeps zero as a valid result', () => {
+    renderWithProvider(<CalculatorPage />);
+    fireEvent.click(screen.getByText('1'));
+    fireEvent.click(screen.getByText('-'));
+    fireEvent.click(screen.getByText('1'));
+    fireEvent.click(screen.getByText('='));
+
+    const textarea = screen.getByRole('textbox') as HTMLTextAreaElement;
+    expect(textarea.value).toBe('0');
   });
 });

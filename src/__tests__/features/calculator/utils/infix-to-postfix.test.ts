@@ -1,4 +1,4 @@
-import { infixToPostfix } from '@/features/calculator/utils/infix-to-postfix';
+import { infixToPostfix } from '@/features/calculator/domain/use-cases';
 import { describe, it, expect } from 'vitest';
 
 describe('infixToPostfix', () => {
