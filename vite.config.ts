@@ -2,7 +2,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { brotliCompressSync, gzipSync } from 'node:zlib';
-import { defineConfig, loadEnv, type Plugin } from 'vite';
+import { defineConfig, loadEnv, type Plugin, type PluginOption } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 
@@ -142,14 +142,92 @@ const createBundleVisualizerPlugin = (): Plugin => ({
   },
 });
 
+const resolvePwaPlugin = async (): Promise<PluginOption | null> => {
+  try {
+    const { VitePWA } = await import('vite-plugin-pwa');
+
+    return VitePWA({
+      registerType: 'prompt',
+      includeAssets: ['favicon.ico', 'icons/icon-192.png', 'icons/icon-512.png'],
+      manifest: {
+        id: '/',
+        name: 'Vapour NR1 Cellphone Simulator',
+        short_name: 'Vapour NR1',
+        description: 'A web simulator of a classic 2001 cellphone experience.',
+        lang: 'en-US',
+        start_url: '/',
+        scope: '/',
+        display: 'standalone',
+        orientation: 'portrait',
+        theme_color: '#c0b400',
+        background_color: '#c0b400',
+        icons: [
+          {
+            src: 'icons/icon-192.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'any',
+          },
+          {
+            src: 'icons/icon-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any',
+          },
+          {
+            src: 'icons/icon-maskable-192.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+          {
+            src: 'icons/icon-maskable-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+        ],
+      },
+      workbox: {
+        navigateFallback: '/index.html',
+        runtimeCaching: [
+          {
+            urlPattern: ({ sameOrigin }) => sameOrigin,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'same-origin-assets',
+            },
+          },
+        ],
+      },
+    });
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : String(error);
+
+    console.warn(
+      `vite-plugin-pwa not found. Falling back to public/sw.js runtime registration. (${reason})`
+    );
+
+    return null;
+  }
+};
+
 // https://vite.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(async ({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   const analyze = env.ANALYZE === 'true';
-  const plugins = [react(), viteTsconfigPaths()];
+  const plugins: PluginOption[] = [react(), viteTsconfigPaths()];
 
   if (analyze) {
     plugins.push(createBundleVisualizerPlugin());
+  }
+
+  if (mode !== 'test') {
+    const pwaPlugin = await resolvePwaPlugin();
+
+    if (pwaPlugin) {
+      plugins.push(pwaPlugin);
+    }
   }
 
   return {
