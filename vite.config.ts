@@ -13,9 +13,6 @@ export default defineConfig(({ mode }) => {
         external: [/.*\.tests\.{ts,tsx}$/], // Exclude files matching this regex
       },
     },
-    define: {
-      'process.env': env,
-    },
     test: {
       environment: 'jsdom',
       exclude: ['**/node_modules/**', '**/dist/**', '**/browser/**'],
