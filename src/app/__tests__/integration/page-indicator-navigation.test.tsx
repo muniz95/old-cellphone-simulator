@@ -66,7 +66,15 @@ const advancePastStartup = () => {
   });
 };
 
-const renderApp = () => {
+const flushLazyRoute = async () => {
+  await act(async () => {
+    await vi.dynamicImportSettled();
+    await Promise.resolve();
+    await Promise.resolve();
+  });
+};
+
+const renderApp = async () => {
   render(
     <MemoryRouter initialEntries={['/']}>
       <App />
@@ -74,6 +82,9 @@ const renderApp = () => {
   );
 
   advancePastStartup();
+  await flushLazyRoute();
+  expect(screen.getByText(labels.phoneBook)).toBeTruthy();
+  expectIndicator('1');
 };
 
 const navigateHomeToSettings = () => {
@@ -88,29 +99,35 @@ const navigateHomeToSettings = () => {
   expectNoFifthSegment();
 };
 
-const navigateSettingsToGeneral = () => {
+const navigateSettingsToGeneral = async () => {
   tap(screen.getByText(labels.settings));
+  await flushLazyRoute();
 
-  swipeLeft(screen.getByText(labels.callSettings));
+  const callSettingsLabel = screen.getByText(labels.callSettings);
+  swipeLeft(callSettingsLabel);
   expect(screen.getByText(labels.generalSettings)).toBeTruthy();
   expectIndicator('6-2');
   expectNoFifthSegment();
 };
 
-const navigateGeneralToLanguage = () => {
+const navigateGeneralToLanguage = async () => {
   tap(screen.getByText(labels.generalSettings));
+  await flushLazyRoute();
 
-  swipeLeft(screen.getByText(labels.colorSettings));
+  const colorSettingsLabel = screen.getByText(labels.colorSettings);
+  swipeLeft(colorSettingsLabel);
   expect(screen.getByText(labels.languageSettings)).toBeTruthy();
   expectIndicator('6-2-2');
   expectNoFifthSegment();
 };
 
-const navigateToLanguagePage = () => {
+const navigateToLanguagePage = async () => {
   navigateHomeToSettings();
-  navigateSettingsToGeneral();
-  navigateGeneralToLanguage();
+  await navigateSettingsToGeneral();
+  await navigateGeneralToLanguage();
   tap(screen.getByText(labels.languageSettings));
+  await flushLazyRoute();
+  expectIndicator('6-2-2-2');
 };
 
 describe('page indicator navigation integration', () => {
@@ -131,24 +148,25 @@ describe('page indicator navigation integration', () => {
     vi.useRealTimers();
   });
 
-  it('composes indicator while drilling down from level 1 to level 4', () => {
-    renderApp();
+  it('composes indicator while drilling down from level 1 to level 4', async () => {
+    await renderApp();
 
     expectIndicator('1');
     expectNoFifthSegment();
 
     navigateHomeToSettings();
-    navigateSettingsToGeneral();
-    navigateGeneralToLanguage();
+    await navigateSettingsToGeneral();
+    await navigateGeneralToLanguage();
 
     tap(screen.getByText(labels.languageSettings));
+    await flushLazyRoute();
     expectIndicator('6-2-2-2');
     expectNoFifthSegment();
   });
 
-  it('hides fourth level after going back from a fourth-level page', () => {
-    renderApp();
-    navigateToLanguagePage();
+  it('hides fourth level after going back from a fourth-level page', async () => {
+    await renderApp();
+    await navigateToLanguagePage();
 
     expectIndicator('6-2-2-2');
     expectNoFifthSegment();
@@ -158,9 +176,9 @@ describe('page indicator navigation integration', () => {
     expectNoFifthSegment();
   });
 
-  it('hides third and fourth levels after going back two levels', () => {
-    renderApp();
-    navigateToLanguagePage();
+  it('hides third and fourth levels after going back two levels', async () => {
+    await renderApp();
+    await navigateToLanguagePage();
 
     pressBack();
     pressBack();
@@ -168,9 +186,9 @@ describe('page indicator navigation integration', () => {
     expectNoFifthSegment();
   });
 
-  it('hides second level after going back to first-level menu', () => {
-    renderApp();
-    navigateToLanguagePage();
+  it('hides second level after going back to first-level menu', async () => {
+    await renderApp();
+    await navigateToLanguagePage();
 
     pressBack();
     pressBack();
@@ -179,15 +197,17 @@ describe('page indicator navigation integration', () => {
     expectNoFifthSegment();
   });
 
-  it('keeps fifth level hidden throughout the full flow', () => {
-    renderApp();
+  it('keeps fifth level hidden throughout the full flow', async () => {
+    await renderApp();
 
     expectNoFifthSegment();
 
     navigateHomeToSettings();
-    navigateSettingsToGeneral();
-    navigateGeneralToLanguage();
+    await navigateSettingsToGeneral();
+    await navigateGeneralToLanguage();
     tap(screen.getByText(labels.languageSettings));
+    await flushLazyRoute();
+    expectIndicator('6-2-2-2');
     expectNoFifthSegment();
 
     pressBack();
@@ -200,14 +220,14 @@ describe('page indicator navigation integration', () => {
     expectNoFifthSegment();
   });
 
-  it('resets first-level indicator when navigating home from deeper levels', () => {
-    renderApp();
+  it('resets first-level indicator when navigating home from deeper levels', async () => {
+    await renderApp();
 
     navigateHomeToSettings();
     expectIndicator('6');
 
     pressHome();
-
+    await flushLazyRoute();
     expectIndicator('1');
     expect(useUiStore.getState().firstLevel).toBe(1);
     expect(useUiStore.getState().secondLevel).toBe(0);

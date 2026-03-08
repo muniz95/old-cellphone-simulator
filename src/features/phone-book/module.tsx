@@ -1,11 +1,23 @@
+import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 import { FeatureModule } from '@/app/modules/feature-module';
-import PhoneBookPage from '@/features/phone-book/ui/pages/phone-book-page';
-import AddNamePage from '@/features/phone-book/ui/pages/add-name-page';
-import SearchPage from '@/features/phone-book/ui/pages/search-page';
-import EditPage from '@/features/phone-book/ui/pages/edit-page';
-import ServiceNumbersPage from '@/features/phone-book/ui/pages/service-numbers-page';
-import ErasePage from '@/features/phone-book/ui/pages/erase-page';
+
+const PhoneBookPage = lazy(
+  () => import('@/features/phone-book/ui/pages/phone-book-page')
+);
+const AddNamePage = lazy(
+  () => import('@/features/phone-book/ui/pages/add-name-page')
+);
+const SearchPage = lazy(
+  () => import('@/features/phone-book/ui/pages/search-page')
+);
+const EditPage = lazy(() => import('@/features/phone-book/ui/pages/edit-page'));
+const ServiceNumbersPage = lazy(
+  () => import('@/features/phone-book/ui/pages/service-numbers-page')
+);
+const ErasePage = lazy(
+  () => import('@/features/phone-book/ui/pages/erase-page')
+);
 
 const routes: RouteObject[] = [
   { path: '/phonebook/addname', element: <AddNamePage /> },

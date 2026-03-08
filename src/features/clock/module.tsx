@@ -1,6 +1,8 @@
+import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 import { FeatureModule } from '@/app/modules/feature-module';
-import ClockPage from '@/features/clock/ui/pages/clock-page';
+
+const ClockPage = lazy(() => import('@/features/clock/ui/pages/clock-page'));
 
 const routes: RouteObject[] = [{ path: '/clock', element: <ClockPage /> }];
 

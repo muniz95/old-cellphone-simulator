@@ -1,6 +1,8 @@
+import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 import { FeatureModule } from '@/app/modules/feature-module';
-import TonesPage from '@/features/tones/ui/pages/tones-page';
+
+const TonesPage = lazy(() => import('@/features/tones/ui/pages/tones-page'));
 
 const routes: RouteObject[] = [{ path: '/tones', element: <TonesPage /> }];
 

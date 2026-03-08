@@ -8,6 +8,17 @@ if [ ! -x "./node_modules/.bin/eslint" ]; then
   exit 1
 fi
 
+if [ ! -x "./node_modules/.bin/vite" ]; then
+  echo "pre-commit: vite binary not found at ./node_modules/.bin/vite"
+  echo "Install dependencies before committing."
+  exit 1
+fi
+
+echo "pre-commit: rebuilding analyzer output and refreshing code-splitting metrics"
+ANALYZE=true ./node_modules/.bin/vite build
+node ./scripts/update-code-splitting-doc.mjs
+git add docs/performance/code-splitting.md docs/performance/artifacts/post-bundle-stats.html
+
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(js|jsx|ts|tsx)$' || true)
 
 if [ -z "$STAGED_FILES" ]; then

@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bundle Stats</title>
+    <style>
+      :root { color-scheme: light; font-family: "IBM Plex Sans", "Segoe UI", sans-serif; }
+      body { margin: 0; background: #f6f7fb; color: #121822; }
+      main { max-width: 1200px; margin: 0 auto; padding: 24px; }
+      h1, h2 { margin: 0 0 12px; }
+      .summary { display: grid; gap: 8px; margin-bottom: 24px; }
+      .summary p { margin: 0; }
+      .treemap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+      .tile { min-width: 180px; flex-basis: 220px; background: #ffffff; border: 1px solid #d8dbe8; border-radius: 10px; padding: 12px; }
+      .tile h3 { font-size: 13px; margin: 0 0 8px; word-break: break-word; }
+      .tile p { margin: 0; font-size: 12px; line-height: 1.4; }
+      table { width: 100%; border-collapse: collapse; background: #ffffff; border: 1px solid #d8dbe8; border-radius: 10px; overflow: hidden; }
+      th, td { font-size: 12px; padding: 8px 10px; border-bottom: 1px solid #edf0f7; text-align: left; }
+      th { background: #eef2ff; }
+      tr:last-child td { border-bottom: none; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Bundle Stats</h1>
+      <section class="summary">
+        <p><strong>Total JS raw:</strong> 304.13 KB</p>
+        <p><strong>Total JS gzip:</strong> 106.57 KB</p>
+        <p><strong>Total JS brotli:</strong> 92.97 KB</p>
+        <p><strong>Entry chunk:</strong> assets/index-B32GHjtZ.js (270.90 KB raw)</p>
+      </section>
+      <h2>Treemap</h2>
+      <section class="treemap"><article class="tile" style="flex-grow: 277403">
+  <h3>assets/index-B32GHjtZ.js <strong>(entry)</strong></h3>
+  <p>270.90 KB raw (89.1%)</p>
+  <p>89.11 KB gzip</p>
+  <p>77.63 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 3756">
+  <h3>assets/calculator-page-BBKi8C8H.js</h3>
+  <p>3.67 KB raw (1.2%)</p>
+  <p>1.43 KB gzip</p>
+  <p>1.24 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 3162">
+  <h3>assets/use-translation-DbwjJRTY.js</h3>
+  <p>3.09 KB raw (1.0%)</p>
+  <p>1.52 KB gzip</p>
+  <p>1.36 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 1790">
+  <h3>assets/tones-page-CF_F5w7f.js</h3>
+  <p>1.75 KB raw (0.6%)</p>
+  <p>0.97 KB gzip</p>
+  <p>0.89 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 1724">
+  <h3>assets/profiles-page-Cvg4O3ZE.js</h3>
+  <p>1.68 KB raw (0.6%)</p>
+  <p>0.75 KB gzip</p>
+  <p>0.68 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 1666">
+  <h3>assets/sound-settings-page-ChvahdpM.js</h3>
+  <p>1.63 KB raw (0.5%)</p>
+  <p>0.65 KB gzip</p>
+  <p>0.57 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 1647">
+  <h3>assets/sim-services-page-BZuL6iK8.js</h3>
+  <p>1.61 KB raw (0.5%)</p>
+  <p>0.86 KB gzip</p>
+  <p>0.75 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 1479">
+  <h3>assets/home-Ck2xBJDi.js</h3>
+  <p>1.44 KB raw (0.5%)</p>
+  <p>0.74 KB gzip</p>
+  <p>0.68 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 1466">
+  <h3>assets/phone-book-page-BXjvUXCD.js</h3>
+  <p>1.43 KB raw (0.5%)</p>
+  <p>0.60 KB gzip</p>
+  <p>0.55 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 1370">
+  <h3>assets/light-settings-page-JfCIp6wA.js</h3>
+  <p>1.34 KB raw (0.4%)</p>
+  <p>0.61 KB gzip</p>
+  <p>0.53 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 1203">
+  <h3>assets/edit-page-C67--ns1.js</h3>
+  <p>1.17 KB raw (0.4%)</p>
+  <p>0.61 KB gzip</p>
+  <p>0.54 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 1063">
+  <h3>assets/styled-C4G8SlHy.js</h3>
+  <p>1.04 KB raw (0.3%)</p>
+  <p>0.49 KB gzip</p>
+  <p>0.38 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 1042">
+  <h3>assets/use-circular-menu-controller-D0Xwp9pt.js</h3>
+  <p>1.02 KB raw (0.3%)</p>
+  <p>0.46 KB gzip</p>
+  <p>0.41 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 1008">
+  <h3>assets/add-name-page-BQrIrBSV.js</h3>
+  <p>0.98 KB raw (0.3%)</p>
+  <p>0.55 KB gzip</p>
+  <p>0.49 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 1008">
+  <h3>assets/index-CubGWZCl.js</h3>
+  <p>0.98 KB raw (0.3%)</p>
+  <p>0.47 KB gzip</p>
+  <p>0.41 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 998">
+  <h3>assets/use-cases-DBpdSrFB.js</h3>
+  <p>0.97 KB raw (0.3%)</p>
+  <p>0.56 KB gzip</p>
+  <p>0.50 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 864">
+  <h3>assets/language-settings-page-BI-Fd9Ir.js</h3>
+  <p>0.84 KB raw (0.3%)</p>
+  <p>0.49 KB gzip</p>
+  <p>0.43 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 861">
+  <h3>assets/erase-page-EQtyAt72.js</h3>
+  <p>0.84 KB raw (0.3%)</p>
+  <p>0.49 KB gzip</p>
+  <p>0.44 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 820">
+  <h3>assets/color-settings-page-DZxDpic7.js</h3>
+  <p>0.80 KB raw (0.3%)</p>
+  <p>0.49 KB gzip</p>
+  <p>0.43 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 766">
+  <h3>assets/use-local-storage-W52OtRuY.js</h3>
+  <p>0.75 KB raw (0.2%)</p>
+  <p>0.42 KB gzip</p>
+  <p>0.36 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 675">
+  <h3>assets/restore-factory-settings-page-Dvlnxh7f.js</h3>
+  <p>0.66 KB raw (0.2%)</p>
+  <p>0.38 KB gzip</p>
+  <p>0.34 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 636">
+  <h3>assets/search-page-umfaE3xo.js</h3>
+  <p>0.62 KB raw (0.2%)</p>
+  <p>0.40 KB gzip</p>
+  <p>0.34 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 598">
+  <h3>assets/settings-page-CmICupVM.js</h3>
+  <p>0.58 KB raw (0.2%)</p>
+  <p>0.36 KB gzip</p>
+  <p>0.32 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 596">
+  <h3>assets/general-settings-page-DEV293Ug.js</h3>
+  <p>0.58 KB raw (0.2%)</p>
+  <p>0.36 KB gzip</p>
+  <p>0.31 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 528">
+  <h3>assets/clock-page-DF8XhlaT.js</h3>
+  <p>0.52 KB raw (0.2%)</p>
+  <p>0.33 KB gzip</p>
+  <p>0.31 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 448">
+  <h3>assets/service-numbers-page-Dnr-yF6v.js</h3>
+  <p>0.44 KB raw (0.1%)</p>
+  <p>0.30 KB gzip</p>
+  <p>0.26 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 331">
+  <h3>assets/call-divert-D8YUOpbB.js</h3>
+  <p>0.32 KB raw (0.1%)</p>
+  <p>0.25 KB gzip</p>
+  <p>0.21 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 329">
+  <h3>assets/messages-B8i3bbqc.js</h3>
+  <p>0.32 KB raw (0.1%)</p>
+  <p>0.25 KB gzip</p>
+  <p>0.21 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 328">
+  <h3>assets/call-register-CjU95CTk.js</h3>
+  <p>0.32 KB raw (0.1%)</p>
+  <p>0.25 KB gzip</p>
+  <p>0.21 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 326">
+  <h3>assets/games-BVProTOh.js</h3>
+  <p>0.32 KB raw (0.1%)</p>
+  <p>0.25 KB gzip</p>
+  <p>0.20 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 326">
+  <h3>assets/reminders-A8QKmcaq.js</h3>
+  <p>0.32 KB raw (0.1%)</p>
+  <p>0.25 KB gzip</p>
+  <p>0.21 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 325">
+  <h3>assets/chat-CJ-KHz0F.js</h3>
+  <p>0.32 KB raw (0.1%)</p>
+  <p>0.25 KB gzip</p>
+  <p>0.21 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 324">
+  <h3>assets/index-oAhdtiXz.js</h3>
+  <p>0.32 KB raw (0.1%)</p>
+  <p>0.23 KB gzip</p>
+  <p>0.18 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 217">
+  <h3>assets/index-C88LlE2y.js</h3>
+  <p>0.21 KB raw (0.1%)</p>
+  <p>0.16 KB gzip</p>
+  <p>0.14 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 185">
+  <h3>assets/vibration-BVCZCUfI.js</h3>
+  <p>0.18 KB raw (0.1%)</p>
+  <p>0.14 KB gzip</p>
+  <p>0.12 KB brotli</p>
+</article>
+<article class="tile" style="flex-grow: 156">
+  <h3>assets/index-DrggpC_p.js</h3>
+  <p>0.15 KB raw (0.1%)</p>
+  <p>0.15 KB gzip</p>
+  <p>0.13 KB brotli</p>
+</article></section>
+      <h2>Chunk Table</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Chunk</th>
+            <th>Raw KB</th>
+            <th>Gzip KB</th>
+            <th>Brotli KB</th>
+            <th>Raw %</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+  <td>assets/index-B32GHjtZ.js (entry)</td>
+  <td>270.90</td>
+  <td>89.11</td>
+  <td>77.63</td>
+  <td>89.08%</td>
+</tr>
+<tr>
+  <td>assets/calculator-page-BBKi8C8H.js</td>
+  <td>3.67</td>
+  <td>1.43</td>
+  <td>1.24</td>
+  <td>1.21%</td>
+</tr>
+<tr>
+  <td>assets/use-translation-DbwjJRTY.js</td>
+  <td>3.09</td>
+  <td>1.52</td>
+  <td>1.36</td>
+  <td>1.02%</td>
+</tr>
+<tr>
+  <td>assets/tones-page-CF_F5w7f.js</td>
+  <td>1.75</td>
+  <td>0.97</td>
+  <td>0.89</td>
+  <td>0.57%</td>
+</tr>
+<tr>
+  <td>assets/profiles-page-Cvg4O3ZE.js</td>
+  <td>1.68</td>
+  <td>0.75</td>
+  <td>0.68</td>
+  <td>0.55%</td>
+</tr>
+<tr>
+  <td>assets/sound-settings-page-ChvahdpM.js</td>
+  <td>1.63</td>
+  <td>0.65</td>
+  <td>0.57</td>
+  <td>0.53%</td>
+</tr>
+<tr>
+  <td>assets/sim-services-page-BZuL6iK8.js</td>
+  <td>1.61</td>
+  <td>0.86</td>
+  <td>0.75</td>
+  <td>0.53%</td>
+</tr>
+<tr>
+  <td>assets/home-Ck2xBJDi.js</td>
+  <td>1.44</td>
+  <td>0.74</td>
+  <td>0.68</td>
+  <td>0.47%</td>
+</tr>
+<tr>
+  <td>assets/phone-book-page-BXjvUXCD.js</td>
+  <td>1.43</td>
+  <td>0.60</td>
+  <td>0.55</td>
+  <td>0.47%</td>
+</tr>
+<tr>
+  <td>assets/light-settings-page-JfCIp6wA.js</td>
+  <td>1.34</td>
+  <td>0.61</td>
+  <td>0.53</td>
+  <td>0.44%</td>
+</tr>
+<tr>
+  <td>assets/edit-page-C67--ns1.js</td>
+  <td>1.17</td>
+  <td>0.61</td>
+  <td>0.54</td>
+  <td>0.39%</td>
+</tr>
+<tr>
+  <td>assets/styled-C4G8SlHy.js</td>
+  <td>1.04</td>
+  <td>0.49</td>
+  <td>0.38</td>
+  <td>0.34%</td>
+</tr>
+<tr>
+  <td>assets/use-circular-menu-controller-D0Xwp9pt.js</td>
+  <td>1.02</td>
+  <td>0.46</td>
+  <td>0.41</td>
+  <td>0.33%</td>
+</tr>
+<tr>
+  <td>assets/add-name-page-BQrIrBSV.js</td>
+  <td>0.98</td>
+  <td>0.55</td>
+  <td>0.49</td>
+  <td>0.32%</td>
+</tr>
+<tr>
+  <td>assets/index-CubGWZCl.js</td>
+  <td>0.98</td>
+  <td>0.47</td>
+  <td>0.41</td>
+  <td>0.32%</td>
+</tr>
+<tr>
+  <td>assets/use-cases-DBpdSrFB.js</td>
+  <td>0.97</td>
+  <td>0.56</td>
+  <td>0.50</td>
+  <td>0.32%</td>
+</tr>
+<tr>
+  <td>assets/language-settings-page-BI-Fd9Ir.js</td>
+  <td>0.84</td>
+  <td>0.49</td>
+  <td>0.43</td>
+  <td>0.28%</td>
+</tr>
+<tr>
+  <td>assets/erase-page-EQtyAt72.js</td>
+  <td>0.84</td>
+  <td>0.49</td>
+  <td>0.44</td>
+  <td>0.28%</td>
+</tr>
+<tr>
+  <td>assets/color-settings-page-DZxDpic7.js</td>
+  <td>0.80</td>
+  <td>0.49</td>
+  <td>0.43</td>
+  <td>0.26%</td>
+</tr>
+<tr>
+  <td>assets/use-local-storage-W52OtRuY.js</td>
+  <td>0.75</td>
+  <td>0.42</td>
+  <td>0.36</td>
+  <td>0.25%</td>
+</tr>
+<tr>
+  <td>assets/restore-factory-settings-page-Dvlnxh7f.js</td>
+  <td>0.66</td>
+  <td>0.38</td>
+  <td>0.34</td>
+  <td>0.22%</td>
+</tr>
+<tr>
+  <td>assets/search-page-umfaE3xo.js</td>
+  <td>0.62</td>
+  <td>0.40</td>
+  <td>0.34</td>
+  <td>0.20%</td>
+</tr>
+<tr>
+  <td>assets/settings-page-CmICupVM.js</td>
+  <td>0.58</td>
+  <td>0.36</td>
+  <td>0.32</td>
+  <td>0.19%</td>
+</tr>
+<tr>
+  <td>assets/general-settings-page-DEV293Ug.js</td>
+  <td>0.58</td>
+  <td>0.36</td>
+  <td>0.31</td>
+  <td>0.19%</td>
+</tr>
+<tr>
+  <td>assets/clock-page-DF8XhlaT.js</td>
+  <td>0.52</td>
+  <td>0.33</td>
+  <td>0.31</td>
+  <td>0.17%</td>
+</tr>
+<tr>
+  <td>assets/service-numbers-page-Dnr-yF6v.js</td>
+  <td>0.44</td>
+  <td>0.30</td>
+  <td>0.26</td>
+  <td>0.14%</td>
+</tr>
+<tr>
+  <td>assets/call-divert-D8YUOpbB.js</td>
+  <td>0.32</td>
+  <td>0.25</td>
+  <td>0.21</td>
+  <td>0.11%</td>
+</tr>
+<tr>
+  <td>assets/messages-B8i3bbqc.js</td>
+  <td>0.32</td>
+  <td>0.25</td>
+  <td>0.21</td>
+  <td>0.11%</td>
+</tr>
+<tr>
+  <td>assets/call-register-CjU95CTk.js</td>
+  <td>0.32</td>
+  <td>0.25</td>
+  <td>0.21</td>
+  <td>0.11%</td>
+</tr>
+<tr>
+  <td>assets/games-BVProTOh.js</td>
+  <td>0.32</td>
+  <td>0.25</td>
+  <td>0.20</td>
+  <td>0.10%</td>
+</tr>
+<tr>
+  <td>assets/reminders-A8QKmcaq.js</td>
+  <td>0.32</td>
+  <td>0.25</td>
+  <td>0.21</td>
+  <td>0.10%</td>
+</tr>
+<tr>
+  <td>assets/chat-CJ-KHz0F.js</td>
+  <td>0.32</td>
+  <td>0.25</td>
+  <td>0.21</td>
+  <td>0.10%</td>
+</tr>
+<tr>
+  <td>assets/index-oAhdtiXz.js</td>
+  <td>0.32</td>
+  <td>0.23</td>
+  <td>0.18</td>
+  <td>0.10%</td>
+</tr>
+<tr>
+  <td>assets/index-C88LlE2y.js</td>
+  <td>0.21</td>
+  <td>0.16</td>
+  <td>0.14</td>
+  <td>0.07%</td>
+</tr>
+<tr>
+  <td>assets/vibration-BVCZCUfI.js</td>
+  <td>0.18</td>
+  <td>0.14</td>
+  <td>0.12</td>
+  <td>0.06%</td>
+</tr>
+<tr>
+  <td>assets/index-DrggpC_p.js</td>
+  <td>0.15</td>
+  <td>0.15</td>
+  <td>0.13</td>
+  <td>0.05%</td>
+</tr></tbody>
+      </table>
+    </main>
+  </body>
+</html>

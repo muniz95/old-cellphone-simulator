@@ -20,6 +20,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:analyze": "ANALYZE=true vite build",
+    "metrics:update": "ANALYZE=true vite build && node scripts/update-code-splitting-doc.mjs",
     "compile": "tsc -b",
     "lint": "eslint .",
     "preview": "vite preview",
