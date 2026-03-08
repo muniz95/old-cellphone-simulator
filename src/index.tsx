@@ -1,5 +1,5 @@
 import App from '@/app/app';
-import registerServiceWorker from '@/app/service-worker/register-service-worker';
+import { initPwa } from '@/app/lib/pwa';
 import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import '@/app/providers/i18n';
@@ -15,4 +15,4 @@ root.render(
     <App />
   </BrowserRouter>
 );
-registerServiceWorker();
+initPwa();

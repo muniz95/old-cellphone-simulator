@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import BatteryStatus from '@/shared/ui/battery-status';
 import BottomBar from '@/shared/ui/bottom-bar';
 import Modal from '@/shared/ui/modal';
+import PwaBanner from '@/shared/ui/pwa-banner';
 import SignalStatus from '@/shared/ui/signal-status';
 import TopBar from '@/shared/ui/top-bar';
 import PageIndicator from '@/shared/ui/page-indicator';
@@ -42,6 +43,7 @@ const App = () => {
                 />
               }
             />
+            <PwaBanner />
             <S.AppPageContainer>
               <Suspense fallback={<RouteLoading />}>{routing}</Suspense>
             </S.AppPageContainer>
