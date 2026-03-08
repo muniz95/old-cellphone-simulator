@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import BatteryStatus from '@/shared/ui/battery-status';
 import BottomBar from '@/shared/ui/bottom-bar';
 import Modal from '@/shared/ui/modal';
@@ -40,7 +41,11 @@ const App = () => {
                 />
               }
             />
-            <S.AppPageContainer>{routing}</S.AppPageContainer>
+            <S.AppPageContainer>
+              <Suspense fallback={<Startup color={color} label="Loading..." />}>
+                {routing}
+              </Suspense>
+            </S.AppPageContainer>
             <BottomBar />
           </S.AppMainContainer>
           <BatteryStatus />

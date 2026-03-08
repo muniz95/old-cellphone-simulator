@@ -1,6 +1,10 @@
+import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 import { FeatureModule } from '@/app/modules/feature-module';
-import SimServicesPage from '@/features/sim-services/ui/pages/sim-services-page';
+
+const SimServicesPage = lazy(
+  () => import('@/features/sim-services/ui/pages/sim-services-page')
+);
 
 const routes: RouteObject[] = [
   { path: '/simservices', element: <SimServicesPage /> },

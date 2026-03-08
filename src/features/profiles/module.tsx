@@ -1,6 +1,10 @@
+import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 import { FeatureModule } from '@/app/modules/feature-module';
-import ProfilesPage from '@/features/profiles/ui/pages/profiles-page';
+
+const ProfilesPage = lazy(
+  () => import('@/features/profiles/ui/pages/profiles-page')
+);
 
 const routes: RouteObject[] = [
   { path: '/profiles', element: <ProfilesPage /> },

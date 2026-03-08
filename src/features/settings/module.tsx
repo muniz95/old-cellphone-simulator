@@ -1,12 +1,28 @@
+import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 import { FeatureModule } from '@/app/modules/feature-module';
-import SettingsPage from '@/features/settings/ui/pages/settings-page';
-import GeneralSettingsPage from '@/features/settings/ui/pages/general-settings-page';
-import ColorSettingsPage from '@/features/settings/ui/pages/color-settings-page';
-import LanguageSettingsPage from '@/features/settings/ui/pages/language-settings-page';
-import LightSettingsPage from '@/features/settings/ui/pages/light-settings-page';
-import SoundSettingsPage from '@/features/settings/ui/pages/sound-settings-page';
-import RestoreFactorySettingsPage from '@/features/settings/ui/pages/restore-factory-settings-page';
+
+const SettingsPage = lazy(
+  () => import('@/features/settings/ui/pages/settings-page')
+);
+const GeneralSettingsPage = lazy(
+  () => import('@/features/settings/ui/pages/general-settings-page')
+);
+const ColorSettingsPage = lazy(
+  () => import('@/features/settings/ui/pages/color-settings-page')
+);
+const LanguageSettingsPage = lazy(
+  () => import('@/features/settings/ui/pages/language-settings-page')
+);
+const LightSettingsPage = lazy(
+  () => import('@/features/settings/ui/pages/light-settings-page')
+);
+const SoundSettingsPage = lazy(
+  () => import('@/features/settings/ui/pages/sound-settings-page')
+);
+const RestoreFactorySettingsPage = lazy(
+  () => import('@/features/settings/ui/pages/restore-factory-settings-page')
+);
 
 const routes: RouteObject[] = [
   { path: '/settings', element: <SettingsPage /> },
