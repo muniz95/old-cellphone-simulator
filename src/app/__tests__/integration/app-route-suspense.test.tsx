@@ -28,7 +28,7 @@ describe('App route suspense', () => {
     vi.useRealTimers();
   });
 
-  it('shows startup-style loading fallback while waiting for lazy route chunk', async () => {
+  it('shows route loading fallback while waiting for lazy route chunk', async () => {
     vi.doMock('@/app/pages/messages', async () => {
       await new Promise((resolve) => setTimeout(resolve, 150));
 

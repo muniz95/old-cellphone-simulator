@@ -5,6 +5,7 @@ import Modal from '@/shared/ui/modal';
 import SignalStatus from '@/shared/ui/signal-status';
 import TopBar from '@/shared/ui/top-bar';
 import PageIndicator from '@/shared/ui/page-indicator';
+import RouteLoading from '@/shared/ui/route-loading';
 import Startup from '@/shared/ui/startup';
 import GlobalStyle from '@/shared/styles/global-style';
 import S from '@/app/ui/app-shell';
@@ -42,9 +43,7 @@ const App = () => {
               }
             />
             <S.AppPageContainer>
-              <Suspense fallback={<Startup color={color} label="Loading..." />}>
-                {routing}
-              </Suspense>
+              <Suspense fallback={<RouteLoading />}>{routing}</Suspense>
             </S.AppPageContainer>
             <BottomBar />
           </S.AppMainContainer>
