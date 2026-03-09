@@ -3,6 +3,7 @@ import S from './styled';
 
 interface ModalProps {
   color: string;
+  backlightLevel: number;
   isOpen: boolean;
   onAutoClose?: () => void;
   autoCloseMs?: number;
@@ -11,6 +12,7 @@ interface ModalProps {
 
 const Modal = ({
   color,
+  backlightLevel,
   isOpen,
   onAutoClose,
   autoCloseMs = 3000,
@@ -27,7 +29,11 @@ const Modal = ({
   }, [autoCloseMs, isOpen, onAutoClose]);
 
   return (
-    <S.ModalContainer showModal={isOpen} color={color}>
+    <S.ModalContainer
+      showModal={isOpen}
+      color={color}
+      backlightLevel={backlightLevel}
+    >
       <div>
         <S.HiddenCheckbox name="ok" id="ok" readOnly checked={isOpen} />
         <label htmlFor="ok">
