@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { UiButton, UiTextArea } from '@/shared/ui/controls';
 
 const PageContainer = styled.div`
   height: 100%;
@@ -17,7 +18,7 @@ const KeyboardContainer = styled.div`
   gap: 8px;
 `;
 
-const Key = styled.button`
+const Key = styled(UiButton)`
   width: 20%;
   display: flex;
   align-items: center;
@@ -47,10 +48,16 @@ const Key = styled.button`
   }
 `;
 
+const Display = styled(UiTextArea)`
+  width: 100%;
+  height: 80%;
+`;
+
 const S = {
   PageContainer,
   KeyboardContainer,
   Key,
+  Display,
 };
 
 export default S;

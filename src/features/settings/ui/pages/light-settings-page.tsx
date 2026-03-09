@@ -1,4 +1,5 @@
 import S from '@/shared/ui/base';
+import { UiButton } from '@/shared/ui/controls';
 import useTranslation from '@/shared/hooks/use-translation';
 import { useLightSettingsController } from '@/features/settings/infrastructure/controllers/use-light-settings-controller';
 
@@ -39,7 +40,7 @@ const LightSettingsPage = () => {
         </S.ControllerSection>
       </S.MainContainer>
       <S.ButtonContainer>
-        <button onClick={save}>{t('save', { ns: 'global' })}</button>
+        <UiButton onClick={save}>{t('save', { ns: 'global' })}</UiButton>
       </S.ButtonContainer>
     </>
   );

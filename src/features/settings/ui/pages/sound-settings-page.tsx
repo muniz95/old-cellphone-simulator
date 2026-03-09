@@ -1,4 +1,5 @@
 import S from '@/shared/ui/base';
+import { UiButton } from '@/shared/ui/controls';
 import useTranslation from '@/shared/hooks/use-translation';
 import { useSoundSettingsController } from '@/features/settings/infrastructure/controllers/use-sound-settings-controller';
 
@@ -56,7 +57,7 @@ const SoundSettingsPage = () => {
         </S.ControllerSection>
       </S.MainContainer>
       <S.ButtonContainer>
-        <button onClick={save}>{t('save', { ns: 'global' })}</button>
+        <UiButton onClick={save}>{t('save', { ns: 'global' })}</UiButton>
       </S.ButtonContainer>
     </>
   );

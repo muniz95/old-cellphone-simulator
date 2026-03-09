@@ -1,5 +1,6 @@
 import useTranslation from '@/shared/hooks/use-translation';
 import S from '@/shared/ui/base';
+import { UiButton } from '@/shared/ui/controls';
 import { useSimServicesController } from '@/features/sim-services/infrastructure/controllers/use-sim-services-controller';
 
 const SimServicesPage = () => {
@@ -20,9 +21,9 @@ const SimServicesPage = () => {
         ))}
       </S.MainContainer>
       <S.ButtonContainer>
-        <button disabled={!canPlay} onClick={play}>
+        <UiButton disabled={!canPlay} onClick={play}>
           {t('play', { ns: 'global' })}
-        </button>
+        </UiButton>
       </S.ButtonContainer>
     </>
   );

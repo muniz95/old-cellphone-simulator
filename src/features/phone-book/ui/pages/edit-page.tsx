@@ -1,5 +1,6 @@
 import useTranslation from '@/shared/hooks/use-translation';
 import S from '@/shared/ui/base';
+import { UiButton } from '@/shared/ui/controls';
 import TextInput from '@/shared/ui/text-input';
 import { useEditController } from '@/features/phone-book/infrastructure/controllers/use-edit-controller';
 
@@ -27,7 +28,7 @@ const EditPage = () => {
       <div>&nbsp;</div>
       <div>&nbsp;</div>
       <div>
-        <button onClick={saveContact}>{t('save')}</button>
+        <UiButton onClick={saveContact}>{t('save')}</UiButton>
       </div>
     </S.MainContainer>
   );

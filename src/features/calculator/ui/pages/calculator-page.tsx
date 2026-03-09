@@ -9,7 +9,7 @@ const CalculatorPage = () => {
   return (
     <S.PageContainer>
       <div>
-        <textarea
+        <S.Display
           name="calculator"
           id="calculator"
           value={expression}

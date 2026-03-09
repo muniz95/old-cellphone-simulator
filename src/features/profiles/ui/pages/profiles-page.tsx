@@ -1,5 +1,6 @@
 import useTranslation from '@/shared/hooks/use-translation';
 import S from '@/shared/ui/base';
+import { UiButton } from '@/shared/ui/controls';
 import { useProfilesController } from '@/features/profiles/infrastructure/controllers/use-profiles-controller';
 
 const ProfilesPage = () => {
@@ -22,12 +23,12 @@ const ProfilesPage = () => {
         ))}
       </S.MainContainer>
       <S.ButtonContainer>
-        <button
+        <UiButton
           disabled={selectedProfile === null}
           onClick={() => applyProfile(selectedProfile!)}
         >
           {t('save', { ns: 'global' })}
-        </button>
+        </UiButton>
       </S.ButtonContainer>
     </>
   );

@@ -1,4 +1,5 @@
 import S from '@/shared/ui/base';
+import { UiButton } from '@/shared/ui/controls';
 import useTranslation from '@/shared/hooks/use-translation';
 import { useLanguageSettingsController } from '@/features/settings/infrastructure/controllers/use-language-settings-controller';
 
@@ -20,9 +21,9 @@ const LanguageSettingsPage = () => {
         ))}
       </S.MainContainer>
       <S.ButtonContainer>
-        <button disabled={language === ''} onClick={save}>
+        <UiButton disabled={language === ''} onClick={save}>
           {t('save')}
-        </button>
+        </UiButton>
       </S.ButtonContainer>
     </>
   );

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { colors } from '@/shared/styles/tokens';
+import { UiButton, UiSlider } from '@/shared/ui/controls';
 
 const MainContainer = styled.div`
   height: 80%;
@@ -25,7 +26,7 @@ const ResultsBox = styled.div`
   display: flex;
 `;
 
-const Item = styled.button`
+const Item = styled(UiButton)`
   min-height: 10%;
   width: 100%;
   border: none;
@@ -46,18 +47,8 @@ const ControllerSection = styled.div`
   justify-content: center;
 `;
 
-const SliderInput = styled.input.attrs({ type: 'range' })`
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  cursor: pointer;
+const SliderInput = styled(UiSlider)`
   width: 50vw;
-
-  &::-webkit-slider-runnable-track,
-  &::-moz-range-track {
-    background: ${colors.sliderTrack};
-    height: 0.5rem;
-  }
 `;
 
 const S = {
