@@ -1,5 +1,6 @@
 import S from '@/shared/ui/base';
 import { UiButton } from '@/shared/ui/controls';
+import ListItem from '@/shared/ui/list-item';
 import useTranslation from '@/shared/hooks/use-translation';
 import { useLanguageSettingsController } from '@/features/settings/infrastructure/controllers/use-language-settings-controller';
 
@@ -12,11 +13,10 @@ const LanguageSettingsPage = () => {
     <>
       <S.MainContainer>
         {options.map((option) => (
-          <S.ResultsBox
-            key={option.iso639}
-            onClick={() => setLanguage(option.iso639)}
-          >
-            <S.Item>{option.title}</S.Item>
+          <S.ResultsBox key={option.iso639}>
+            <ListItem onClick={() => setLanguage(option.iso639)}>
+              {option.title}
+            </ListItem>
           </S.ResultsBox>
         ))}
       </S.MainContainer>

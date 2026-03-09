@@ -1,4 +1,5 @@
 import S from '@/shared/ui/base';
+import ListItem from '@/shared/ui/list-item';
 import TextInput from '@/shared/ui/text-input';
 import { useSearchController } from '@/features/phone-book/infrastructure/controllers/use-search-controller';
 
@@ -10,9 +11,9 @@ const SearchPage = () => {
       <TextInput id="name" onChange={handleSearch} />
       <S.ResultsBox>
         {contacts.map((contact) => (
-          <div key={contact.id ?? `${contact.name}-${contact.number}`}>
+          <ListItem key={contact.id ?? `${contact.name}-${contact.number}`}>
             {contact.name}
-          </div>
+          </ListItem>
         ))}
       </S.ResultsBox>
     </S.MainContainer>

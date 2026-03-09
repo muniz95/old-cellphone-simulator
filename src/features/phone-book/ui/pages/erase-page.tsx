@@ -1,6 +1,7 @@
 import useTranslation from '@/shared/hooks/use-translation';
 import S from '@/shared/ui/base';
 import { UiButton } from '@/shared/ui/controls';
+import ListItem from '@/shared/ui/list-item';
 import { Contact } from '@/features/phone-book/domain/contact';
 import { useEraseController } from '@/features/phone-book/infrastructure/controllers/use-erase-controller';
 
@@ -12,12 +13,12 @@ const ErasePage = () => {
     <S.MainContainer>
       <S.ResultsBox>
         {contacts.map((contact: Contact) => (
-          <div
-            onClick={() => setCurrentContact(contact)}
+          <ListItem
             key={contact.id ?? `${contact.name}-${contact.number}`}
+            onClick={() => setCurrentContact(contact)}
           >
             {contact.name}
-          </div>
+          </ListItem>
         ))}
       </S.ResultsBox>
       <div>

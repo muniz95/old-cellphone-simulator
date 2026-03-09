@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '@/shared/styles/tokens';
-import { UiButton, UiSlider } from '@/shared/ui/controls';
+import { UiSlider } from '@/shared/ui/controls';
 
 const MainContainer = styled.div`
   height: 80%;
@@ -26,19 +25,6 @@ const ResultsBox = styled.div`
   display: flex;
 `;
 
-const Item = styled(UiButton)`
-  min-height: 10%;
-  width: 100%;
-  border: none;
-
-  &:active,
-  &:focus {
-    font-weight: bold;
-    background-color: ${colors.focusBackground};
-    color: ${colors.textInverse};
-  }
-`;
-
 const ControllerSection = styled.div`
   display: flex;
   flex-flow: column;
@@ -54,7 +40,6 @@ const SliderInput = styled(UiSlider)`
 const S = {
   ButtonContainer,
   MainContainer,
-  Item,
   ResultsBox,
   ControllerSection,
   SliderInput,

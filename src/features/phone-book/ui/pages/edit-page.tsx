@@ -1,6 +1,7 @@
 import useTranslation from '@/shared/hooks/use-translation';
 import S from '@/shared/ui/base';
 import { UiButton } from '@/shared/ui/controls';
+import ListItem from '@/shared/ui/list-item';
 import TextInput from '@/shared/ui/text-input';
 import { useEditController } from '@/features/phone-book/infrastructure/controllers/use-edit-controller';
 
@@ -13,12 +14,12 @@ const EditPage = () => {
     <S.MainContainer>
       <S.ResultsBox>
         {contacts.map((contact) => (
-          <div
-            onClick={() => selectContact(contact)}
+          <ListItem
             key={contact.id ?? `${contact.name}-${contact.number}`}
+            onClick={() => selectContact(contact)}
           >
             {contact.name}
-          </div>
+          </ListItem>
         ))}
       </S.ResultsBox>
       <div>
