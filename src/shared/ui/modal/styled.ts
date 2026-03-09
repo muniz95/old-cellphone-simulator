@@ -20,6 +20,7 @@ const ModalContainer = styled.div<{
   background-color: ${({ color }) => color};
   background-image: ${({ backlightLevel }) =>
     `linear-gradient(rgb(0 0 0 / ${100 - backlightLevel}%) 0 0)`};
+  transition: background-image 3000ms ease-in-out;
   display: ${({ showModal }) => (showModal ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;

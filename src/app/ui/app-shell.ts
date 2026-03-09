@@ -14,6 +14,7 @@ const AppShell = styled.div<AppShellProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
   background-image: ${({ backlightLevel }) =>
     `linear-gradient(rgb(0 0 0 / ${100 - backlightLevel}%) 0 0)`};
+  transition: background-image 3000ms ease-in-out;
 `;
 
 const AppMainContainer = styled.div`

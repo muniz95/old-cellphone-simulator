@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useRoutes } from 'react-router-dom';
 import routes from '@/app/routes';
 import { useSettingsStore } from '@/features/settings/state/settings-store';
 import { useUiStore } from '@/app/state/ui-store';
+import { useInactivityBacklight } from '@/app/hooks/use-inactivity-backlight';
 
 export const getPathDepth = (pathname: string) =>
   pathname.split('/').filter((segment) => segment.length > 0).length;
@@ -12,7 +13,10 @@ export const useApp = () => {
   const location = useLocation();
   const routing = useRoutes([...routes]);
 
-  const backlightLevel = useSettingsStore((state) => state.backlightLevel);
+  const configuredBacklightLevel = useSettingsStore(
+    (state) => state.backlightLevel
+  );
+  const inactivityTime = useSettingsStore((state) => state.inactivityTime);
   const color = useSettingsStore((state) => state.color);
   const showModal = useUiStore((state) => state.showModal);
   const closeModal = useUiStore((state) => state.closeModal);
@@ -22,6 +26,10 @@ export const useApp = () => {
   const fourthLevel = useUiStore((state) => state.fourthLevel);
   const fifthLevel = useUiStore((state) => state.fifthLevel);
   const [firstRender, setFirstRender] = useState(true);
+  const backlightLevel = useInactivityBacklight(
+    configuredBacklightLevel,
+    inactivityTime
+  );
 
   const pathDepth = getPathDepth(location.pathname);
 
