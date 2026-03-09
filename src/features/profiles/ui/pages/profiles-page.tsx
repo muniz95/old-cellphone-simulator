@@ -1,6 +1,7 @@
 import useTranslation from '@/shared/hooks/use-translation';
 import S from '@/shared/ui/base';
 import { UiButton } from '@/shared/ui/controls';
+import ListItem from '@/shared/ui/list-item';
 import { useProfilesController } from '@/features/profiles/infrastructure/controllers/use-profiles-controller';
 
 const ProfilesPage = () => {
@@ -12,13 +13,10 @@ const ProfilesPage = () => {
     <>
       <S.MainContainer>
         {profiles.map((profile) => (
-          <S.ResultsBox
-            key={profile.name}
-            onClick={() => setSelectedProfile(profile)}
-          >
-            <S.Item>
+          <S.ResultsBox key={profile.name}>
+            <ListItem onClick={() => setSelectedProfile(profile)}>
               {profile.isFactoryProfile ? t(profile.name) : profile.name}
-            </S.Item>
+            </ListItem>
           </S.ResultsBox>
         ))}
       </S.MainContainer>

@@ -1,4 +1,5 @@
 import S from '@/shared/ui/base';
+import ListItem from '@/shared/ui/list-item';
 import { useServiceNumbersController } from '@/features/phone-book/infrastructure/controllers/use-service-numbers-controller';
 
 const ServiceNumbersPage = () => {
@@ -8,9 +9,9 @@ const ServiceNumbersPage = () => {
     <S.MainContainer>
       <S.ResultsBox>
         {contacts.map((contact) => (
-          <div key={contact.id ?? `${contact.name}-${contact.number}`}>
+          <ListItem key={contact.id ?? `${contact.name}-${contact.number}`}>
             {contact.name}
-          </div>
+          </ListItem>
         ))}
       </S.ResultsBox>
     </S.MainContainer>

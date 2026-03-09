@@ -1,6 +1,7 @@
 import useTranslation from '@/shared/hooks/use-translation';
 import S from '@/shared/ui/base';
 import { UiButton } from '@/shared/ui/controls';
+import ListItem from '@/shared/ui/list-item';
 import { useSimServicesController } from '@/features/sim-services/infrastructure/controllers/use-sim-services-controller';
 
 const SimServicesPage = () => {
@@ -12,11 +13,10 @@ const SimServicesPage = () => {
     <>
       <S.MainContainer>
         {simNumbers.map((service) => (
-          <S.ResultsBox
-            onClick={() => setCurrentSimNumber(service)}
-            key={service.id}
-          >
-            <S.Item>{service.name}</S.Item>
+          <S.ResultsBox key={service.id}>
+            <ListItem onClick={() => setCurrentSimNumber(service)}>
+              {service.name}
+            </ListItem>
           </S.ResultsBox>
         ))}
       </S.MainContainer>

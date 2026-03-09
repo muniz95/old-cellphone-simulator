@@ -1,5 +1,5 @@
 import { Tone } from '@/features/tones/domain/tone';
-import { UiButton } from '@/shared/ui/controls';
+import ListItem from '@/shared/ui/list-item';
 import HomeScreen from '@/shared/ui/home-screen';
 
 interface TonesListProps {
@@ -11,9 +11,9 @@ const TonesList = ({ tones, onPlayTone }: TonesListProps) => {
   return (
     <HomeScreen>
       {tones.map((tone) => (
-        <UiButton key={tone.name} onClick={() => onPlayTone(tone)}>
+        <ListItem key={tone.name} onClick={() => onPlayTone(tone)}>
           {tone.name}
-        </UiButton>
+        </ListItem>
       ))}
     </HomeScreen>
   );
