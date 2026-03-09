@@ -41,6 +41,7 @@ export const useApp = () => {
   return {
     backlightLevel,
     color,
+    routePath: location.pathname,
     showModal,
     firstRender,
     handleModalAutoClose,

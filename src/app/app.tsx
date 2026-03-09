@@ -10,12 +10,14 @@ import RouteLoading from '@/shared/ui/route-loading';
 import Startup from '@/shared/ui/startup';
 import GlobalStyle from '@/shared/styles/global-style';
 import S from '@/app/ui/app-shell';
+import RouteErrorBoundary from '@/app/ui/route-error-boundary';
 import { useApp } from '@/app/hooks/use-app';
 
 const App = () => {
   const {
     backlightLevel,
     color,
+    routePath,
     showModal,
     firstRender,
     handleModalAutoClose,
@@ -45,7 +47,9 @@ const App = () => {
             />
             <PwaBanner />
             <S.AppPageContainer>
-              <Suspense fallback={<RouteLoading />}>{routing}</Suspense>
+              <RouteErrorBoundary resetKey={routePath}>
+                <Suspense fallback={<RouteLoading />}>{routing}</Suspense>
+              </RouteErrorBoundary>
             </S.AppPageContainer>
             <BottomBar />
           </S.AppMainContainer>
