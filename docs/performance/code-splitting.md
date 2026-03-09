@@ -26,18 +26,18 @@
 ## Current post-change snapshot
 Captured on **March 9, 2026** from `dist/bundle-stats.html`:
 
-- Entry chunk (`assets/index-BJq75NMx.js`): `275.29 KB raw`, `90.51 KB gzip`, `78.83 KB brotli`
-- Total initial JS for `/` (entry + home route dependency closure): `280.80 KB raw`
-- Total emitted JS across all chunks: `308.50 KB raw`, `107.98 KB gzip`, `94.17 KB brotli`
+- Entry chunk (`assets/index-Cy7nRllf.js`): `275.29 KB raw`, `90.52 KB gzip`, `78.90 KB brotli`
+- Total initial JS for `/` (entry + home route dependency closure): `280.81 KB raw`
+- Total emitted JS across all chunks: `309.21 KB raw`, `108.27 KB gzip`, `94.59 KB brotli`
 - Route-specific lazy chunks emitted: `32`
 
 ## Metrics table
 | Metric | Baseline | Post-change | Delta |
 |---|---:|---:|---:|
 | Entry chunk (raw KB) |  | 275.29 |  |
-| Entry chunk (gzip KB) |  | 90.51 |  |
-| Entry chunk (brotli KB) |  | 78.83 |  |
-| Total initial JS for `/` (raw KB) |  | 280.80 |  |
+| Entry chunk (gzip KB) |  | 90.52 |  |
+| Entry chunk (brotli KB) |  | 78.90 |  |
+| Total initial JS for `/` (raw KB) |  | 280.81 |  |
 | Vendor chunk (raw KB) |  | n/a |  |
 | Number of route-specific lazy chunks |  | 32 |  |
 <!-- AUTO-GENERATED:END -->

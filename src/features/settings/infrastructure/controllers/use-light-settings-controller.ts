@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSettingsStore } from '@/features/settings/state/settings-store';
 import { useUiStore } from '@/app/state/ui-store';
+import { clampInactivityTime } from '@/features/settings/domain/use-cases';
 import vibration from '@/shared/lib/vibration';
 
 export const useLightSettingsController = () => {
@@ -14,7 +15,9 @@ export const useLightSettingsController = () => {
   const setFourthLevel = useUiStore((state) => state.setFourthLevel);
   const openModal = useUiStore((state) => state.openModal);
   const [backlightLevel, setBacklightLevel] = useState(currentBacklightLevel);
-  const [inactivityTime, setInactivityTime] = useState(currentInactivityTime);
+  const [inactivityTime, setInactivityTime] = useState(
+    clampInactivityTime(currentInactivityTime)
+  );
 
   useEffect(() => {
     setFourthLevel(3);

@@ -128,13 +128,26 @@ describe('settings module integration', () => {
   });
 
   it('updates light settings sliders and persists values on save', () => {
-    const { getAllByRole, getByLabelText, getByRole } = render(
-      <MemoryRouter initialEntries={['/settings/general/light']}>
-        <LightSettingsPage />
-      </MemoryRouter>
-    );
+    const { getAllByRole, getByLabelText, getByRole, getByTestId, getByText } =
+      render(
+        <MemoryRouter initialEntries={['/settings/general/light']}>
+          <LightSettingsPage />
+        </MemoryRouter>
+      );
 
-    expect(getAllByRole('slider')).toHaveLength(2);
+    const sliders = getAllByRole('slider') as HTMLInputElement[];
+    expect(sliders).toHaveLength(2);
+    expect(sliders[0].min).toBe('20');
+    expect(sliders[0].max).toBe('100');
+    expect(sliders[0].step).toBe('10');
+    expect(sliders[1].min).toBe('30');
+    expect(sliders[1].max).toBe('300');
+    expect(sliders[1].step).toBe('30');
+
+    const controls = getByTestId('light-controls');
+    expect(window.getComputedStyle(controls).gap).toBe('16px');
+    expect(getByText('80%')).toBeTruthy();
+    expect(getByText('1m')).toBeTruthy();
 
     fireEvent.change(
       getByLabelText(
@@ -152,6 +165,9 @@ describe('settings module integration', () => {
         target: { value: '120', valueAsNumber: 120 },
       }
     );
+
+    expect(getByText('30%')).toBeTruthy();
+    expect(getByText('2m')).toBeTruthy();
 
     fireEvent.click(getByRole('button', { name: /Save|Salvar|save/i }));
 
@@ -191,12 +207,12 @@ describe('settings module integration', () => {
         /Inactive after|general\.light\.inactiveAfter|Inativo após/i
       ),
       {
-        target: { value: '600', valueAsNumber: 600 },
+        target: { value: '300', valueAsNumber: 300 },
       }
     );
     fireEvent.click(getAllByText(/Save|save|Salvar/i)[2]);
     expect(useSettingsStore.getState().backlightLevel).toBe(20);
-    expect(useSettingsStore.getState().inactivityTime).toBe(600);
+    expect(useSettingsStore.getState().inactivityTime).toBe(300);
 
     fireEvent.change(
       getByLabelText(/Notification|general\.sound\.notification|Notificação/i),

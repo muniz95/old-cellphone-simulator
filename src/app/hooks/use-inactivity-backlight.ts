@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-const DIMMED_BACKLIGHT_LEVEL = 1;
+const DIMMED_BACKLIGHT_LEVEL = 10;
 
 export const useInactivityBacklight = (
   backlightLevel: number,
