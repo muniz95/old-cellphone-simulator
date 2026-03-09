@@ -14,7 +14,7 @@ export const clampSoundLevel = (value: number) => clamp(value, 0, 100);
 
 export const clampBacklightLevel = (value: number) => clamp(value, 20, 100);
 
-export const clampInactivityTime = (value: number) => clamp(value, 0, 600);
+export const clampInactivityTime = (value: number) => clamp(value, 30, 300);
 
 export const isSupportedLanguage = (language: string) => {
   return LANGUAGE_OPTIONS.some((option) => option.iso639 === language);

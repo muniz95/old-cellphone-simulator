@@ -22,8 +22,8 @@ describe('settings domain use-cases', () => {
     expect(clampSoundLevel(500)).toBe(100);
     expect(clampBacklightLevel(0)).toBe(20);
     expect(clampBacklightLevel(200)).toBe(100);
-    expect(clampInactivityTime(-5)).toBe(0);
-    expect(clampInactivityTime(900)).toBe(600);
+    expect(clampInactivityTime(-5)).toBe(30);
+    expect(clampInactivityTime(900)).toBe(300);
   });
 
   it('applies a valid color and ignores an unsupported one', () => {
@@ -64,7 +64,7 @@ describe('settings domain use-cases', () => {
     });
 
     expect(next.backlightLevel).toBe(20);
-    expect(next.inactivityTime).toBe(600);
+    expect(next.inactivityTime).toBe(300);
   });
 
   it('restores default settings values', () => {

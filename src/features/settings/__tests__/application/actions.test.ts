@@ -52,7 +52,7 @@ describe('settings store actions', () => {
 
     const state = useSettingsStore.getState();
     expect(state.backlightLevel).toBe(20);
-    expect(state.inactivityTime).toBe(600);
+    expect(state.inactivityTime).toBe(300);
   });
 
   it('resets settings to defaults', () => {
