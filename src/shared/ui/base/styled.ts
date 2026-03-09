@@ -23,6 +23,8 @@ const ResultsBox = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 const ControllerSection = styled.div`

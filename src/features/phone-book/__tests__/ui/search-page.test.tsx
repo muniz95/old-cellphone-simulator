@@ -38,6 +38,20 @@ describe('PhoneBookSearch', () => {
     });
   });
 
+  it('renders contacts in top-to-down order with row gap in the list container', () => {
+    const { getAllByTestId } = render(<SearchPage />);
+    const renderedItems = getAllByTestId('list-item');
+    const labels = renderedItems.map((item) => item.textContent);
+
+    expect(labels).toEqual(['Alice', 'Bob', 'Charlie', 'David']);
+
+    const resultsBox = renderedItems[0].parentElement as HTMLElement;
+    const styles = window.getComputedStyle(resultsBox);
+    expect(styles.display).toBe('flex');
+    expect(styles.flexDirection).toBe('column');
+    expect(styles.gap).toBe('8px');
+  });
+
   it('calls handleSearch when input changes', () => {
     const mockHandleSearch = vi.fn();
     vi.mocked(useSearchController).mockReturnValue({

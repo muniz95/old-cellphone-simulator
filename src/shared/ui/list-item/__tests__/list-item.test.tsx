@@ -23,4 +23,15 @@ describe('ListItem', () => {
 
     expect(onClick).toHaveBeenCalledTimes(1);
   });
+
+  it('keeps row styling and supports custom test ids', () => {
+    const { getByTestId } = render(
+      <ListItem testId="custom-list-item">Profile 3</ListItem>
+    );
+
+    const item = getByTestId('custom-list-item');
+    const styles = window.getComputedStyle(item);
+    expect(styles.display).toBe('flex');
+    expect(styles.width).toBe('100%');
+  });
 });

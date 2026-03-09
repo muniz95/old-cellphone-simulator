@@ -26,9 +26,9 @@
 ## Current post-change snapshot
 Captured on **March 8, 2026** from `dist/bundle-stats.html`:
 
-- Entry chunk (`assets/index-7rdoURR5.js`): `273.92 KB raw`, `90.17 KB gzip`, `78.56 KB brotli`
+- Entry chunk (`assets/index-DfDdzsxU.js`): `273.92 KB raw`, `90.17 KB gzip`, `78.55 KB brotli`
 - Total initial JS for `/` (entry + home route dependency closure): `279.43 KB raw`
-- Total emitted JS across all chunks: `307.09 KB raw`, `107.61 KB gzip`, `93.93 KB brotli`
+- Total emitted JS across all chunks: `307.13 KB raw`, `107.57 KB gzip`, `93.94 KB brotli`
 - Route-specific lazy chunks emitted: `32`
 
 ## Metrics table
@@ -36,7 +36,7 @@ Captured on **March 8, 2026** from `dist/bundle-stats.html`:
 |---|---:|---:|---:|
 | Entry chunk (raw KB) |  | 273.92 |  |
 | Entry chunk (gzip KB) |  | 90.17 |  |
-| Entry chunk (brotli KB) |  | 78.56 |  |
+| Entry chunk (brotli KB) |  | 78.55 |  |
 | Total initial JS for `/` (raw KB) |  | 279.43 |  |
 | Vendor chunk (raw KB) |  | n/a |  |
 | Number of route-specific lazy chunks |  | 32 |  |
