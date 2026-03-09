@@ -52,6 +52,7 @@ const App = () => {
           <BatteryStatus />
           <Modal
             color={color}
+            backlightLevel={backlightLevel}
             isOpen={showModal}
             onAutoClose={handleModalAutoClose}
           />

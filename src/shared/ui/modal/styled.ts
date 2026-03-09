@@ -6,7 +6,11 @@ const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
   ${visuallyHidden}
 `;
 
-const ModalContainer = styled.div<{ showModal: boolean; color: string }>`
+const ModalContainer = styled.div<{
+  showModal: boolean;
+  color: string;
+  backlightLevel: number;
+}>`
   position: fixed;
   z-index: 1;
   width: 100%;
@@ -14,6 +18,8 @@ const ModalContainer = styled.div<{ showModal: boolean; color: string }>`
   vertical-align: middle;
   text-align: center;
   background-color: ${({ color }) => color};
+  background-image: ${({ backlightLevel }) =>
+    `linear-gradient(rgb(0 0 0 / ${100 - backlightLevel}%) 0 0)`};
   display: ${({ showModal }) => (showModal ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
