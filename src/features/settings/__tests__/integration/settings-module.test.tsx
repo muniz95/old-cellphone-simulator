@@ -127,6 +127,38 @@ describe('settings module integration', () => {
     expect(useUiStore.getState().thirdLevel).toBe(3);
   });
 
+  it('updates light settings sliders and persists values on save', () => {
+    const { getAllByRole, getByLabelText, getByRole } = render(
+      <MemoryRouter initialEntries={['/settings/general/light']}>
+        <LightSettingsPage />
+      </MemoryRouter>
+    );
+
+    expect(getAllByRole('slider')).toHaveLength(2);
+
+    fireEvent.change(
+      getByLabelText(
+        /Backlight level|general\.light\.backlightLevel|Nível de luz de fundo/i
+      ),
+      {
+        target: { value: '30', valueAsNumber: 30 },
+      }
+    );
+    fireEvent.change(
+      getByLabelText(
+        /Inactive after|general\.light\.inactiveAfter|Inativo após/i
+      ),
+      {
+        target: { value: '120', valueAsNumber: 120 },
+      }
+    );
+
+    fireEvent.click(getByRole('button', { name: /Save|Salvar|save/i }));
+
+    expect(useSettingsStore.getState().backlightLevel).toBe(30);
+    expect(useSettingsStore.getState().inactivityTime).toBe(120);
+  });
+
   it('saves updated values through store-backed pages', () => {
     const { getAllByText, getByText, getByLabelText } = render(
       <MemoryRouter initialEntries={['/settings/restore']}>

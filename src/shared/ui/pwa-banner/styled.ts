@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { borders } from '@/shared/styles/tokens';
+import { UiButton } from '@/shared/ui/controls';
 
 const Container = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ const Message = styled.span`
   text-align: left;
 `;
 
-const ActionButton = styled.button`
+const ActionButton = styled(UiButton)`
   min-width: 64px;
   padding: 2px 6px;
   font-size: 11px;

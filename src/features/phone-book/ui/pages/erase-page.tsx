@@ -1,5 +1,6 @@
 import useTranslation from '@/shared/hooks/use-translation';
 import S from '@/shared/ui/base';
+import { UiButton } from '@/shared/ui/controls';
 import { Contact } from '@/features/phone-book/domain/contact';
 import { useEraseController } from '@/features/phone-book/infrastructure/controllers/use-erase-controller';
 
@@ -20,7 +21,7 @@ const ErasePage = () => {
         ))}
       </S.ResultsBox>
       <div>
-        <button onClick={removeContact}>{t('erase')}</button>
+        <UiButton onClick={removeContact}>{t('erase')}</UiButton>
       </div>
     </S.MainContainer>
   );

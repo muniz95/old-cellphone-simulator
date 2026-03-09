@@ -1,4 +1,5 @@
 import S from '@/shared/ui/base';
+import { UiButton } from '@/shared/ui/controls';
 import useTranslation from '@/shared/hooks/use-translation';
 import { useColorSettingsController } from '@/features/settings/infrastructure/controllers/use-color-settings-controller';
 
@@ -16,9 +17,9 @@ const ColorSettingsPage = () => {
         ))}
       </S.MainContainer>
       <S.ButtonContainer>
-        <button disabled={color === ''} onClick={save}>
+        <UiButton disabled={color === ''} onClick={save}>
           {t('save', { ns: 'global' })}
-        </button>
+        </UiButton>
       </S.ButtonContainer>
     </>
   );
