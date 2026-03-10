@@ -17,7 +17,7 @@ export const COLOR_OPTIONS: ColorOption[] = [
   { titleKey: 'general.color.orange', rgb: '#f3a34c' },
   { titleKey: 'general.color.purple', rgb: '#f74bda' },
   { titleKey: 'general.color.red', rgb: '#f53737' },
-  { titleKey: 'general.color.teal', rgb: '#3785eb' },
+  { titleKey: 'general.color.teal', rgb: '#008080' },
   { titleKey: 'general.color.yellow', rgb: '#f5e93e' },
 ];
 
