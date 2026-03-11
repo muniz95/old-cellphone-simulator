@@ -7,7 +7,7 @@ import useRingtone from '@/shared/hooks/use-ringtone';
 
 export const useTonesController = () => {
   const tones = useTonesData();
-  const { play } = useRingtone();
+  const { play, isPlaying } = useRingtone();
   const setSecondLevel = useUiStore((state) => state.setSecondLevel);
 
   useEffect(() => {
@@ -23,6 +23,7 @@ export const useTonesController = () => {
 
   return {
     tones,
+    isPlaying,
     playTone,
   };
 };

@@ -12,7 +12,9 @@ import { createRingtonePlayer } from '@/shared/lib/ringtone-player';
 class MockOscillatorNode {
   frequency = { setValueAtTime: vi.fn() } as unknown as AudioParam;
   type: OscillatorType = 'sine';
+  onended: ((event: Event) => void) | null = null;
   connect = vi.fn((node: AudioNode) => node);
+  disconnect = vi.fn();
   start = vi.fn();
   stop = vi.fn();
 }
@@ -105,5 +107,35 @@ describe('ringtone player', () => {
 
     expect(secondFrequencyMock.mock.calls[0]?.[1]).toBe(15);
     expect(secondOscillator.stop).toHaveBeenCalledWith(15.5);
+  });
+
+  it('tracks playback activity while oscillator is active', () => {
+    const onPlaybackStateChange = vi.fn();
+    const player = createRingtonePlayer({ onPlaybackStateChange });
+
+    player.play('a1', 120);
+
+    const context = MockAudioContext.instances[0];
+    const oscillator = context.oscillators[0];
+
+    expect(player.isPlaying()).toBe(true);
+    expect(onPlaybackStateChange).toHaveBeenCalledWith(true);
+
+    oscillator.onended?.(new Event('ended'));
+
+    expect(player.isPlaying()).toBe(false);
+    expect(onPlaybackStateChange).toHaveBeenLastCalledWith(false);
+  });
+
+  it('marks playback as inactive when stop is called', () => {
+    const onPlaybackStateChange = vi.fn();
+    const player = createRingtonePlayer({ onPlaybackStateChange });
+
+    player.play('a1', 120);
+    player.stop();
+
+    expect(player.isPlaying()).toBe(false);
+    expect(onPlaybackStateChange).toHaveBeenCalledWith(true);
+    expect(onPlaybackStateChange).toHaveBeenLastCalledWith(false);
   });
 });

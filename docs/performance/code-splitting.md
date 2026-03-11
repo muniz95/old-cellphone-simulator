@@ -26,9 +26,9 @@
 ## Current post-change snapshot
 Captured on **March 11, 2026** from `dist/bundle-stats.html`:
 
-- Entry chunk (`assets/index-DXHM6ECu.js`): `275.39 KB raw`, `90.57 KB gzip`, `78.98 KB brotli`
+- Entry chunk (`assets/index-CC71QjVY.js`): `275.39 KB raw`, `90.57 KB gzip`, `78.98 KB brotli`
 - Total initial JS for `/` (entry + home route dependency closure): `280.91 KB raw`
-- Total emitted JS across all chunks: `309.41 KB raw`, `108.39 KB gzip`, `94.69 KB brotli`
+- Total emitted JS across all chunks: `309.87 KB raw`, `108.66 KB gzip`, `94.98 KB brotli`
 - Route-specific lazy chunks emitted: `32`
 
 ## Metrics table

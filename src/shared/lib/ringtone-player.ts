@@ -8,12 +8,50 @@ const getAudioContextConstructor = () => {
 
 export interface RingtonePlayer {
   dispose: () => void;
+  isPlaying: () => boolean;
   play: (notes: string, bpm: number) => void;
   stop: () => void;
 }
 
-export const createRingtonePlayer = (): RingtonePlayer => {
+interface CreateRingtonePlayerOptions {
+  onPlaybackStateChange?: (isPlaying: boolean) => void;
+}
+
+export const createRingtonePlayer = (
+  options: CreateRingtonePlayerOptions = {}
+): RingtonePlayer => {
   let audioContext: AudioContext | null = null;
+  let activeOscillator: OscillatorNode | null = null;
+  let playbackToken = 0;
+  let currentlyPlaying = false;
+
+  const setPlaying = (isPlaying: boolean) => {
+    if (currentlyPlaying === isPlaying) return;
+    currentlyPlaying = isPlaying;
+    options.onPlaybackStateChange?.(isPlaying);
+  };
+
+  const clearActiveOscillator = () => {
+    if (!activeOscillator) return;
+    activeOscillator.onended = null;
+
+    try {
+      activeOscillator.stop();
+    } catch {
+      // Oscillator was already stopped.
+    }
+
+    activeOscillator.disconnect();
+    activeOscillator = null;
+  };
+
+  const cancelPlayback = (notify: boolean) => {
+    playbackToken += 1;
+    clearActiveOscillator();
+    if (notify) {
+      setPlaying(false);
+    }
+  };
 
   const createContext = () => {
     const AudioContextConstructor = getAudioContextConstructor();
@@ -30,6 +68,7 @@ export const createRingtonePlayer = (): RingtonePlayer => {
   };
 
   const closeContext = () => {
+    cancelPlayback(true);
     if (!audioContext) return;
     void audioContext.close();
     audioContext = null;
@@ -48,10 +87,13 @@ export const createRingtonePlayer = (): RingtonePlayer => {
     const commands = [...notes.matchAll(/(\d*)?(\.?)(#?)([a-g-])(\d*)/g)];
     if (!commands.length) return;
 
+    cancelPlayback(false);
+
     if (context.state === 'suspended') {
       void context.resume();
     }
 
+    const playbackId = playbackToken;
     const startTime = context.currentTime;
     let cursorTime = startTime;
 
@@ -59,7 +101,15 @@ export const createRingtonePlayer = (): RingtonePlayer => {
     const gainNode = context.createGain();
     oscillator.connect(gainNode).connect(context.destination);
     oscillator.type = 'sine';
+    activeOscillator = oscillator;
+    oscillator.onended = () => {
+      if (playbackToken !== playbackId || activeOscillator !== oscillator)
+        return;
+      activeOscillator = null;
+      setPlaying(false);
+    };
     oscillator.start(startTime);
+    setPlaying(true);
 
     for (const command of commands) {
       const asciiNote = command[4].charCodeAt(0);
@@ -85,6 +135,7 @@ export const createRingtonePlayer = (): RingtonePlayer => {
   };
 
   return {
+    isPlaying: () => currentlyPlaying,
     play,
     stop,
     dispose: closeContext,
