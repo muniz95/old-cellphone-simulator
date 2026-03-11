@@ -43,22 +43,25 @@ export const createRingtonePlayer = (): RingtonePlayer => {
   const play = (notes: string, bpm: number) => {
     const context = ensureContext();
     if (!context) return;
+    if (bpm <= 0) return;
 
-    let gainNode: GainNode;
-    let startTime = 0;
+    const commands = [...notes.matchAll(/(\d*)?(\.?)(#?)([a-g-])(\d*)/g)];
+    if (!commands.length) return;
+
+    if (context.state === 'suspended') {
+      void context.resume();
+    }
+
+    const startTime = context.currentTime;
+    let cursorTime = startTime;
 
     const oscillator = context.createOscillator();
-    oscillator
-      .connect((gainNode = context.createGain()))
-      .connect(context.destination);
+    const gainNode = context.createGain();
+    oscillator.connect(gainNode).connect(context.destination);
     oscillator.type = 'sine';
-    oscillator.start();
+    oscillator.start(startTime);
 
-    const setAudioParamValue = (audioParam: AudioParam, value: number) => {
-      audioParam.setValueAtTime(value, startTime);
-    };
-
-    for (const command of notes.matchAll(/(\d*)?(\.?)(#?)([a-g-])(\d*)/g)) {
+    for (const command of commands) {
       const asciiNote = command[4].charCodeAt(0);
       const calculatedNote =
         0 |
@@ -68,15 +71,17 @@ export const createRingtonePlayer = (): RingtonePlayer => {
       const clampedValue = clamp(Number(command[1]) || 4, 1, 64);
       const duration = (24 / bpm / clampedValue) * (1 + +!!command[2] / 2);
 
-      setAudioParamValue(
-        oscillator.frequency,
-        261.63 * 2 ** (calculatedNote / 12)
+      oscillator.frequency.setValueAtTime(
+        261.63 * 2 ** (calculatedNote / 12),
+        cursorTime
       );
-      setAudioParamValue(gainNode.gain, (~asciiNote & 8) / 8);
-      startTime += duration * 7;
-      setAudioParamValue(gainNode.gain, 0);
-      startTime += duration * 3;
+      gainNode.gain.setValueAtTime((~asciiNote & 8) / 8, cursorTime);
+      cursorTime += duration * 7;
+      gainNode.gain.setValueAtTime(0, cursorTime);
+      cursorTime += duration * 3;
     }
+
+    oscillator.stop(cursorTime);
   };
 
   return {
