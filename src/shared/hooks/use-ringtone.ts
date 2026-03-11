@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   createRingtonePlayer,
   RingtonePlayer,
@@ -6,13 +6,21 @@ import {
 
 const useRingtone = () => {
   const playerRef = useRef<RingtonePlayer | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const mountedRef = useRef(true);
 
   if (!playerRef.current) {
-    playerRef.current = createRingtonePlayer();
+    playerRef.current = createRingtonePlayer({
+      onPlaybackStateChange: (playing) => {
+        if (!mountedRef.current) return;
+        setIsPlaying(playing);
+      },
+    });
   }
 
   useEffect(() => {
     return () => {
+      mountedRef.current = false;
       if (!playerRef.current) return;
       playerRef.current.dispose();
       playerRef.current = null;
@@ -27,7 +35,7 @@ const useRingtone = () => {
     playerRef.current?.stop();
   }, []);
 
-  return { play, stop };
+  return { play, stop, isPlaying };
 };
 
 export default useRingtone;
