@@ -8,7 +8,6 @@ const CallRegisterPage = lazy(() => import('@/app/pages/call-register'));
 const CallDivertPage = lazy(() => import('@/app/pages/call-divert'));
 const GamesPage = lazy(() => import('@/app/pages/games'));
 const RemindersPage = lazy(() => import('@/app/pages/reminders'));
-const StartupPage = lazy(() => import('@/shared/ui/startup'));
 
 const routes: RouteObject[] = [
   { path: '/', element: <HomePage /> },
@@ -18,7 +17,6 @@ const routes: RouteObject[] = [
   { path: '/calldivert', element: <CallDivertPage /> },
   { path: '/games', element: <GamesPage /> },
   { path: '/reminders', element: <RemindersPage /> },
-  { path: '/startup', element: <StartupPage color="#00ff00" /> },
 ];
 
 export default routes;

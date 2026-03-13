@@ -14,10 +14,11 @@ const Startup = ({ color }: StartupProps) => {
     <S.StartupContainer color={color}>
       <DotMatrix
         dotGap={0}
-        dotSize={3}
+        dotSize={2}
         matrix={matrix}
-        xAxisLength={90}
+        xAxisLength={95}
         yAxisLength={45}
+        inactiveOpacity={0}
       />
     </S.StartupContainer>
   );
