@@ -2,15 +2,22 @@ import styled from 'styled-components';
 
 const StartupContainer = styled.div<{ color: string }>`
   position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: ${({ color }) => color};
   display: flex;
-  align-items: center;
-  justify-content: center;
+  inset: 0;
+  background-color: ${({ color }) => color};
+  place-content: center;
+  place-items: center;
+`;
+
+const StartupLabel = styled.div`
+  color: rgb(0 0 0 / 75%);
+  font-size: 28px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 `;
 
 const S = {
+  StartupLabel,
   StartupContainer,
 };
 
