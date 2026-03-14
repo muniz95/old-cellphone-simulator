@@ -1,6 +1,6 @@
 import { Contact } from '@/features/phone-book/domain/contact';
-import useLocalStorage from '@/shared/hooks/use-local-storage';
+import useIndexedDb from '@/shared/hooks/use-indexed-db';
 
-const useContacts = () => useLocalStorage<Contact[]>('contacts', []);
+const useContacts = () => useIndexedDb<Contact[]>('contacts', []);
 
 export default useContacts;

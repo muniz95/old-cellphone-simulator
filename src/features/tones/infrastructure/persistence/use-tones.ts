@@ -1,6 +1,6 @@
 import { Tone } from '@/features/tones/domain/tone';
-import useLocalStorage from '@/shared/hooks/use-local-storage';
+import useIndexedDb from '@/shared/hooks/use-indexed-db';
 
-const useTones = () => useLocalStorage<Tone[]>('tones', []);
+const useTones = () => useIndexedDb<Tone[]>('tones', []);
 
 export default useTones;
