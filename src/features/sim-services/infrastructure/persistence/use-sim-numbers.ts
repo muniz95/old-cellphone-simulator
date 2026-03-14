@@ -1,6 +1,6 @@
 import { SimNumber } from '@/features/sim-services/domain/sim-number';
-import useLocalStorage from '@/shared/hooks/use-local-storage';
+import useIndexedDb from '@/shared/hooks/use-indexed-db';
 
-const useSimNumbers = () => useLocalStorage<SimNumber[]>('simNumbers', []);
+const useSimNumbers = () => useIndexedDb<SimNumber[]>('simNumbers', []);
 
 export default useSimNumbers;

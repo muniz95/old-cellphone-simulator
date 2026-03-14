@@ -1,6 +1,8 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import useLocalStorage from '@/shared/hooks/use-local-storage';
+import useIndexedDb, {
+  resetIndexedDbCache,
+} from '@/shared/hooks/use-indexed-db';
 
 type StorageRecord = Record<string, string>;
 
@@ -25,11 +27,12 @@ const createStorageMock = (seed: StorageRecord = {}) => {
   } as Storage;
 };
 
-describe('useLocalStorage', () => {
+describe('useIndexedDb', () => {
   const originalLocalStorage = globalThis.localStorage;
   let storageMock: Storage;
 
   beforeEach(() => {
+    resetIndexedDbCache();
     storageMock = createStorageMock();
     Object.defineProperty(globalThis, 'localStorage', {
       configurable: true,
@@ -39,6 +42,7 @@ describe('useLocalStorage', () => {
   });
 
   afterEach(() => {
+    resetIndexedDbCache();
     Object.defineProperty(globalThis, 'localStorage', {
       configurable: true,
       writable: true,
@@ -50,14 +54,14 @@ describe('useLocalStorage', () => {
     localStorage.setItem('profile', JSON.stringify({ name: 'Alice' }));
 
     const { result } = renderHook(() =>
-      useLocalStorage('profile', { name: 'Default' })
+      useIndexedDb('profile', { name: 'Default' })
     );
 
     expect(result.current[0]).toEqual({ name: 'Alice' });
   });
 
   it('writes and returns default value when key does not exist', () => {
-    const { result } = renderHook(() => useLocalStorage('language', 'en'));
+    const { result } = renderHook(() => useIndexedDb('language', 'en'));
 
     expect(result.current[0]).toBe('en');
     expect(localStorage.getItem('language')).toBe('en');
@@ -68,9 +72,9 @@ describe('useLocalStorage', () => {
     localStorage.setItem('number', '42');
     localStorage.setItem('text', 'legacy-value');
 
-    const boolHook = renderHook(() => useLocalStorage('boolean', false));
-    const numberHook = renderHook(() => useLocalStorage('number', 0));
-    const textHook = renderHook(() => useLocalStorage('text', ''));
+    const boolHook = renderHook(() => useIndexedDb('boolean', false));
+    const numberHook = renderHook(() => useIndexedDb('number', 0));
+    const textHook = renderHook(() => useIndexedDb('text', ''));
 
     expect(boolHook.result.current[0]).toBe(true);
     expect(numberHook.result.current[0]).toBe(42);
@@ -80,16 +84,16 @@ describe('useLocalStorage', () => {
   it('keeps persisted empty-string values instead of replacing them with defaults', () => {
     localStorage.setItem('nickname', '');
 
-    const { result } = renderHook(() => useLocalStorage('nickname', 'Guest'));
+    const { result } = renderHook(() => useIndexedDb('nickname', 'Guest'));
 
     expect(result.current[0]).toBe('');
     expect(localStorage.getItem('nickname')).toBe('');
   });
 
   it('persists falsy updates (0, false, empty string)', async () => {
-    const numberHook = renderHook(() => useLocalStorage('n', 1));
-    const boolHook = renderHook(() => useLocalStorage('b', true));
-    const textHook = renderHook(() => useLocalStorage('s', 'hello'));
+    const numberHook = renderHook(() => useIndexedDb('n', 1));
+    const boolHook = renderHook(() => useIndexedDb('b', true));
+    const textHook = renderHook(() => useIndexedDb('s', 'hello'));
 
     act(() => {
       numberHook.result.current[1](0);

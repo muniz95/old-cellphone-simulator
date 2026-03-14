@@ -2,6 +2,20 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { say } from '@/shared/lib/sound';
 
 type VoicesChangedHandler = () => void;
+type SpeechSynthesisMockApi = Pick<
+  SpeechSynthesis,
+  'getVoices' | 'speak' | 'cancel' | 'resume' | 'addEventListener'
+> & {
+  getVoices: ReturnType<typeof vi.fn<() => SpeechSynthesisVoice[]>>;
+  speak: ReturnType<
+    typeof vi.fn<(utterance: SpeechSynthesisUtterance) => void>
+  >;
+  cancel: ReturnType<typeof vi.fn<() => void>>;
+  resume: ReturnType<typeof vi.fn<() => void>>;
+  addEventListener: ReturnType<
+    typeof vi.fn<(event: string, handler: EventListener) => void>
+  >;
+};
 
 const createVoice = (
   name: string,
@@ -18,6 +32,17 @@ const createVoice = (
 const createSpeechMock = () => {
   let voices: SpeechSynthesisVoice[] = [];
   const listeners: VoicesChangedHandler[] = [];
+  const api: SpeechSynthesisMockApi = {
+    getVoices: vi.fn(() => voices),
+    speak: vi.fn(),
+    cancel: vi.fn(),
+    resume: vi.fn(),
+    addEventListener: vi.fn((event: string, handler: EventListener) => {
+      if (event === 'voiceschanged') {
+        listeners.push(handler as VoicesChangedHandler);
+      }
+    }),
+  };
 
   return {
     setVoices: (nextVoices: SpeechSynthesisVoice[]) => {
@@ -26,17 +51,7 @@ const createSpeechMock = () => {
     emitVoicesChanged: () => {
       listeners.forEach((handler) => handler());
     },
-    api: {
-      getVoices: vi.fn(() => voices),
-      speak: vi.fn(),
-      cancel: vi.fn(),
-      resume: vi.fn(),
-      addEventListener: vi.fn((event: string, handler: EventListener) => {
-        if (event === 'voiceschanged') {
-          listeners.push(handler as VoicesChangedHandler);
-        }
-      }),
-    } as unknown as SpeechSynthesis,
+    api,
   };
 };
 
