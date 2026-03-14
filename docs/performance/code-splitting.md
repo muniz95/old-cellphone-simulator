@@ -26,20 +26,20 @@
 ## Current post-change snapshot
 Captured on **March 13, 2026** from `dist/bundle-stats.html`:
 
-- Entry chunk (`assets/index-a-lBjdhr.js`): `278.81 KB raw`, `91.73 KB gzip`, `80.01 KB brotli`
-- Total initial JS for `/` (entry + home route dependency closure): `284.32 KB raw`
-- Total emitted JS across all chunks: `313.29 KB raw`, `109.72 KB gzip`, `95.88 KB brotli`
-- Route-specific lazy chunks emitted: `32`
+- Entry chunk (`assets/index-CsexGSzK.js`): `280.66 KB raw`, `92.52 KB gzip`, `80.67 KB brotli`
+- Total initial JS for `/` (entry + home route dependency closure): `286.17 KB raw`
+- Total emitted JS across all chunks: `314.02 KB raw`, `109.92 KB gzip`, `96.04 KB brotli`
+- Route-specific lazy chunks emitted: `31`
 
 ## Metrics table
 | Metric | Baseline | Post-change | Delta |
 |---|---:|---:|---:|
-| Entry chunk (raw KB) |  | 278.81 |  |
-| Entry chunk (gzip KB) |  | 91.73 |  |
-| Entry chunk (brotli KB) |  | 80.01 |  |
-| Total initial JS for `/` (raw KB) |  | 284.32 |  |
+| Entry chunk (raw KB) |  | 280.66 |  |
+| Entry chunk (gzip KB) |  | 92.52 |  |
+| Entry chunk (brotli KB) |  | 80.67 |  |
+| Total initial JS for `/` (raw KB) |  | 286.17 |  |
 | Vendor chunk (raw KB) |  | n/a |  |
-| Number of route-specific lazy chunks |  | 32 |  |
+| Number of route-specific lazy chunks |  | 31 |  |
 <!-- AUTO-GENERATED:END -->
 
 ## Runtime verification checklist
